@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+  background-color: #F2F2F2;
+}
+
+.nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+
+.nav-link {
+  font-weight: bold;
+  color: #333333;
+  margin-left: 50px;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #6D6D64;
+}
