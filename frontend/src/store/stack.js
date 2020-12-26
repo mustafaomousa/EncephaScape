@@ -3,8 +3,8 @@ import { fetch } from './csrf.js';
 const GET_ALL_STACKS = 'stack/getAllStacks';
 
 const initialState = {
-    stacks: null,
-    userStacks: null
+    stacks: {},
+    userStacks: {}
 };
 
 const getAllStacks = (stacks) => ({
@@ -12,7 +12,13 @@ const getAllStacks = (stacks) => ({
     payload: stacks
 });
 
-function stackReducer(state = initialState, action) {
+export const getStacks = () => async (dispatch) => {
+    const res = await fetch('/api/stacks');
+    dispatch(getAllStacks(res.data.stacks));
+    return res;
+};
+
+function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case GET_ALL_STACKS:
@@ -23,10 +29,5 @@ function stackReducer(state = initialState, action) {
     }
 };
 
-export const getStacks = async (dispatch) => {
-    const res = await fetch('/api/stacks');
-    dispatch(getAllStacks(res.data.stacks));
-    return res;
-};
 
-export default stackReducer;
+export default reducer;

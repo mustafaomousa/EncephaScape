@@ -8,7 +8,7 @@ const { Stack } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-    const stacks = await Category.findAll();
+    const stacks = await Stack.findAll();
 
     return res.json({ stacks });
 }));
