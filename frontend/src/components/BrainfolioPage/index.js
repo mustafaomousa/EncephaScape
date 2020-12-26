@@ -17,8 +17,6 @@ const Brainfolio = () => {
     const updateCategoryId = (e) => setCategoryId(e.target.value);
 
     const onSubmit = (e) => {
-        e.preventDefault();
-
         const payload = {
             name,
             categoryId,
@@ -26,7 +24,6 @@ const Brainfolio = () => {
         };
 
         return dispatch(createStack(payload));
-
     };
 
 

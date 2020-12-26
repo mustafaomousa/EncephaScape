@@ -22,4 +22,11 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json({ newStack });
 }));
 
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params.id;
+    await Stack.destroy({ where: { id: id } });
+
+    return res.json('Stack deleted')
+}));
+
 module.exports = router;

@@ -4,7 +4,25 @@
     flex-wrap: wrap;
 }
 
+.delete-stack {
+    font-weight: bold;
+    width: 21px;
+    height: 20px;
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+    border-radius: 50%;
+    position: relative;
+    right: 13px;
+    bottom: 10px;
+}
+
+.delete-stack:hover {
+    color: black;
+}
+
 .stack {
+    text-transform: uppercase;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -18,4 +36,12 @@
 
 .stack a {
     text-decoration: none;
+    color: #708090;
+    font-size: larger;
+    font-weight: normal;
+}
+
+.stack a:hover {
+    color: #001f3f;
+    font-weight: bolder;
 }

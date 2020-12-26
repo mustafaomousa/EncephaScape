@@ -1,17 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStacks } from '../../store/stack';
+import { useHistory } from 'react-router-dom'
+import { getStacks, deleteStack } from '../../store/stack';
 import './cardview.css';
 
 const CardView = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const stacks = useSelector(state => state.stack.stacks);
+
+    // const [deletedStack, setDeletedStack] = useState(0);
+
+    const deleteStack = (e) => {
+        // setDeletedStack(e.target.value);
+        dispatch(deleteStack(4));
+        history.push('/')
+    };
 
     const listItems = stacks.map((stack) => {
         return (
-            <div className={`stack stack-${stack.id}`} key={`stack-${stack.id}`}>
-                <a href='/'>{stack.name}</a>
-            </div>
+            <>
+                <div className={`stack stack-${stack.id}`} key={`stack-${stack.id}`}>
+                    <a href='/'>{stack.name}</a>
+                </div>
+            </>
         )
     });
 

@@ -18,6 +18,18 @@ export const getStacks = () => async (dispatch) => {
     return res;
 };
 
+export const deleteStack = (payload) => async (dispatch) => {
+    const { id } = payload;
+    const res = await fetch(`/api/stacks/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (res.ok) {
+        dispatch(getStacks());
+        return res;
+    };
+};
+
 export const createStack = (payload) => async (dispatch) => {
     const { name, categoryId, userId } = payload;
     const res = await fetch('/api/stacks', {
@@ -30,7 +42,6 @@ export const createStack = (payload) => async (dispatch) => {
     });
 
     getStacks();
-
     return res;
 };
 
