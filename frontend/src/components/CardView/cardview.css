@@ -1,0 +1,21 @@
+.multiple-stacks-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.stack {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: gray 5px solid;
+    border-radius: 0.25em;
+    width: 250px;
+    height: 120px;
+    margin: 10px;
+}
+
+.stack a {
+    text-decoration: none;
+}

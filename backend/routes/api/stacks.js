@@ -14,9 +14,9 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
-    const { name } = req.body;
+    const { name, categoryId, userId } = req.body;
 
-    const newStack = await Stack.create({ name });
+    const newStack = await Stack.create({ name, categoryId, userId });
     newStack.save();
 
     return res.json({ newStack });
