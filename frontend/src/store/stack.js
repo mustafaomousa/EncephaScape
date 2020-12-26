@@ -3,8 +3,8 @@ import { fetch } from './csrf.js';
 const GET_ALL_STACKS = 'stack/getAllStacks';
 
 const initialState = {
-    stacks: {},
-    userStacks: {}
+    stacks: [],
+    userStacks: []
 };
 
 const getAllStacks = (stacks) => ({

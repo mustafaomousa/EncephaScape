@@ -1,15 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStacks } from '../../store/stack';
 
 const CardView = () => {
     const dispatch = useDispatch();
-    dispatch(getStacks());
+    const stacks = useSelector(state => state.stack.stacks);
+
     useEffect(() => {
-    }, []);
+        dispatch(getStacks());
+    }, [dispatch]);
     return (
         <>
-            <h4>Cards:</h4>
+            <h4>Top 20 Stacks:</h4>
+            <div className='multiple-stacks-container'>
+                {stacks && stacks.forEach((stack, i) => {
+                    return (
+                        <div key={`stack-${i}`} >
+                            <label>{stack.name}</label>
+                        </div>
+                    )
+                })}
+            </div>
         </>
     )
 };
