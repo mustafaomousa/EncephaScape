@@ -54,7 +54,7 @@ function SignupFormPage() {
           />
         </label>
         <label>
-          Phone Nunmber
+          Phone Number
           <input
             type="number"
             value={phoneNumber}
