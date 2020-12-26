@@ -9,9 +9,15 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
-        <NavLink className="nav-link" to="/profile">Profile</NavLink>
-      </li>
+      <>
+        <li>
+          <NavLink className="nav-link" to="/brainfolio">Brainfolio</NavLink>
+        </li>
+        <li>
+          <NavLink className="nav-link" to="/profile">Profile</NavLink>
+        </li>
+
+      </>
     );
   } else {
     sessionLinks = (

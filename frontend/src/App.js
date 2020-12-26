@@ -9,6 +9,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
+import Brainfolio from "./components/BrainfolioPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <ProfilePage />
+            </Route>
+            <Route path="/brainfolio">
+              <Brainfolio />
             </Route>
           </Switch>
         )}
