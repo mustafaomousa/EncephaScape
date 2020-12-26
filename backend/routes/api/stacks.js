@@ -13,4 +13,13 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ stacks });
 }));
 
+router.post('/', asyncHandler(async (req, res) => {
+    const { name } = req.body;
+
+    const newStack = await Stack.create({ name });
+    newStack.save();
+
+    return res.json({ newStack });
+}));
+
 module.exports = router;

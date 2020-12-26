@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStacks } from '../../store/stack';
 
@@ -14,6 +14,7 @@ const CardView = () => {
             <h4>Top 20 Stacks:</h4>
             <div className='multiple-stacks-container'>
                 {stacks && stacks.forEach((stack, i) => {
+                    if (i === 19) return;
                     return (
                         <div key={`stack-${i}`} >
                             <label>{stack.name}</label>

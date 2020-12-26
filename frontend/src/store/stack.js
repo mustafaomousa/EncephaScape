@@ -18,6 +18,19 @@ export const getStacks = () => async (dispatch) => {
     return res;
 };
 
+export const createStack = (name) => async (dispatch) => {
+    const res = await fetch('/api/stacks', {
+        method: 'POST',
+        body: JSON.stringify({
+            name
+        })
+    });
+
+    getStacks();
+
+    return res;
+};
+
 function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
