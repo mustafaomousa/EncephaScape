@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .delete-stack {
@@ -39,6 +40,7 @@
 /* Tried to make cards look a bit cooler: */
 .stack {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 10px;
@@ -53,6 +55,9 @@
 
 .stack:hover {
     border-color: sienna;
+    width: 310px;
+    height: 130px;
+    /* margin: 15px */
 }
 
 .stack a {
@@ -60,9 +65,21 @@
     color: #708090;
     font-size: larger;
     font-weight: normal;
+    position: relative;
+    top: 30px;
 }
 
-.stack a:hover {
+.stack a:hover,p:hover {
     color: #001f3f;
     font-weight: bolder;
+}
+
+.stack p {
+    position: relative;
+    top: 18px;
+    font-size: 12px;
+}
+
+#by-statement {
+    bottom: 10px
 }

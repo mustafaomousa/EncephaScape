@@ -3,12 +3,12 @@ const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { Stack } = require('../../db/models');
+const { Stack, User } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-    const stacks = await Stack.findAll();
+    const stacks = await Stack.findAll({ include: User });
 
     return res.json({ stacks });
 }));

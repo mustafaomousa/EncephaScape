@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import date from 'date';
 import { getStacks, deleteStack } from '../../store/stack';
 import './cardview.css';
 
@@ -22,6 +23,8 @@ const CardView = () => {
             <>
                 <div className={`stack stack-${stack.id}`} key={`stack-${stack.id}`}>
                     <a href='/'>{stack.name}</a>
+                    <p id='by-statement'>by {stack.User.username}</p>
+                    <p>created at {stack.createdAt}</p>
                 </div>
             </>
         )
