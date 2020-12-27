@@ -4,17 +4,21 @@ import { createStack } from '../../store/stack';
 import { AppContext } from '../../context/AppContextProvider';
 import { getAllCategories } from '../../store/category';
 import CardView from '../CardView';
+import { useHistory } from 'react-router-dom';
 
 const Brainfolio = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [name, setName] = useState('');
     const [categoryId, setCategoryId] = useState(null);
 
     const { user } = useContext(AppContext);
     const categories = useSelector(state => state.category.categories);
+    const sessionUser = useSelector((state) => state.session.user);
 
     const updateStackName = (e) => setName(e.target.value);
     const updateCategoryId = (e) => setCategoryId(e.target.value);
+
 
     const onSubmit = (e) => {
         const payload = {
@@ -28,8 +32,13 @@ const Brainfolio = () => {
 
 
     useEffect(() => {
-        dispatch(getAllCategories())
-    }, [dispatch]);
+        if (sessionUser === undefined) {
+            alert('Please login or sign-up');
+            return history.push('/signup');
+        };
+
+        dispatch(getAllCategories());
+    }, [dispatch, history, sessionUser]);
 
     return (
         <>

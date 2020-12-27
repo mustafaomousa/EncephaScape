@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { AppContext } from '../../context/AppContextProvider';
 
@@ -9,6 +9,12 @@ const ProfilePage = () => {
     const history = useHistory();
 
     const { user } = useContext(AppContext);
+    const sessionUser = useSelector((state) => state.session.user);
+
+    if (sessionUser === undefined) {
+        alert('Please login or sign-up');
+        return <Redirect to='/signup'></Redirect>
+    };
 
     const logout = (e) => {
         e.preventDefault();
