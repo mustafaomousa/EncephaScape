@@ -5,12 +5,13 @@
 
 .navbar {
   position: sticky;
-top: 0;
+  top: 0;
   display: flex;
-  justify-content: space-between;
-  height: 70px;
+  justify-content: flex-start;
+  height: 120px;
   align-items: center;
   background-color: #F2F2F2;
+  z-index: 1;
 }
 
 .nav {
@@ -25,8 +26,15 @@ top: 0;
   color: #333333;
   margin-left: 50px;
   text-decoration: none;
+  position: relative;
+  top: 65px;
 }
 
 .nav-link:hover {
   color: #6D6D64;
+}
+
+#logo {
+  height: 100px;
+  width: 250px;
 }

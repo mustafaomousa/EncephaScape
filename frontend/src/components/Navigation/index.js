@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import brain from './brain.png';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -35,6 +36,9 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="navbar">
       <ul className="nav">
+        <li>
+          <img id='logo' src={brain} alt='EncephaScape'></img>
+        </li>
         <li>
           <NavLink className="nav-link" exact to="/">Home</NavLink>
         </li>
