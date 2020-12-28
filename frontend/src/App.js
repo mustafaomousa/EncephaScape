@@ -13,6 +13,8 @@ import Brainfolio from "./components/BrainfolioPage";
 import Stack from './components/Stack';
 import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 import StudyStackPage from "./components/StudyStackPage";
+import NoneUserHomePage from "./components/NonUserHomePage";
+import BrowsePage from './components/BrowsePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,10 +30,12 @@ function App() {
         {isLoaded && (
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route path="/home" component={NoneUserHomePage} />
             <Route path="/login" component={LoginFormPage} />
             <Route path="/signup" component={SignupFormPage} />
             <Route path="/profile" component={ProfilePage} />
             <Route path="/brainfolio" component={Brainfolio} />
+            <Route exact path="/stack" component={BrowsePage} />
             <Route path={`/stack/:id`} component={StudyStackPage} />
             <Route path={`/category/:id`} component={BrowseByCategoryPage} />
           </Switch>

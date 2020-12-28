@@ -12,12 +12,14 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <li>
+          <NavLink className="nav-link" to="/stack">Browse Stacks</NavLink>
+        </li>
+        <li>
           <NavLink className="nav-link" to="/brainfolio">Brainfolio</NavLink>
         </li>
         <li>
           <NavLink className="nav-link" to="/profile">Profile</NavLink>
         </li>
-
       </>
     );
   } else {

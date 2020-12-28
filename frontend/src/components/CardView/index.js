@@ -24,6 +24,20 @@ const CardView = () => {
         )
     });
 
+
+
+    useEffect(() => {
+        dispatch(getStacks());
+    }, [dispatch, user, listItems]);
+
+    if (!user) {
+        return (
+            <div>
+
+            </div>
+        )
+    }
+
     const userItems = userStacks.map((stack, i) => {
         return (
             <nav key={`stack-nav-${i}`}>
@@ -35,12 +49,6 @@ const CardView = () => {
             </nav>
         )
     });
-
-    console.log(userStacks)
-
-    useEffect(() => {
-        dispatch(getStacks());
-    }, [dispatch]);
 
     return (
         <>
