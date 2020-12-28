@@ -1,0 +1,13 @@
+.brainfolio-body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.brainfolio-browse-tools {
+    grid-column-start: 1;
+    border-right: gray solid;
+}
+
+.brainfolio-browse {
+    grid-column-start: 2;
+}

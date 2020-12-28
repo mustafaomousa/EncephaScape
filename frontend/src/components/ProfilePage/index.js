@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { AppContext } from '../../context/AppContextProvider';
+import brain from './brain-cartoon.jpg'
 import './profile.css'
 
 const ProfilePage = () => {
@@ -27,12 +28,18 @@ const ProfilePage = () => {
         <div className='profile-page'>
             <div className='profile-body'>
                 <h1>Profile</h1>
-                <ul className="profile-dropdown">
-                    <li>Username: {user.username}</li>
-                    <li>Email: {user.email}</li>
-                    <li>Phone Number: {user.phoneNumber}</li>
-                </ul>
+                <div>
+                    <ul className="profile-card">
+                        <img src={brain} alt='brain' />
+                        <h3>{user.username}</h3>
+                        <h3>{user.email}</h3>
+                        <h3>{user.phoneNumber}</h3>
+                        <div className='stack-amount'>
+                            <h5 style={{ color: 'white' }}>Amount of stacks</h5>
+                        </div>
+                    </ul>
 
+                </div>
             </div>
             <div className='profile-button-box'>
                 <button onClick={logout}>Log Out</button>
