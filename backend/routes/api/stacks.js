@@ -13,6 +13,13 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ stacks });
 }));
 
+// router.get('/:id', asyncHandler(async (req, res) => {
+//     const { id } = req.params.id;
+//     const stack = await Stack.findAll({ where: { id: id } });
+
+//     return res.json({ stack });
+// }));
+
 router.post('/', asyncHandler(async (req, res) => {
     const { name, categoryId, userId } = req.body;
 

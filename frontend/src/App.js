@@ -10,6 +10,8 @@ import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
 import Brainfolio from "./components/BrainfolioPage";
+import Stack from './components/Stack';
+import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +41,8 @@ function App() {
             <Route path="/brainfolio">
               <Brainfolio />
             </Route>
+            <Route path={`/stack/:id`} component={Stack} />
+            <Route path={`/category/:id`} component={BrowseByCategoryPage} />
           </Switch>
         )}
       </AppContextProvider>

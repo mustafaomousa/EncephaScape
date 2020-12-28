@@ -1,38 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'
-import date from 'date';
-import { getStacks, deleteStack } from '../../store/stack';
+import { NavLink, useHistory } from 'react-router-dom'
+import { getStacks } from '../../store/stack';
 import './cardview.css';
 
 const CardView = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const stacks = useSelector(state => state.stack.stacks);
 
-    // const [deletedStack, setDeletedStack] = useState(0);
-
-    const deleteStack = (e) => {
-        // setDeletedStack(e.target.value);
-        dispatch(deleteStack(4));
-        history.push('/')
-    };
-
-    const listItems = stacks.map((stack) => {
+    const listItems = stacks.map((stack, i) => {
         return (
-            <>
-                <div className={`stack stack-${stack.id}`} key={`stack-${stack.id}`}>
-                    <a href='/'>{stack.name}</a>
-                    <p id='by-statement'>by {stack.User.username}</p>
-                    <p>created at {stack.createdAt}</p>
+            <nav key={`stack-nav-${i}`}>
+                <div key={`stack-${i}`} className={`stack stack-${stack.id}`}>
+                    <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
+                    <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
+                    <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
                 </div>
-            </>
+            </nav>
         )
     });
 
     useEffect(() => {
         dispatch(getStacks());
     }, [dispatch]);
+
     return (
         <>
             <h4>Top 20 Stacks:</h4>
