@@ -35,8 +35,8 @@
 }
 
 .nav-link:hover {
-  text-transform: uppercase;
   color: sienna;
+  font-size: 20.5px;
 }
 
 #logo {

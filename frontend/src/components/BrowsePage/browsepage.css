@@ -1,0 +1,31 @@
+.browse-page {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.stack-browse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stack-browse-tools {
+    display: flex;
+    justify-content: center;
+    border-right: gray solid;
+}
+
+@media (max-width:860px){
+    .browse-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .stack-browse-tools {
+        border-right: none;
+    }
+}
+

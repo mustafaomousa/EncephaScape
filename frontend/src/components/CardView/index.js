@@ -11,32 +11,26 @@ const CardView = () => {
     const { user } = useContext(AppContext);
     const stacks = useSelector(state => state.stack.stacks);
     const userStacks = useSelector(state => state.stack.stacks.filter(stack => stack.userId === user.id));
+    const sessionUser = useSelector(state => state.session.user);
 
     const listItems = stacks.map((stack, i) => {
+        let isOwner = stack.userId === sessionUser.id;
         return (
             <nav key={`stack-nav-${i}`}>
                 <div key={`stack-${i}`} className={`stack stack-${stack.id}`}>
                     <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
                     <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
                     <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
+                    {isOwner && <button className='edit'>Edit</button>}
                 </div>
             </nav>
         )
     });
 
 
-
     useEffect(() => {
         dispatch(getStacks());
     }, [dispatch, user, listItems]);
-
-    if (!user) {
-        return (
-            <div>
-
-            </div>
-        )
-    }
 
     const userItems = userStacks.map((stack, i) => {
         return (
@@ -45,6 +39,7 @@ const CardView = () => {
                     <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
                     <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
                     <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
+                    <button className='edit'>Edit</button>
                 </div>
             </nav>
         )
