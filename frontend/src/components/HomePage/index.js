@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCategories } from '../../store/category';
-import CardView from '../CardView';
+// import CardView from '../CardView';
 import './homepage.css';
 
 const HomePage = () => {
@@ -10,11 +10,9 @@ const HomePage = () => {
 
     const categoryItems = categories.map((category) => {
         return (
-            <>
-                <div className={`category category-${category.id}`} key={`category-${category.id}`}>
-                    <a href='/'>{category.name}</a>
-                </div>
-            </>
+            <div className={`category category-${category.id}`} key={`category-${category.id}`}>
+                <a key={`${category.id}`} href='/'>{category.name}</a>
+            </div>
         )
     });
 

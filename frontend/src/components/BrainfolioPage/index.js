@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { createStack } from '../../store/stack';
 import { AppContext } from '../../context/AppContextProvider';
 import { getAllCategories } from '../../store/category';
@@ -9,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 const Brainfolio = () => {
     const dispatch = useDispatch();
-    const location = useLocation();
     const history = useHistory();
     const [name, setName] = useState('');
     const [categoryId, setCategoryId] = useState(null);
@@ -34,14 +32,13 @@ const Brainfolio = () => {
 
 
     useEffect(() => {
-        // console.log(location.pathname.includes('brainfolio'))
-        // if (sessionUser === undefined) {
-        //     alert('Please login or sign-up');
-        //     return history.push('/signup');
-        // };
+        if (sessionUser === undefined) {
+            alert('Please login or sign-up');
+            return history.push('/signup');
+        };
 
         dispatch(getAllCategories());
-    }, [dispatch]);
+    }, [dispatch, history, sessionUser]);
 
     return (
         <>

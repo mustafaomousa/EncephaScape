@@ -10,7 +10,6 @@ import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
 import Brainfolio from "./components/BrainfolioPage";
-import Stack from './components/Stack';
 import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 import StudyStackPage from "./components/StudyStackPage";
 import NoneUserHomePage from "./components/NonUserHomePage";

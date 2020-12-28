@@ -1,0 +1,41 @@
+.signup-form-body, .login-form-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form, .signup-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    border: solid sienna 2px;
+    border-radius: 0.25em;
+    padding: 30px;
+}
+
+
+.form-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+    right: 20px;
+}
+
+button {
+    width: 70px;
+    margin-top: 30px;
+}

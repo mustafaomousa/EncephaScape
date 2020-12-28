@@ -2,3 +2,12 @@ body {
     background-color: #F2F2F2;
     padding: 15px;
 }
+
+button {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    background-color: #333333;
+    padding: 5px;
+}
