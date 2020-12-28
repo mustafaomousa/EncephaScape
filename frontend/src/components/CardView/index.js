@@ -30,7 +30,7 @@ const CardView = () => {
 
     useEffect(() => {
         dispatch(getStacks());
-    }, [dispatch, user, listItems]);
+    }, [dispatch]);
 
     const userItems = userStacks.map((stack, i) => {
         return (

@@ -34,14 +34,14 @@ const Brainfolio = () => {
 
 
     useEffect(() => {
-        console.log(location.pathname.includes('brainfolio'))
-        if (sessionUser === undefined) {
-            alert('Please login or sign-up');
-            return history.push('/signup');
-        };
+        // console.log(location.pathname.includes('brainfolio'))
+        // if (sessionUser === undefined) {
+        //     alert('Please login or sign-up');
+        //     return history.push('/signup');
+        // };
 
         dispatch(getAllCategories());
-    }, [dispatch, history, sessionUser]);
+    }, [dispatch]);
 
     return (
         <>
