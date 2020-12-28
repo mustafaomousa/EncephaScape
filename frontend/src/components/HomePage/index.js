@@ -27,6 +27,7 @@ const HomePage = () => {
             <div className='slideshow'>
                 Slideshow goes here
             </div>
+            <h4>Most recent stacks:</h4>
             <CardView />
             <h4>Browse by category:</h4>
             <div className='categories-container'>

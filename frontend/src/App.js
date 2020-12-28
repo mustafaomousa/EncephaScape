@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage";
 import Brainfolio from "./components/BrainfolioPage";
 import Stack from './components/Stack';
 import BrowseByCategoryPage from './components/BrowseByCategoryPage';
+import StudyStackPage from "./components/StudyStackPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,22 +27,12 @@ function App() {
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route path="/login" >
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route path="/profile">
-              <ProfilePage />
-            </Route>
-            <Route path="/brainfolio">
-              <Brainfolio />
-            </Route>
-            <Route path={`/stack/:id`} component={Stack} />
+            <Route exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginFormPage} />
+            <Route path="/signup" component={SignupFormPage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/brainfolio" component={Brainfolio} />
+            <Route path={`/stack/:id`} component={StudyStackPage} />
             <Route path={`/category/:id`} component={BrowseByCategoryPage} />
           </Switch>
         )}
