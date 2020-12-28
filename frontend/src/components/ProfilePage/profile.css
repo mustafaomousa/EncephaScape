@@ -1,0 +1,22 @@
+.profile-page {
+display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+}
+
+.profile-button-box {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    margin: 10px;
+    width: 130px;
+}

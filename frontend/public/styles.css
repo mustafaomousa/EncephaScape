@@ -11,3 +11,12 @@ button {
     background-color: #333333;
     padding: 5px;
 }
+
+button:hover {
+    background-color: sienna;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Rockwell';
+    text-transform: uppercase;
+}
