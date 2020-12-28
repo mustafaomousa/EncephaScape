@@ -26,6 +26,7 @@
 
 .nav-link {
   font-weight: bold;
+  font-size: 20px;
   color: #333333;
   margin-left: 50px;
   text-decoration: none;
@@ -34,7 +35,8 @@
 }
 
 .nav-link:hover {
-  color: #6D6D64;
+  text-transform: uppercase;
+  color: sienna;
 }
 
 #logo {

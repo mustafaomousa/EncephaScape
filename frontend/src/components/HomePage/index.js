@@ -1,6 +1,26 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllCategories } from '../../store/category';
 import CardView from '../CardView';
+import './homepage.css';
 
 const HomePage = () => {
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.category.categories);
+
+    const categoryItems = categories.map((category) => {
+        return (
+            <>
+                <div className={`category category-${category.id}`} key={`category-${category.id}`}>
+                    <a href='/'>{category.name}</a>
+                </div>
+            </>
+        )
+    });
+
+    useEffect(() => {
+        dispatch(getAllCategories());
+    }, [dispatch])
     return (
         <>
             <h1>Home</h1>
@@ -8,9 +28,11 @@ const HomePage = () => {
                 Slideshow goes here
             </div>
             <CardView />
-            <div className='categories'>
-                <h4>Categories:</h4>
-                <div>Display categories here</div>
+            <h4>Browse by category:</h4>
+            <div className='categories-container'>
+                <div className='categories'>
+                    {categoryItems}
+                </div>
             </div>
         </>
     )
