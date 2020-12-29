@@ -4,8 +4,8 @@
 }
 
 .brainfolio-browse-tools {
-    grid-column-start: 1;
-    border-right: gray solid;
+    display: flex;
+    justify-content: center;
 }
 
 .brainfolio-browse {
@@ -22,10 +22,28 @@
     margin-left: 50px;
 }
 
-input {
-    margin-right: 10px;
+@media (max-width:1000px){
+    h1 {
+        font-size: 30px;
+    }
+
+    .brainfolio-browse{
+        max-width: 500px;
+        margin-top: 30px;
+    }
+
+    .brainfolio-browse-tools {
+        margin-left: 60px;
 }
 
-select {
-    margin-right: 100px;
+    .brainfolio-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+input {
+    margin-right: 10px;
 }

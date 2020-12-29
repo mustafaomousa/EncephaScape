@@ -3,13 +3,6 @@
     grid-template-columns: 50% 50%;
 }
 
-/* .stack-browse {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-} */
-
 /* implementing a card like view */
 .stack-browse {
     display: flex;
@@ -34,8 +27,16 @@
 
 .stack-browse-tools {
     display: flex;
+    align-items: center;
     justify-content: center;
-    border-right: gray solid;
+    flex-direction: row;
+}
+
+.create-stack-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width:1000px){

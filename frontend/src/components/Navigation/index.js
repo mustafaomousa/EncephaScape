@@ -44,10 +44,23 @@ function Navigation({ isLoaded }) {
           </li>
         </div>
         <div className='links'>
-          <li>
-            <NavLink className="nav-link" exact to="/">Home</NavLink>
-          </li>
-          {isLoaded && sessionLinks}
+          <div className='full-size-nav'>
+            <li>
+              <NavLink className="nav-link" exact to="/">Home</NavLink>
+            </li>
+            {isLoaded && sessionLinks}
+          </div>
+
+          <div className='dropdown-nav'>
+            <button id='menu-button' >
+              Menu
+              <i className='fa fa-caret-down'></i>
+            </button>
+            <div class='dropdown-content'>
+              <NavLink className="nav-link" exact to="/">Home</NavLink>
+              {isLoaded && sessionLinks}
+            </div>
+          </div>
         </div>
       </ul>
     </nav>
