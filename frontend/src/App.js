@@ -12,7 +12,6 @@ import HomePage from "./components/HomePage";
 import Brainfolio from "./components/BrainfolioPage";
 import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 import StudyStackPage from "./components/StudyStackPage";
-import NoneUserHomePage from "./components/NonUserHomePage";
 import BrowsePage from './components/BrowsePage';
 
 function App() {
