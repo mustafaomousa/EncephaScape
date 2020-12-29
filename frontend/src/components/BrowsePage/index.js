@@ -49,8 +49,11 @@ const BrowsePage = () => {
                     <button onClick={(e) => onReset(e)}>Reset</button>
                 </form>
             </div>
-            {!search && browseAll()}
-            {search && browseSearch()}
+            <div className='stack-browse-container'>
+                {!search && browseAll()}
+                {search && browseSearch()}
+            </div>
+
         </div>
     )
 };

@@ -1,7 +1,9 @@
 /* TODO Add site wide styles */
 body {
     padding: 20px;
-    background-color: #F2F2F2;
+    /* not sure which one to use */
+    /* background-color: #8C8C8C; */
+    background-color: #C0C0C0;
 }
 
 button {
@@ -22,4 +24,16 @@ h1,h2,h3,h4,h5 {
     text-shadow: 0px 0px 2px gray;
     font-family: 'Rockwell', 'Arial Black', Arial;
     text-transform: uppercase;
+}
+
+input {
+    background-color: #E5E5E5;
+    border: none;
+    padding: 5px;
+}
+
+select {
+    background-color: #E5E5E5;
+    border: none;
+    padding: 4px;
 }
