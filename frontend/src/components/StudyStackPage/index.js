@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getStacks } from "../../store/stack";
 import Stack from '../Stack';
-import './stack.css'
+// import './stack.css'
 
 const StudyStackPage = () => {
     const dispatch = useDispatch();
