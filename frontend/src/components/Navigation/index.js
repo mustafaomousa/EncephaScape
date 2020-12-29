@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <li>
-          <NavLink className="nav-link" to="/stack">Browse Stacks</NavLink>
+          <NavLink className="nav-link" to="/stack">Stacks</NavLink>
         </li>
         <li>
           <NavLink className="nav-link" to="/brainfolio">Brainfolio</NavLink>
@@ -38,13 +38,17 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="navbar">
       <ul className="nav">
-        <li>
-          <img id='logo' src={brain} alt='EncephaScape'></img>
-        </li>
-        <li>
-          <NavLink className="nav-link" exact to="/">Home</NavLink>
-        </li>
-        {isLoaded && sessionLinks}
+        <div className='logo'>
+          <li>
+            <img id='logo' src={brain} alt='EncephaScape'></img>
+          </li>
+        </div>
+        <div className='links'>
+          <li>
+            <NavLink className="nav-link" exact to="/">Home</NavLink>
+          </li>
+          {isLoaded && sessionLinks}
+        </div>
       </ul>
     </nav>
   );

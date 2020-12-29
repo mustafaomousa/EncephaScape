@@ -40,7 +40,7 @@ const BrowsePage = () => {
     }
 
     return (
-        <div className='browse-page'>
+        <div className='browse-page body'>
             <div className='stack-browse-tools'>
                 <form>
                     <label>Search</label>
