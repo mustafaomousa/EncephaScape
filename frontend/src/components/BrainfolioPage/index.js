@@ -44,7 +44,6 @@ const Brainfolio = () => {
     return (
         <div className='brainfolio-body'>
             <div className='brainfolio-browse-tools'>
-                <h1>Brainfolio</h1>
                 <div className='create-stack-container'>
                     <form onSubmit={onSubmit}>
                         <label>Create a new stack:</label>
@@ -63,7 +62,8 @@ const Brainfolio = () => {
 
             </div>
             <div className='brainfolio-browse'>
-                <h4>Your stacks:</h4>
+                <h1>Brainfolio</h1>
+                <h4>Your stack library:</h4>
                 <CardView />
             </div>
         </div>
