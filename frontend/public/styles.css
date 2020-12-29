@@ -4,6 +4,7 @@ body {
 }
 
 button {
+    width: 115px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
