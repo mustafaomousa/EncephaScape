@@ -29,7 +29,6 @@ function App() {
         {isLoaded && (
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/home" component={NoneUserHomePage} />
             <Route path="/login" component={LoginFormPage} />
             <Route path="/signup" component={SignupFormPage} />
             <Route path="/profile" component={ProfilePage} />
