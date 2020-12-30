@@ -13,6 +13,7 @@
     background-color: gray;
     /* padding-right: 30px; */
     height: 700px;
+    min-width: 500px;
     max-width: 700px;
     overflow: scroll;
     margin-left: 50px;

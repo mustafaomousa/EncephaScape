@@ -56,7 +56,7 @@ function Navigation({ isLoaded }) {
               Menu
               <i className='fa fa-caret-down'></i>
             </button>
-            <div class='dropdown-content'>
+            <div className='dropdown-content'>
               <NavLink className="nav-link" exact to="/">Home</NavLink>
               {isLoaded && sessionLinks}
             </div>

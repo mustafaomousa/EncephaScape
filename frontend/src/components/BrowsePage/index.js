@@ -1,12 +1,24 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, NavLink } from 'react-router-dom';
+import { getStacks } from '../../store/stack';
 import CardView from '../CardView';
 import './browsepage.css';
 
 const BrowsePage = () => {
-    const sessionUser = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
+
     const [search, setSearch] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const sessionUser = useSelector((state) => state.session.user);
+    const stacks = useSelector(state => state.stack.stacks.filter(stack => stack.name.toLowerCase().includes(searchTerm.toLowerCase())));
+
+    const updateSearchTerm = (e) => setSearchTerm(e.target.value);
+
+    useEffect(() => {
+        dispatch(getStacks())
+    }, [dispatch])
 
     if (sessionUser === undefined) {
         return <Redirect to='/signup'></Redirect>
@@ -25,6 +37,7 @@ const BrowsePage = () => {
         return (
             <div className='stack-browse'>
                 <h1>Search result: </h1>
+                {searchItems}
             </div>
         )
     };
@@ -39,12 +52,27 @@ const BrowsePage = () => {
         setSearch(false);
     }
 
+    const searchItems = stacks.map((stack, i) => {
+        if (!searchTerm) return null;
+        return (
+            <nav key={`stack-nav-${i}`}>
+                <div key={`stack-${i}`} className={`stack stack-${stack.id}`}>
+                    <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
+                    <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
+                    <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
+                    {/* {isOwner && <button onClick={onEdit} className='edit'>Edit in Brainfolio</button>} */}
+                </div>
+            </nav>
+        )
+    });
+
+
     return (
         <div className='browse-page body'>
             <div className='stack-browse-tools'>
                 <form>
                     <label>Search:</label>
-                    <input></input>
+                    <input onChange={updateSearchTerm} value={searchTerm}></input>
                     <button onClick={(e) => onSearch(e)}>Search</button>
                     <button onClick={(e) => onReset(e)}>Reset</button>
                 </form>
