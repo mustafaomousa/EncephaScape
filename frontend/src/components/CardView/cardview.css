@@ -83,3 +83,13 @@
 #by-statement {
     bottom: 10px
 }
+
+#edit-button {
+    /* width: 100px; */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    background-color: #333333;
+    padding: 5px;
+}

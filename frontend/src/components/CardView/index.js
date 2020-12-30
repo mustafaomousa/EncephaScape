@@ -15,7 +15,7 @@ const CardView = () => {
     const sessionUser = useSelector(state => state.session.user);
 
     const onEdit = (id) => {
-        return history.push(`/brainfolio`);
+        return history.push(`/stack/${id}/edit`);
     };
 
     const listItems = stacks.map((stack, i) => {
@@ -26,7 +26,7 @@ const CardView = () => {
                     <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
                     <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
                     <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
-                    {isOwner && <button onClick={onEdit} className='edit'>Edit in Brainfolio</button>}
+                    {isOwner && <NavLink to={`/stack/${stack.id}/edit`} id='edit-button'>Edit</NavLink>}
                 </div>
             </nav>
         )
@@ -44,7 +44,9 @@ const CardView = () => {
                     <NavLink key={`stack-link-${i}`} to={`/stack/${stack.id}`}>{stack.name}</NavLink>
                     <p key={`stack-by-${i}`} id='by-statement'>by {stack.User.username}</p>
                     <p key={`stack-createdAt-${i}`}>created at {stack.createdAt}</p>
-                    <button className='edit'>Edit</button>
+                    <nav>
+                        <NavLink to={`/stack/${stack.id}/edit`} id='edit-button'>Edit</NavLink>
+                    </nav>
                 </div>
             </nav>
         )
