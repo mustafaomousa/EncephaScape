@@ -84,8 +84,9 @@
     bottom: 10px
 }
 
-#edit-button {
-    /* width: 100px; */
+a#edit-button {
+    text-align: center;
+    width: 120px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
