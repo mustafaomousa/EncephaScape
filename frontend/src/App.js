@@ -13,6 +13,7 @@ import Brainfolio from "./components/BrainfolioPage";
 import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 import StudyStackPage from "./components/StudyStackPage";
 import BrowsePage from './components/BrowsePage';
+import EditStack from "./components/EditStack";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
             <Route path="/brainfolio" component={Brainfolio} />
             <Route exact path="/stack" component={BrowsePage} />
             <Route exact path={`/stack/:id`} component={StudyStackPage} />
+            <Route exact path={`/stack/:id/edit`} component={EditStack} />
             <Route path={`/category/:id`} component={BrowseByCategoryPage} />
           </Switch>
         )}
