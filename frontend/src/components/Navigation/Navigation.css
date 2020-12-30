@@ -55,9 +55,6 @@
   background-color: #333333;
 }
 
-.nav-link:hover {
-  background-color: sienna;
-}
 
 #logo {
   height: 100px;
@@ -79,6 +76,10 @@
   .dropdown-nav {
     display: none;
   }
+
+  .nav-link:hover {
+    color: sienna;
+  }
 }
 
 @media (max-width:1000px) {
@@ -87,9 +88,12 @@
   }
 
   .nav-link {
-
     padding: 20px 0px 20px 0px;
-}
+  }
+
+  .nav-link:hover {
+    background-color: sienna;
+  }
 }
 
 .dropdown-content {

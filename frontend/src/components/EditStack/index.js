@@ -128,7 +128,7 @@ const EditStack = () => {
                                 {cards.map((card, i) => {
                                     return (
                                         <div onClick={(e) => selectCard(e, card.id)} key={`card-${i}`} className={`card`} value={card.id} >
-                                            <h3>{card.term}</h3>
+                                            <p>{card.term}</p>
                                         </div>
                                     )
                                 })}

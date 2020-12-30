@@ -85,6 +85,25 @@
     overflow: scroll;
 }
 
+.card::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.card::-webkit-scrollbar-corner {
+    background-color: gray;
+}
+
+.card::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+}
+
+.card::-webkit-scrollbar-thumb {
+    border-radius: 0.5em;
+    background-color: sienna;
+    border: 1px solid #8B8B81;
+}
+
 .card:hover {
     border-color: sienna;
 }

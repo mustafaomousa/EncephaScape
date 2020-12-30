@@ -69,9 +69,10 @@ const BrowsePage = () => {
 
     return (
         <div className='browse-page body'>
+            <h1>Search:</h1>
             <div className='stack-browse-tools'>
                 <form>
-                    <label>Search:</label>
+
                     <input onChange={updateSearchTerm} value={searchTerm}></input>
                     <button onClick={(e) => onSearch(e)}>Search</button>
                     <button onClick={(e) => onReset(e)}>Reset</button>

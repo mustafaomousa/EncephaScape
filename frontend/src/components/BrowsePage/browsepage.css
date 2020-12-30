@@ -20,6 +20,25 @@
     margin-left: 50px;
 }
 
+.stack-browse::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.stack-browse::-webkit-scrollbar-corner {
+    background-color: gray;
+}
+
+.stack-browse::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+}
+
+.stack-browse::-webkit-scrollbar-thumb {
+    border-radius: 0.5em;
+    background-color: sienna;
+    border: 1px solid #8B8B81;
+}
+
 .stack-browse-container {
     display: flex;
     flex-direction: column;

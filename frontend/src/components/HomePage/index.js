@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getAllCategories } from '../../store/category';
 import './homepage.css';
 
@@ -9,9 +10,9 @@ const HomePage = () => {
 
     const categoryItems = categories.map((category) => {
         return (
-            <div className={`category category-${category.id}`} key={`category-${category.id}`}>
-                <a key={`${category.id}`} href='/'>{category.name}</a>
-            </div>
+            <ul className={`category-${category.id}`} key={`category-${category.id}`}>
+                <NavLink className='category-nav-link' key={`${category.id}`} to='/'>{category.name}</NavLink>
+            </ul>
         )
     });
 
@@ -21,17 +22,14 @@ const HomePage = () => {
     return (
         <div className='home-body'>
             <div className='slideshow'>
-                <h1>Home</h1>
-                Slideshow goes here
+                <h1>SLIDESHOW HERE</h1>
             </div>
             <div className='recent-stacks'>
-                <h4>Most recent stacks:</h4>
+                <h1>RECENT STACKS HERE</h1>
             </div>
-            <div className='categories-container'>
-                <h4>Browse by category:</h4>
-                <div className='categories'>
-                    {categoryItems}
-                </div>
+            <h4>view our categories</h4>
+            <div className='categories'>
+                {categoryItems}
             </div>
         </div>
     )
