@@ -18,12 +18,6 @@ export const getStacks = () => async (dispatch) => {
     return res;
 };
 
-// export const getSingleStack = (payload) => async (dispatch) => {
-//     const { id } = payload;
-//     const res = await fetch(`/api/stacks/${id}`);
-//     return res.data;
-// };
-
 export const deleteStack = (payload) => async (dispatch) => {
     const { id } = payload;
     const res = await fetch(`/api/stacks/${id}`, {

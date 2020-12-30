@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Stack.associate = function (models) {
     Stack.belongsTo(models.User, { foreignKey: 'userId' });
+    Stack.hasMany(models.Card, { foreignKey: 'stackId' });
   };
   return Stack;
 };

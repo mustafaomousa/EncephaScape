@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Card.associate = function (models) {
-    // associations can be defined here
+    Card.belongsTo(models.Stack, { foreignKey: 'stackId' })
   };
   return Card;
 };

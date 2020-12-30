@@ -51,6 +51,37 @@
 
 }
 
+.edit-stage {
+    display: flex;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    height: 90px;
+    background-color: white;
+    border: gray 3px solid;
+    border-radius:2% 40% 2% 20%/95% 5% 80% 10%;
+    overflow: scroll;
+}
+
+.card:hover {
+    border-color: sienna;
+}
+
 button#special-button {
     margin: 16px;
     height: 40px;
