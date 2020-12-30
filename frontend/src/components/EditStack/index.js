@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getStacks } from '../../store/stack';
+import { useParams, useHistory } from 'react-router-dom';
+import { getStacks, deleteStack } from '../../store/stack';
 import { getCards, createCard } from '../../store/card';
 import './editstack.css';
 
 const EditStack = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
     const paramsId = parseInt(id);
 
@@ -48,6 +49,12 @@ const EditStack = () => {
         e.preventDefault();
         console.log(cardId)
         setSelectedCard(cards.find(card => card.id === cardId));
+    };
+
+    const deleteEntireStack = () => {
+        dispatch(deleteStack(paramsId));
+        dispatch(getStacks());
+        return history.push('/brainfolio');
     };
 
     const editFields = () => {
@@ -112,7 +119,7 @@ const EditStack = () => {
                             <div className='card-buttons'>
                                 <button onClick={newCard} id='special-button'>New card</button>
                                 <button id='special-button'>Edit stack name</button>
-                                <button id='special-button'>Delete stack</button>
+                                <button onClick={deleteEntireStack} id='special-button'>Delete stack</button>
                             </div>
                             <div className='edit'>
                                 {newCardActive && newCardFields()}

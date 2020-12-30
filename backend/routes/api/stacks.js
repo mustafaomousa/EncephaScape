@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { Stack, User } = require('../../db/models');
+const { Stack, User, Card } = require('../../db/models');
 
 const router = express.Router();
 
@@ -12,13 +12,6 @@ router.get('/', asyncHandler(async (req, res) => {
 
     return res.json({ stacks });
 }));
-
-// router.get('/:id', asyncHandler(async (req, res) => {
-//     const { id } = req.params.id;
-//     const stack = await Stack.findAll({ where: { id: id } });
-
-//     return res.json({ stack });
-// }));
 
 router.post('/', asyncHandler(async (req, res) => {
     const { name, categoryId, userId } = req.body;
@@ -30,10 +23,12 @@ router.post('/', asyncHandler(async (req, res) => {
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {
-    const { id } = req.params.id;
-    await Stack.destroy({ where: { id: id } });
-
-    return res.json('Stack deleted')
+    const { id } = req.params;
+    await Card.destroy({ where: { stackId: id } });
+    const stack = await Stack.findByPk(id);
+    if (!stack) throw new Error('Cannot find stack');
+    await Stack.destroy({ where: { id: stack.id } });
+    return res.json({ stack });
 }));
 
 module.exports = router;
