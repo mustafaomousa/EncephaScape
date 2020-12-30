@@ -1,4 +1,5 @@
 .browse-page {
+    padding-top: 50px;
     display: grid;
     grid-template-columns: 50% 50%;
 }

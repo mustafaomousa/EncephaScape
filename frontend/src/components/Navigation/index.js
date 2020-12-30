@@ -52,10 +52,13 @@ function Navigation({ isLoaded }) {
           </div>
 
           <div className='dropdown-nav'>
-            <button id='menu-button' >
-              Menu
+            <div className='button-wrapper'>
+              <button id='menu-button' >
+                Menu
               <i className='fa fa-caret-down'></i>
-            </button>
+              </button>
+
+            </div>
             <div className='dropdown-content'>
               <NavLink className="nav-link" exact to="/">Home</NavLink>
               {isLoaded && sessionLinks}
