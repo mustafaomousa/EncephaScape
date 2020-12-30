@@ -1,3 +1,9 @@
+.home-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .category {
     display: flex;
     justify-content: center;
@@ -5,20 +11,19 @@
     border: 1px gray solid;
     border-radius:2% 40% 2% 20%/95% 5% 80% 10%;
     height: 50px;
-    width: 170px;
+    width: 140px;
     background-color: white;
 }
 
 .category:hover {
-    height: 45px;
-    width: 145px;
+    border-color: sienna;
 }
 
 .categories {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    position: relative;
+    justify-content: flex-start;
 }
 
 h4 {
@@ -28,10 +33,12 @@ h4 {
 }
 
 .categories-container{
+    width: 1000px;
+    height: 400px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .category a {

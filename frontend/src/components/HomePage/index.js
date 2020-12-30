@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCategories } from '../../store/category';
-// import CardView from '../CardView';
 import './homepage.css';
 
 const HomePage = () => {
@@ -20,20 +19,21 @@ const HomePage = () => {
         dispatch(getAllCategories());
     }, [dispatch])
     return (
-        <>
-            <h1>Home</h1>
+        <div className='home-body'>
             <div className='slideshow'>
+                <h1>Home</h1>
                 Slideshow goes here
             </div>
-            {/* <h4>Most recent stacks:</h4>
-            <CardView /> */}
-            <h4>Browse by category:</h4>
+            <div className='recent-stacks'>
+                <h4>Most recent stacks:</h4>
+            </div>
             <div className='categories-container'>
+                <h4>Browse by category:</h4>
                 <div className='categories'>
                     {categoryItems}
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 

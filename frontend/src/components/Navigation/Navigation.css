@@ -49,8 +49,11 @@
 }
 
 #logo {
-  height: 60px;
-  width: 140px;
+  height: 100px;
+  width: 250px;
+  position: relative;
+  bottom: 10px;
+  filter: drop-shadow(5px 5px 0 black);
 }
 
 .dropdown-nav {
