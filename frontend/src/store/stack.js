@@ -2,15 +2,28 @@ import { fetch } from './csrf.js';
 
 const GET_ALL_STACKS = 'stack/getAllStacks';
 
+const GET_TOP_STACKS = 'stack/getTop';
+
 const initialState = {
     stacks: [],
-    userStacks: []
+    newestStacks: []
 };
 
 const getAllStacks = (stacks) => ({
     type: GET_ALL_STACKS,
     payload: stacks
 });
+
+const getTop = (stacks) => ({
+    type: GET_TOP_STACKS,
+    payload: stacks
+});
+
+export const getTopStacks = () => async (dispatch) => {
+    const res = await fetch('/api/stacks/top');
+    dispatch(getTop(res.data.stacks));
+    return res;
+};
 
 export const getStacks = () => async (dispatch) => {
     const res = await fetch('/api/stacks');
@@ -47,6 +60,9 @@ function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_STACKS:
             newState = Object.assign({}, state, { stacks: action.payload });
+            return newState;
+        case GET_TOP_STACKS:
+            newState = Object.assign({}, state, { newestStacks: action.payload });
             return newState;
         default:
             return state;

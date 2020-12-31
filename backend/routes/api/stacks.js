@@ -13,6 +13,11 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ stacks });
 }));
 
+router.get('/top', asyncHandler(async (req, res) => {
+    const stacks = await Stack.findAll({ limit: 10, order: [['updatedAt', 'DESC']] });
+    return res.json({ stacks })
+}));
+
 router.post('/', asyncHandler(async (req, res) => {
     const { name, categoryId, userId } = req.body;
 
