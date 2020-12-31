@@ -8,7 +8,7 @@ import './homepage.css';
 const HomePage = () => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.category.categories);
-    const stacks = useSelector(state => state.stack.stacks)
+    const newStacks = useSelector(state => state.stack.newestStacks);
 
     const categoryItems = categories.map((category) => {
         return (
@@ -18,18 +18,13 @@ const HomePage = () => {
         )
     });
 
-    console.log(stacks)
-    const newestStacks = () => {
-        stacks.map((stack, i) => {
-            return (
-                <div>
-                    <div>
-                        <NavLink to={`/stack/${stack.id}`}>{stack.name}</NavLink>
-                    </div>
-                </div>
-            )
-        });
-    }
+    const newestStacks = newStacks.map((stack, i) => {
+        return (
+            <div className='newest-stack' >
+                <NavLink className='stack' to={`/stack/${stack.id}`}>{stack.name}</NavLink>
+            </div >
+        )
+    });
 
 
     useEffect(() => {
@@ -42,14 +37,9 @@ const HomePage = () => {
             <div className='slideshow'>
                 <h1>SLIDESHOW HERE</h1>
             </div>
+            <h4>newest stacks...</h4>
             <div className='recent-stacks'>
-                {stacks.map((stack, i) => {
-                    return (
-                        <div>
-                            {newestStacks()}
-                        </div>
-                    )
-                })}
+                {newestStacks}
             </div>
             <h4>view our categories</h4>
             <div className='categories'>
