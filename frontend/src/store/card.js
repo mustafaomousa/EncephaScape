@@ -21,6 +21,19 @@ export const deleteCard = (stackId, cardId) => async (dispatch) => {
     });
     getCards();
     return res;
+};
+
+export const editCard = (stackId, cardId, term, response) => async (dispatch) => {
+    const res = await fetch(`/api/cards/${stackId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            cardId,
+            term,
+            response
+        })
+    });
+    getCards();
+    return res;
 }
 
 export const createCard = (stackId, term, response) => async (dispatch) => {

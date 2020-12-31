@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getStacks, deleteStack } from '../../store/stack';
-import { getCards, createCard, deleteCard } from '../../store/card';
+import { getCards, createCard, deleteCard, editCard } from '../../store/card';
 import './editstack.css';
 
 const EditStack = () => {
@@ -18,17 +18,21 @@ const EditStack = () => {
     const [editCardActive, setEditCardActive] = useState(false);
     const [selectedCard, setSelectedCard] = useState();
     const [front, setFront] = useState('');
+    const [updatedFront, setUpdatedFront] = useState('');
+    const [updatedBack, setUpdatedBack] = useState('');
     const [back, setBack] = useState('');
 
     const updateFront = (e) => setFront(e.target.value);
     const updateBack = (e) => setBack(e.target.value);
+    const updateUpdatedFront = (e) => setUpdatedFront(e.target.value);
+    const updateUpdatedBack = (e) => setUpdatedBack(e.target.value)
 
     const newCard = (e) => {
         e.preventDefault();
         setNewCardActive(true);
     }
 
-    const editCard = (e) => {
+    const editTheCard = (e) => {
         e.preventDefault();
         setEditCardActive(true);
     }
@@ -43,13 +47,17 @@ const EditStack = () => {
     const submitNewCard = (e) => {
         e.preventDefault();
         dispatch(createCard(paramsId, front, back));
+        setFront('');
+        setBack('');
         setNewCardActive(false);
     }
 
     const submitEditCard = (e) => {
         e.preventDefault();
-        alert('feature coming soon')
-        setEditCardActive(false);
+        dispatch(editCard(paramsId, selectedCard.id, updatedFront, updatedBack));
+        setUpdatedFront('');
+        setUpdatedBack('');
+        setSelectedCard(undefined)
     }
 
     const selectCard = (e, cardId) => {
@@ -67,12 +75,12 @@ const EditStack = () => {
     const editFields = () => {
         return (
             <div>
-                <form onSubmit={() => alert('feature coming soon')} className='edit-stage'>
+                <form onSubmit={submitEditCard} className='edit-stage'>
                     <label>Front:
-                                        <input onChange={updateFront}></input>
+                                        <input onChange={updateUpdatedFront} ></input>
                     </label>
                     <label>Back:
-                                        <input onChange={updateBack}></input>
+                                        <input onChange={updateUpdatedBack} ></input>
                     </label>
                     <button id='special-button'>Edit</button>
                 </form>
@@ -107,7 +115,7 @@ const EditStack = () => {
                     {selectedCard && (
                         <div className='edit-stack-control-container'>
                             <div className='control-panel'>
-                                <button onClick={editCard} id='special-button'>Edit card</button>
+                                <button onClick={editTheCard} id='special-button'>Edit card</button>
                                 <button onClick={deleteTheCard} id='special-button'>Delete card</button>
                             </div>
                             {editCardActive && editFields()}

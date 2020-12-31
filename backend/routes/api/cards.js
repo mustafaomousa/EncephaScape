@@ -27,4 +27,11 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     return res.json({ deletedCard });
 }));
 
+router.put('/:id', asyncHandler(async (req, res) => {
+    const { cardId, term, response } = req.body;
+    const updatedCard = await Card.findByPk(cardId);
+    await updatedCard.update({ term, response });
+    return res.json({ updatedCard });
+}));
+
 module.exports = router;
