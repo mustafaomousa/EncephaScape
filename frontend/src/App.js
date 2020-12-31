@@ -14,6 +14,7 @@ import BrowseByCategoryPage from './components/BrowseByCategoryPage';
 import StudyStackPage from "./components/StudyStackPage";
 import BrowsePage from './components/BrowsePage';
 import EditStack from "./components/EditStack";
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
     <>
       <AppContextProvider>
         <Navigation isLoaded={isLoaded} />
+        <Footer />
         {isLoaded && (
           <Switch>
             <Route exact path="/" component={HomePage} />

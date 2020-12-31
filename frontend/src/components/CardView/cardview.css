@@ -57,20 +57,18 @@
     border-color: sienna;
     width: 310px;
     height: 130px;
-    /* margin: 15px */
 }
 
 .stack a {
     text-decoration: none;
-    color: #708090;
-    font-size: larger;
-    font-weight: normal;
+    color: black;
+    font-weight: bold;
     position: relative;
     top: 30px;
 }
 
 .stack a:hover,p:hover {
-    color: #001f3f;
+    color: sienna;
     font-weight: bolder;
 }
 
