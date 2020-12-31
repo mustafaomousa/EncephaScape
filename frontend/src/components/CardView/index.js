@@ -8,15 +8,10 @@ import './cardview.css';
 const CardView = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const history = useHistory();
     const { user } = useContext(AppContext);
     const stacks = useSelector(state => state.stack.stacks);
     const userStacks = useSelector(state => state.stack.stacks.filter(stack => stack.userId === user.id));
     const sessionUser = useSelector(state => state.session.user);
-
-    const onEdit = (id) => {
-        return history.push(`/stack/${id}/edit`);
-    };
 
     const listItems = stacks.map((stack, i) => {
         let isOwner = stack.userId === sessionUser.id;

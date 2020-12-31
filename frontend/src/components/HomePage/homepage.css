@@ -76,10 +76,15 @@
     border: 1px solid sienna;
 }
 
+.category {
+    display: flex;
+    text-align: horizontal;
+}
 
 .category-nav-link {
     text-decoration: none;
     color: white;
+    width: 150px;
 }
 
 .category-nav-link:hover {

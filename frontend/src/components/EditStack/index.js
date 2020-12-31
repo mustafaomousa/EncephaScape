@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getStacks, deleteStack } from '../../store/stack';
-import { getCards, createCard } from '../../store/card';
+import { getCards, createCard, deleteCard } from '../../store/card';
 import './editstack.css';
 
 const EditStack = () => {
@@ -31,6 +31,13 @@ const EditStack = () => {
     const editCard = (e) => {
         e.preventDefault();
         setEditCardActive(true);
+    }
+
+    const deleteTheCard = (e) => {
+        e.preventDefault();
+        dispatch(deleteCard(paramsId, selectedCard.id))
+        setSelectedCard(undefined);
+        dispatch(getCards(paramsId));
     }
 
     const submitNewCard = (e) => {
@@ -92,7 +99,7 @@ const EditStack = () => {
     useEffect(() => {
         dispatch(getStacks());
         dispatch(getCards(paramsId))
-    }, [dispatch, paramsId, newCardActive])
+    }, [dispatch, paramsId, newCardActive, selectedCard])
     return (
         <>
             { stack && (
@@ -101,7 +108,7 @@ const EditStack = () => {
                         <div className='edit-stack-control-container'>
                             <div className='control-panel'>
                                 <button onClick={editCard} id='special-button'>Edit card</button>
-                                <button id='special-button'>Delete card</button>
+                                <button onClick={deleteTheCard} id='special-button'>Delete card</button>
                             </div>
                             {editCardActive && editFields()}
                             <div className='selected-card-div'>

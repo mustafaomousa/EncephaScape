@@ -6,9 +6,9 @@ const Footer = () => {
     return (
         <div className='footer-body'>
             <div className='footer-link'>
-                <NavLink to='/'>About us</NavLink>
-                <NavLink to='/'>Contact us</NavLink>
-                <NavLink to='/'>FAQ</NavLink>
+                <NavLink className='footer' to='/'>About us</NavLink>
+                <NavLink className='footer' to='/'>Contact us</NavLink>
+                <NavLink className='footer' to='/'>FAQ</NavLink>
             </div>
         </div>
     )

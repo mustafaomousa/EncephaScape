@@ -39,9 +39,9 @@ function Navigation({ isLoaded }) {
     <nav className="navbar">
       <ul className="nav">
         <div className='logo'>
-          <li>
+          <a href='/'>
             <img id='logo' src={brain} alt='EncephaScape'></img>
-          </li>
+          </a>
         </div>
         <div className='links'>
           <div className='full-size-nav'>

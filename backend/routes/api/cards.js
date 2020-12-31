@@ -17,7 +17,14 @@ router.post('/:id', asyncHandler(async (req, res) => {
     const { stackId, term, response } = req.body;
     const newCard = await Card.create({ stackId, term, response });
     await newCard.save();
-    return newCard;
+    return res.json({ newCard });
 }))
+
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const { cardId } = req.body;
+    const deletedCard = await Card.findByPk(cardId);
+    await deletedCard.destroy();
+    return res.json({ deletedCard });
+}));
 
 module.exports = router;

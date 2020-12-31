@@ -12,7 +12,7 @@ const HomePage = () => {
 
     const categoryItems = categories.map((category) => {
         return (
-            <ul className={`category-${category.id}`} key={`category-${category.id}`}>
+            <ul className={`category category-${category.id}`} key={`category-${category.id}`}>
                 <NavLink className='category-nav-link' key={`${category.id}`} to='/'>{category.name}</NavLink>
             </ul>
         )
@@ -20,7 +20,7 @@ const HomePage = () => {
 
     const newestStacks = newStacks.map((stack, i) => {
         return (
-            <div className='newest-stack' >
+            <div key={`category-${stack.id}`} className='newest-stack' >
                 <NavLink className='stack' to={`/stack/${stack.id}`}>{stack.name}</NavLink>
             </div >
         )
@@ -37,11 +37,11 @@ const HomePage = () => {
             <div className='slideshow'>
                 <h1>SLIDESHOW HERE</h1>
             </div>
-            <h4>newest stacks...</h4>
+            <h4>browse newest stacks...</h4>
             <div className='recent-stacks'>
                 {newestStacks}
             </div>
-            <h4>view our categories</h4>
+            <h4>browse our stack categories</h4>
             <div className='categories'>
                 {categoryItems}
             </div>
