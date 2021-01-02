@@ -25,6 +25,17 @@ export const getTopStacks = () => async (dispatch) => {
     return res;
 };
 
+export const updateTheStackName = (id, name) => async (dispatch) => {
+    const res = await fetch(`/api/stacks/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            name
+        })
+    });
+    dispatch(getStacks());
+    return res;
+};
+
 export const getStacks = () => async (dispatch) => {
     const res = await fetch('/api/stacks');
     dispatch(getAllStacks(res.data.stacks));

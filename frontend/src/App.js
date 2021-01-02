@@ -37,6 +37,7 @@ function App() {
             <Route path="/brainfolio" component={Brainfolio} />
             <Route exact path="/stack" component={BrowsePage} />
             <Route exact path={`/stack/:id`} component={StudyStackPage} />
+            <Route exact path={`/stack/:id/study`} />
             <Route exact path={`/stack/:id/edit`} component={EditStack} />
             <Route path={`/category/:id`} component={BrowseByCategoryPage} />
           </Switch>

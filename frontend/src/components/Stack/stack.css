@@ -41,7 +41,7 @@
     align-items: center;
 }
 
-.stack-container {
+.stack-container, .stack-study-container-enabled {
     
     display: flex;
     flex-direction: column;
@@ -50,9 +50,12 @@
     background-color: gray;
     height: 400px;
     width: 600px;
-    /* max-width: 500px; */
     border-radius: 0.5em;
     box-shadow: 0px 0px 10px gray;
+}
+
+.stack-study-container-disabled {
+    display: none;
 }
 
 .single-stack:hover {

@@ -27,6 +27,15 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json({ newStack });
 }));
 
+router.put('/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    console.log(id)
+    const updatedStack = await Stack.findByPk(id);
+    await updatedStack.update({ name });
+    return res.json({ updatedStack });
+}));
+
 router.delete('/:id', asyncHandler(async (req, res) => {
     const { id } = req.params;
     await Card.destroy({ where: { stackId: id } });

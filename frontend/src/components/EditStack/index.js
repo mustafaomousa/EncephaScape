@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getStacks, deleteStack } from '../../store/stack';
+import { getStacks, deleteStack, updateTheStackName } from '../../store/stack';
 import { getCards, createCard, deleteCard, editCard } from '../../store/card';
 import './editstack.css';
 
@@ -16,16 +16,20 @@ const EditStack = () => {
 
     const [newCardActive, setNewCardActive] = useState(false);
     const [editCardActive, setEditCardActive] = useState(false);
+    const [editStackNameActive, setEditStackNameActive] = useState(false);
     const [selectedCard, setSelectedCard] = useState();
     const [front, setFront] = useState('');
+    const [back, setBack] = useState('');
     const [updatedFront, setUpdatedFront] = useState('');
     const [updatedBack, setUpdatedBack] = useState('');
-    const [back, setBack] = useState('');
+    const [stackName, setStackName] = useState('');
+
 
     const updateFront = (e) => setFront(e.target.value);
     const updateBack = (e) => setBack(e.target.value);
     const updateUpdatedFront = (e) => setUpdatedFront(e.target.value);
-    const updateUpdatedBack = (e) => setUpdatedBack(e.target.value)
+    const updateUpdatedBack = (e) => setUpdatedBack(e.target.value);
+    const updateStackName = (e) => setStackName(e.target.value);
 
     const newCard = (e) => {
         e.preventDefault();
@@ -71,6 +75,13 @@ const EditStack = () => {
         dispatch(getStacks());
         return history.push('/brainfolio');
     };
+
+    const updateEntireStackName = (e) => {
+        e.preventDefault();
+        dispatch(updateTheStackName(paramsId, stackName));
+        dispatch(getStacks());
+        setEditStackNameActive(false);
+    }
 
     const editFields = () => {
         return (
@@ -133,9 +144,13 @@ const EditStack = () => {
                             <h2>Stack name: {stack.name}</h2>
                             <div className='card-buttons'>
                                 <button onClick={newCard} id='special-button'>New card</button>
-                                <button id='special-button'>Edit stack name</button>
+                                <button onClick={(e) => setEditStackNameActive(true)} id='special-button'>Edit stack name</button>
                                 <button onClick={deleteEntireStack} id='special-button'>Delete stack</button>
                             </div>
+                            <form hidden={!editStackNameActive}>
+                                <input onChange={updateStackName}></input>
+                                <button onClick={updateEntireStackName}>Update stack name</button>
+                            </form>
                             <div className='edit'>
                                 {newCardActive && newCardFields()}
                             </div>
