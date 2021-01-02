@@ -54,7 +54,7 @@
     box-shadow: 0px 0px 10px gray;
 }
 
-.stack-study-container-disabled {
+.stack-study-container-disabled, .card-disabled, .how-to-disabled {
     display: none;
 }
 
