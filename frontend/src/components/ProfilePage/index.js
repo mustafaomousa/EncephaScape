@@ -29,6 +29,11 @@ const ProfilePage = () => {
         setShowLogout(true);
     };
 
+    const deleteTheAccount = (e) => {
+        logout(e);
+        dispatch(sessionActions.confirmedDeleteAccount(user.id));
+    };
+
     useEffect(() => {
 
     }, [showDelete, showLogout])
@@ -67,7 +72,7 @@ const ProfilePage = () => {
                     <div>
                         <p>Are you sure you want to delete your account?</p>
                     </div>
-                    <button>Yes</button>
+                    <button onClick={(e) => deleteTheAccount(e)}>Yes</button>
                     <button onClick={restore}>No</button>
                 </div>
             </div>

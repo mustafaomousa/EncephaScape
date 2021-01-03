@@ -43,6 +43,16 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+export const confirmedDeleteAccount = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/users/:${userId}`, {
+    method: 'POST',
+    body: JSON.stringify({
+      userId
+    })
+  });
+  return res;
+};
+
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/session', {
     method: 'DELETE'
