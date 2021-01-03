@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCards } from '../../store/card';
 
 import './stack.css';
 
-const Stack = ({ stack }) => {
+const Stack = ({ stack, cards }) => {
+    const dispatch = useDispatch();
     const [studyEnabled, setStudyEnabled] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
+    const [currentCard, setCurrentCard] = useState(0);
+
+    const nextCard = (e) => {
+        if (currentCard === (cards.length - 1)) return setCurrentCard(0);
+        return setCurrentCard(currentCard + 1);
+    };
+
+    const prevCard = (e) => {
+        if (currentCard === 0) return setCurrentCard(cards.length - 1);
+        return setCurrentCard(currentCard - 1);
+    };
+
+    useEffect(() => {
+        dispatch(getCards(stack.id));
+    }, [dispatch, stack.id])
 
     return (
         <div className='single-stack-body'>
@@ -21,9 +39,9 @@ const Stack = ({ stack }) => {
                         <p>To begin studying the stack select 'Play' below.</p>
                     </div>
                     <div className='study-buttons'>
-                        <button>Prev</button>
+                        <button onClick={prevCard} >Prev</button>
                         <button onClick={() => setStudyEnabled(false)} > End</button>
-                        <button>Next</button>
+                        <button onClick={nextCard} >Next</button>
                     </div>
                 </div>
             </div>
@@ -40,10 +58,12 @@ const Stack = ({ stack }) => {
                 </div>
                 <div className={`single-stack`} hidden='true'>
                     <div className={isFlipped ? 'card-disabled' : 'front-card'}>
-                        <p>Front of the card</p>
+                        <h5>Front</h5>
+                        <p>{cards[currentCard].term}</p>
                     </div>
                     <div className={isFlipped ? 'front-card' : 'card-disabled'}>
-                        <p>Back of the card</p>
+                        <h5>Back</h5>
+                        <p>{cards[currentCard].response}</p>
                     </div>
                 </div>
             </div>
