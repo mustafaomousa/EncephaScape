@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCards } from '../../store/card';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import './stack.css';
 
 const Stack = ({ stack, cards }) => {
-    const dispatch = useDispatch();
     const [studyEnabled, setStudyEnabled] = useState(false);
     const [isFlipped, setIsFlipped] = useState(false);
     const [currentCard, setCurrentCard] = useState(0);
-
-    // const cards = useSelector(state => state.card.cards);
 
     const nextCard = (e) => {
         if (currentCard === (cards.length - 1)) return setCurrentCard(0);
@@ -56,11 +52,11 @@ const Stack = ({ stack, cards }) => {
                 </div>
                 <div className={`single-stack`} hidden='true'>
                     {cards[currentCard] && (<>
-                        <div className={isFlipped ? 'card-disabled' : 'front-card'}>
+                        <div onClick={() => setIsFlipped(!isFlipped)} className={isFlipped ? 'card-disabled' : 'front-card'}>
                             <h5>Front</h5>
                             <p>{cards[currentCard].term}</p>
                         </div>
-                        <div className={isFlipped ? 'front-card' : 'card-disabled'}>
+                        <div onClick={() => setIsFlipped(!isFlipped)} className={isFlipped ? 'front-card' : 'card-disabled'}>
                             <h5>Back</h5>
                             <p>{cards[currentCard].response}</p>
                         </div>
