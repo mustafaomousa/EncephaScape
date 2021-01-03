@@ -77,9 +77,28 @@
     font-size: 12px;
 }
 
-.how-to-play:hover + button {
+.how-to-play:hover  button {
     animation: shimmy 0.5s;
     animation-iteration-count: infinite;
+}
+
+.how-to-play{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.study-panel-buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+
+.study-how-to-play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes shimmy {

@@ -16,9 +16,15 @@ const Stack = ({ stack }) => {
                     <button onClick={() => setStudyEnabled(true)}>Play</button>
                 </div>
                 <div className={studyEnabled ? 'study-panel-buttons' : 'how-to-disabled'}>
-                    <button>Prev</button>
-                    <button onClick={() => setStudyEnabled(false)} > End</button>
-                    <button>Next</button>
+                    <div className='study-how-to-play'>
+                        <h4>How to study:</h4>
+                        <p>To begin studying the stack select 'Play' below.</p>
+                    </div>
+                    <div className='study-buttons'>
+                        <button>Prev</button>
+                        <button onClick={() => setStudyEnabled(false)} > End</button>
+                        <button>Next</button>
+                    </div>
                 </div>
             </div>
             <div className={!studyEnabled ? 'stack-container' : 'stack-study-container-disabled'}>
@@ -29,6 +35,9 @@ const Stack = ({ stack }) => {
                 </div>
             </div>
             <div className='stack-study-container' className={studyEnabled ? 'stack-study-container-enabled' : 'stack-study-container-disabled'}>
+                <div>
+                    <button onClick={() => setIsFlipped(!isFlipped)}>Flip!</button>
+                </div>
                 <div className={`single-stack`} hidden='true'>
                     <div className={isFlipped ? 'card-disabled' : 'front-card'}>
                         <p>Front of the card</p>
