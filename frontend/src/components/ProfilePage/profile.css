@@ -1,5 +1,6 @@
 .profile-page {
     padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,6 +44,49 @@
 .profile-button-box {
     display: flex;
     flex-direction: row;
+}
+
+.profile-button-box button {
+    margin: 0px 20px;
+    width: 150px;
+}
+
+@media (max-width: 760px) {
+    .profile-button-box {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+    }
+
+    .profile-button-box button {
+        margin: 20px 20px;
+        height: 45px;
+    }
+
+    .profile-card {
+        border-radius: 0.5em;
+        box-shadow: 0px 0px 10px gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #E5E5E5;
+        padding-right: 30px;
+        width: 400px;
+        height: 500px;
+    }
+
+    .stack-amount {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gray;
+        width: 400px;
+        position: relative;
+        margin-right: -30px;
+        margin-left: -40px;
+        border-radius: 0px 0px 0.5em 0.5em;
+    }
+
 }
 
 #edit-button {
