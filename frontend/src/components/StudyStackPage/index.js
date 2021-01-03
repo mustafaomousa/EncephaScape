@@ -13,10 +13,11 @@ const StudyStackPage = () => {
     const cards = useSelector(state => state.card.cards)
     useEffect(() => {
         dispatch(getStacks());
-        dispatch(getCards(paramsId))
+        dispatch(getCards(paramsId));
     }, [dispatch, paramsId])
 
     if (!stack) return null;
+    if (!cards) return null;
 
     return (
         <Stack stack={stack} cards={cards} />

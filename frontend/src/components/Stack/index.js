@@ -10,6 +10,8 @@ const Stack = ({ stack, cards }) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [currentCard, setCurrentCard] = useState(0);
 
+    // const cards = useSelector(state => state.card.cards);
+
     const nextCard = (e) => {
         if (currentCard === (cards.length - 1)) return setCurrentCard(0);
         return setCurrentCard(currentCard + 1);
@@ -20,11 +22,7 @@ const Stack = ({ stack, cards }) => {
         return setCurrentCard(currentCard - 1);
     };
 
-    useEffect(() => {
-        dispatch(getCards(stack.id));
-    }, [dispatch, stack.id])
-
-    return (
+    if (cards) return (
         <div className='single-stack-body'>
             <div className='single-stack-control'>
                 <h2>Control Panel</h2>
@@ -57,14 +55,17 @@ const Stack = ({ stack, cards }) => {
                     <button onClick={() => setIsFlipped(!isFlipped)}>Flip!</button>
                 </div>
                 <div className={`single-stack`} hidden='true'>
-                    <div className={isFlipped ? 'card-disabled' : 'front-card'}>
-                        <h5>Front</h5>
-                        <p>{cards[currentCard].term}</p>
-                    </div>
-                    <div className={isFlipped ? 'front-card' : 'card-disabled'}>
-                        <h5>Back</h5>
-                        <p>{cards[currentCard].response}</p>
-                    </div>
+                    {cards[currentCard] && (<>
+                        <div className={isFlipped ? 'card-disabled' : 'front-card'}>
+                            <h5>Front</h5>
+                            <p>{cards[currentCard].term}</p>
+                        </div>
+                        <div className={isFlipped ? 'front-card' : 'card-disabled'}>
+                            <h5>Back</h5>
+                            <p>{cards[currentCard].response}</p>
+                        </div>
+                    </>
+                    )}
                 </div>
             </div>
         </div>
