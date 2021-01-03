@@ -93,6 +93,7 @@
 
   .nav-link:hover {
     background-color: sienna;
+    color: white;
   }
 }
 
