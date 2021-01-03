@@ -3,6 +3,8 @@
   font-family: 'Helvetica Neue', sans-serif
 }
 
+
+
 .navbar {
   display: flex;
   flex-direction: column;
@@ -107,4 +109,6 @@
   display: block;
 }
 
-
+li .active {
+  color: sienna;
+}
