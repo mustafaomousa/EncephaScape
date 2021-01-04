@@ -3,13 +3,19 @@ const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { Stack, User, Card } = require('../../db/models');
+const { Stack, User, Card, Category } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-    const stacks = await Stack.findAll({ include: User });
+    const stacks = await Stack.findAll({ include: [User, Category] });
 
+    return res.json({ stacks });
+}));
+
+router.get('/category/:categoryId', asyncHandler(async (req, res) => {
+    const { id } = req.body;
+    const stacks = await Stack.findAll({ where: { categoryId: id } });
     return res.json({ stacks });
 }));
 

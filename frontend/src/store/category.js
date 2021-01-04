@@ -17,6 +17,11 @@ export const getAllCategories = () => async dispatch => {
     return res;
 };
 
+export const getCategoryStacks = (categoryId) => async dispatch => {
+    const res = await fetch(`/api/stacks/${categoryId}`);
+
+};
+
 function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {

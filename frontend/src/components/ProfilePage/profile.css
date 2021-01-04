@@ -81,7 +81,7 @@
         align-items: center;
         background-color: gray;
         width: 400px;
-        position: relative;
+        position: fixed;
         margin-right: -30px;
         margin-left: -40px;
         border-radius: 0px 0px 0.5em 0.5em;

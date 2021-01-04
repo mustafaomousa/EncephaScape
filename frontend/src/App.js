@@ -39,7 +39,7 @@ function App() {
             <Route exact path={`/stack/:id`} component={StudyStackPage} />
             <Route exact path={`/stack/:id/study`} />
             <Route exact path={`/stack/:id/edit`} component={EditStack} />
-            <Route path={`/category/:id`} component={BrowseByCategoryPage} />
+            <Route path={`/category/:categoryId`} component={BrowseByCategoryPage} />
           </Switch>
         )}
       </AppContextProvider>

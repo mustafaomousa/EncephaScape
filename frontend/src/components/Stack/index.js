@@ -30,7 +30,7 @@ const Stack = ({ stack, cards }) => {
                 <div className={studyEnabled ? 'study-panel-buttons' : 'how-to-disabled'}>
                     <div className='study-how-to-play'>
                         <h4>How to study:</h4>
-                        <p>To begin studying the stack select 'Play' below.</p>
+                        <p>Through repetition!!</p>
                     </div>
                     <div className='study-buttons'>
                         <button onClick={prevCard} >Prev</button>

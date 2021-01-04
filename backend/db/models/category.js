@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, { timestamps: false });
   Category.associate = function (models) {
-    // associations can be defined here
+    Category.hasMany(models.Stack, { foreignKey: 'categoryId' });
   };
   return Category;
 };

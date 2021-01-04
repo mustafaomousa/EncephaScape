@@ -6,6 +6,18 @@
     align-items: center;
 }
 
+.welcome {
+    display: flex;
+}
+
+.welcome h1 {
+    padding-left: 30px;
+}
+
+.welcome p {
+    padding-left: 50px;
+}
+
 .stack {
     text-decoration: none;
     color: #708090;

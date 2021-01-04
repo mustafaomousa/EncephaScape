@@ -13,7 +13,7 @@ const HomePage = () => {
     const categoryItems = categories.map((category) => {
         return (
             <ul className={`category category-${category.id}`} key={`category-${category.id}`}>
-                <NavLink className='category-nav-link' key={`${category.id}`} to='/'>{category.name}</NavLink>
+                <NavLink className='category-nav-link' key={`${category.id}`} to={`/category/${category.id}`}>{category.name}</NavLink>
             </ul>
         )
     });
@@ -34,10 +34,15 @@ const HomePage = () => {
     }, [dispatch])
     return (
         <div className='home-body'>
-            <div className='slideshow'>
-                <h1>SLIDESHOW HERE</h1>
+            <div className='welcome'>
+                <h1>Welcome</h1>
+                <br />
+                <p>The beginning of our name "Encepha" derives from the Greek work "Encephalon".
+                Here at EncephaScape we believe in the wonders that our brains can perform through studying.
+                Join today to access tens of our members stacks and to create your own 'Brainfolio!'
+            </p>
             </div>
-            <h4>browse newest stacks...</h4>
+            <h4>browse our members newest stacks...</h4>
             <div className='recent-stacks'>
                 {newestStacks}
             </div>
