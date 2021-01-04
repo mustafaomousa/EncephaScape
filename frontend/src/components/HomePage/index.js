@@ -37,7 +37,7 @@ const HomePage = () => {
             <div className='welcome'>
                 <h1>Welcome</h1>
                 <br />
-                <p>The beginning of our name "Encepha" derives from the Greek work "Encephalon".
+                <p>The beginning of our name "Encepha" derives from the Greek word "Encephalon" meaning "brain".
                 Here at EncephaScape we believe in the wonders that our brains can perform through studying.
                 Join today to access tens of our members stacks and to create your own 'Brainfolio!'
             </p>
