@@ -28,10 +28,9 @@ function LoginFormPage() {
   const demoLogin = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ demoCredential, demoPassword }))
-      .catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      })
+    setCredential('Demo-lition');
+    setPassword('password');
+    return handleSubmit(e);
   }
 
   return (
