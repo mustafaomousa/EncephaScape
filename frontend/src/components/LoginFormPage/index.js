@@ -13,6 +13,9 @@ function LoginFormPage() {
 
   if (sessionUser) return <Redirect to="/" />;
 
+  const demoCredential = 'Demo-lition';
+  const demoPassword = 'password';
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -21,6 +24,15 @@ function LoginFormPage() {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
   };
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ demoCredential, demoPassword }))
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      })
+  }
 
   return (
     <div className='login-form-body'>
@@ -47,6 +59,7 @@ function LoginFormPage() {
           </div>
         </div>
         <button type="submit">Log In</button>
+        <button onClick={demoLogin}>Demo</button>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
