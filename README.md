@@ -1,3 +1,7 @@
+**Heroku Launch Link**
+
+https://encephascape.herokuapp.com/
+
 **LAUNCHING ENCEPHASCAPE APPLICATION**
 
 In order to launch Encephascape please utilize the following:
