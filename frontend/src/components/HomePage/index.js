@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
 import { getStacks, getTopStacks } from "../../store/stack";
+import Login from "./Login";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,8 +28,8 @@ const HomePage = () => {
 
   return (
     <Box className={classes.root}>
-      <Grid container height="100%" padding={10}>
-        <Grid item sm={12} md={6}>
+      <Grid container height="100%">
+        <Grid item sm={12} md={6} padding={5}>
           <Stack
             height="100%"
             width="100%"
@@ -36,10 +37,10 @@ const HomePage = () => {
             justifyContent="center"
             spacing={1}
           >
-            <Typography variant="h3" textAlign="end" color="white">
+            <Typography variant="h3" textAlign="center" color="white">
               We believe in the wonders our brain can perform through studying
             </Typography>
-            <Grid container justifyContent={"flex-end"} spacing={2}>
+            <Grid container justifyContent={"center"} spacing={2}>
               <Grid item>
                 <Button
                   disableElevation
@@ -63,14 +64,19 @@ const HomePage = () => {
             </Grid>
           </Stack>
         </Grid>
-        <Grid item sm={12} md={6}>
-          <Stack
-            height="100%"
-            width="100%"
-            alignItems="flex-end"
-            justifyContent="center"
-            spacing={1}
-          ></Stack>
+        <Grid
+          item
+          sm={12}
+          md={6}
+          padding={5}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Login />
         </Grid>
       </Grid>
     </Box>

@@ -1,33 +1,36 @@
-const express = require('express');
-const { check } = require('express-validator');
-const asyncHandler = require('express-async-handler');
+const express = require("express");
+const { check } = require("express-validator");
+const asyncHandler = require("express-async-handler");
 
-const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Card, Stack } = require('../../db/models');
+const { handleValidationErrors } = require("../../utils/validation");
+const { setTokenCookie, requireAuth } = require("../../utils/auth");
+const { User, Card, Stack } = require("../../db/models");
 
 const router = express.Router();
 
 const validateSignup = [
-  check('email')
+  check("email")
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Please provide a valid email.'),
-  check('username')
+    .withMessage({
+      value: "credential",
+      error: "Please provide a valid email.",
+    }),
+  check("username")
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username').not().isEmail().withMessage('Username cannot be an email.'),
-  check('password')
+    .withMessage("Please provide a username with at least 4 characters."),
+  check("username").not().isEmail().withMessage("Username cannot be an email."),
+  check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors
+    .withMessage("Password must be 6 characters or more."),
+  handleValidationErrors,
 ];
 
 // Sign up
 router.post(
-  '/',
+  "/",
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, phoneNumber, username } = req.body;
@@ -36,18 +39,24 @@ router.post(
     await setTokenCookie(res, user);
 
     return res.json({
-      user
+      user,
     });
   })
 );
 
 // Delete
-router.post('/:userId', asyncHandler(async (req, res) => {
-  const { userId } = req.body;
-  const userStacks = await Stack.destroy({ where: { userId: userId }, truncate: false });
-  const user = await User.destroy({ where: { id: userId } });
+router.post(
+  "/:userId",
+  asyncHandler(async (req, res) => {
+    const { userId } = req.body;
+    const userStacks = await Stack.destroy({
+      where: { userId: userId },
+      truncate: false,
+    });
+    const user = await User.destroy({ where: { id: userId } });
 
-  return res.json({ user });
-}))
+    return res.json({ user });
+  })
+);
 
 module.exports = router;
