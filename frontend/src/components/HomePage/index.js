@@ -1,24 +1,19 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
 import { getStacks, getTopStacks } from "../../store/stack";
-import Login from "./Login";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: "100vh",
-    backgroundColor: "#333333",
+    marginTop: "100px",
   },
 }));
 
 const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.category.categories);
-  const newStacks = useSelector((state) => state.stack.newestStacks);
 
   useEffect(() => {
     dispatch(getAllCategories());
@@ -27,59 +22,40 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <Box className={classes.root}>
-      <Grid container height="100%">
-        <Grid item sm={12} md={6} padding={5}>
-          <Stack
-            height="100%"
-            width="100%"
-            alignItems="flex-end"
-            justifyContent="center"
-            spacing={1}
+    <Stack className={classes.root}>
+      <Stack
+        alignItems="center"
+        sx={{ backgroundColor: "#333333", padding: "100px 50px" }}
+      >
+        <Stack maxWidth={1200} spacing={1} alignItems="flex-end">
+          <Typography
+            variant="h2"
+            align="end"
+            color="white"
+            lineHeight={1.3}
+            letterSpacing={3}
           >
-            <Typography variant="h3" textAlign="center" color="white">
-              We believe in the wonders our brain can perform through studying
-            </Typography>
-            <Grid container justifyContent={"center"} spacing={2}>
-              <Grid item>
-                <Button
-                  disableElevation
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                >
+            We believe in the wonders our brain can perform through studying
+          </Typography>
+          <Grid container justifyContent="flex-end" spacing={2}>
+            <Grid item>
+              <Link href="/stacks">
+                <Button fullWidth variant="contained" size="medium">
                   Search stacks
                 </Button>
-              </Grid>
-              <Grid item>
-                <Button
-                  disableElevation
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                >
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="/brainfolio">
+                <Button fullWidth variant="contained" size="medium">
                   Create a stack
                 </Button>
-              </Grid>
+              </Link>
             </Grid>
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          sm={12}
-          md={6}
-          padding={5}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Login />
-        </Grid>
-      </Grid>
-    </Box>
+          </Grid>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 
