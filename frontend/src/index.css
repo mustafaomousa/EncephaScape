@@ -1,43 +1,6 @@
 /* TODO Add site wide styles */
 
 body {
-    background-color: #C0C0C0;
-}
-
-button, #edit-button {
-    min-width: 120px;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    background-color: #333333;
-    padding: 5px;
-}
-
-button:hover {
-    background-color: sienna;
-}
-
-h1,h2,h3,h4,h5 {
-    text-shadow: 0px 0px 2px gray;
-    font-family: 'Charter', 'Arial Black', Arial;
-    text-transform: uppercase;
-}
-
-p {
-    color: black;
-    font-family: 'Charter', Arial;
-    font-weight: lighter;
-}
-
-input {
-    background-color: #E5E5E5;
-    border: none;
-    padding: 5px;
-}
-
-select {
-    background-color: #E5E5E5;
-    border: none;
-    padding: 4px;
+  background-color: #c0c0c0;
+  margin: 0;
 }

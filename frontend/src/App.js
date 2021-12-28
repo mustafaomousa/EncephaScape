@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
-import AppContextProvider from './context/AppContextProvider';
+import AppContextProvider from "./context/AppContextProvider";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
@@ -10,11 +10,11 @@ import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
 import Brainfolio from "./components/BrainfolioPage";
-import BrowseByCategoryPage from './components/BrowseByCategoryPage';
+import BrowseByCategoryPage from "./components/BrowseByCategoryPage";
 import StudyStackPage from "./components/StudyStackPage";
-import BrowsePage from './components/BrowsePage';
+import BrowsePage from "./components/BrowsePage";
 import EditStack from "./components/EditStack";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,10 +25,10 @@ function App() {
 
   return (
     <>
-      <AppContextProvider>
-        <Navigation isLoaded={isLoaded} />
-        <Footer />
-        {isLoaded && (
+      {isLoaded && (
+        <>
+          <Navigation isLoaded={isLoaded} />
+
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginFormPage} />
@@ -39,10 +39,14 @@ function App() {
             <Route exact path={`/stack/:id`} component={StudyStackPage} />
             <Route exact path={`/stack/:id/study`} />
             <Route exact path={`/stack/:id/edit`} component={EditStack} />
-            <Route path={`/category/:categoryId`} component={BrowseByCategoryPage} />
+            <Route
+              path={`/category/:categoryId`}
+              component={BrowseByCategoryPage}
+            />
+            <Footer />
           </Switch>
-        )}
-      </AppContextProvider>
+        </>
+      )}
     </>
   );
 }

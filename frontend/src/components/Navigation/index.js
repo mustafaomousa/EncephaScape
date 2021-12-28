@@ -1,72 +1,83 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import brain from './brain.png';
-import './Navigation.css';
+import React from "react";
+import { Button, Divider, Grid, Link, Stack, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+import brain from "./brain.png";
 
-function Navigation({ isLoaded }) {
-  const sessionUser = useSelector(state => state.session.user);
+const useStyles = makeStyles(() => ({
+  root: {
+    height: 100,
+    backgroundColor: "#333333",
+    padding: "10px 25px",
+  },
+  logoImage: {
+    height: 70,
+  },
+}));
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-        <li>
-          <NavLink className="nav-link" to="/stack">Stacks</NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-link" to="/brainfolio">Brainfolio</NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-link" to="/profile">Profile</NavLink>
-        </li>
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <li>
-          <NavLink className="nav-link" to="/login">Log In</NavLink>
-        </li>
-        <li>
-          <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
-        </li>
-      </>
-    );
-  }
+function Navigation() {
+  const sessionUser = useSelector((state) => state.session.user);
+  const classes = useStyles();
 
   return (
-    <nav className="navbar">
-      <ul className="nav">
-        <div className='logo'>
-          <a href='/'>
-            <img id='logo' src={brain} alt='EncephaScape'></img>
-          </a>
-        </div>
-        <div className='links'>
-          <div className='full-size-nav'>
-            <li>
-              <NavLink className="nav-link" exact to="/">Home</NavLink>
-            </li>
-            {isLoaded && sessionLinks}
-          </div>
-
-          <div className='dropdown-nav'>
-            <div className='button-wrapper'>
-              <button id='menu-button' >
-                Menu
-              <i className='fa fa-caret-down'></i>
-              </button>
-
-            </div>
-            <div className='dropdown-content'>
-              <NavLink className="nav-link" exact to="/">Home</NavLink>
-              {isLoaded && sessionLinks}
-            </div>
-          </div>
-        </div>
-      </ul>
-    </nav>
+    <Grid container className={classes.root}>
+      <Grid item xs={6}>
+        <Stack alignItems="flex-start" justifyContent="center" height="100%">
+          <img
+            src={brain}
+            className={classes.logoImage}
+            alt="EncephaScape"
+          ></img>
+        </Stack>
+      </Grid>
+      <Grid item xs={6}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="flex-end"
+          height="100%"
+          spacing={2}
+        >
+          <Link exact href="/" underline="none">
+            <Typography variant="body1" color="white">
+              Home
+            </Typography>
+          </Link>
+          {!sessionUser ? (
+            <>
+              <Link href="/login" underline="none">
+                <Typography variant="body1" color="white">
+                  Log In
+                </Typography>
+              </Link>
+              <Link href="/signup" underline="none">
+                <Typography variant="body1" color="white">
+                  Sign Up
+                </Typography>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/stack" underline="none">
+                <Typography variant="body1" color="white">
+                  Stacks
+                </Typography>
+              </Link>
+              <Link href="/brainfolio" underline="none">
+                <Typography variant="body1" color="white">
+                  Brainfolio
+                </Typography>
+              </Link>
+              <Link href="/profile" underline="none">
+                <Button size="small" fullWidth variant="outlined">
+                  {sessionUser.username}
+                </Button>
+              </Link>
+            </>
+          )}
+        </Stack>
+      </Grid>
+    </Grid>
   );
 }
 
