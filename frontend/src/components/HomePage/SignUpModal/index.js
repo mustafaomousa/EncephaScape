@@ -1,7 +1,7 @@
 import { Button, Stack, TextField, Modal } from "@mui/material";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { login } from "../../../store/session";
+import { signup } from "../../../store/session";
 import brain from "../../Navigation/brain.png";
 
 const SignUpModal = ({ switchToLogin, open, handleClose }) => {
@@ -15,14 +15,23 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
       confirmPassword: "",
     },
     onSubmit: async (values) => {
-      await dispatch(
-        login({ username: values.username, password: values.password })
-      ).catch((response) => {
-        for (let i = 0; i < response.data.errors.length; i++) {
-          let error = response.data.errors[i];
-          formik.setFieldError(error.param, error.msg);
-        }
-      });
+      if (values.password === values.confirmPassword) {
+        await dispatch(
+          signup({
+            username: values.username,
+            email: values.email,
+            password: values.password,
+          })
+        ).catch((response) => {
+          for (let i = 0; i < response.data.errors.length; i++) {
+            let error = response.data.errors[i];
+            formik.setFieldError(error.param, error.msg);
+          }
+        });
+      } else {
+        formik.setFieldError("password", "Passwords must match.");
+        formik.setFieldError("confirmPassword", "Passwords must match.");
+      }
     },
   });
 
@@ -85,8 +94,8 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             fullWidth
             label="Confirm Password"
             type="password"
-            id="confirm_password"
-            name="confirm_password"
+            id="confirmPassword"
+            name="confirmPassword"
             value={formik.values.confirmPassword}
             onChange={formik.handleChange}
             error={
@@ -107,7 +116,6 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
               variant="outlined"
               fullWidth
               disableElevation
-              type="submit"
               size="large"
               onClick={switchToLogin}
             >

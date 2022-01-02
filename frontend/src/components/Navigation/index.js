@@ -92,14 +92,14 @@ function Navigation() {
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
                 <Button
                   onClick={handleLoginModalOpen}
-                  variant="outlined"
+                  variant="contained"
                   sx={{ padding: 0 }}
                 >
                   Log in
                 </Button>
                 <Button
                   onClick={handleSignUpModalOpen}
-                  variant="outlined"
+                  variant="contained"
                   sx={{ padding: 0, width: "10em" }}
                 >
                   Getting Started
@@ -114,7 +114,7 @@ function Navigation() {
                 </Link>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
                 <Link href="/profile" underline="none">
-                  <Button size="small" fullWidth variant="outlined">
+                  <Button size="small" fullWidth variant="contained">
                     {sessionUser.username}
                   </Button>
                 </Link>

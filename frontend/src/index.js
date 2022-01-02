@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import './index.css';
+import "./index.css";
 
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 
-import configureStore from './store';
-import { restoreCSRF, fetch } from './store/csrf';
-import * as sessionActions from './store/session';
+import configureStore from "./store";
+import { restoreCSRF, fetch } from "./store/csrf";
+import * as sessionActions from "./store/session";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
 
 const store = configureStore();
 
@@ -21,12 +23,26 @@ if (process.env.NODE_ENV !== "production") {
   window.sessionActions = sessionActions;
 }
 
+const theme = createTheme({
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "black",
+        },
+      },
+    },
+  },
+});
+
 function Root() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
   );
 }
@@ -35,5 +51,5 @@ ReactDOM.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

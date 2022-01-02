@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
-import { getStacks, getTopStacks } from "../../store/stack";
+import { getUserStacks } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,11 +14,11 @@ const useStyles = makeStyles(() => ({
 const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getAllCategories());
-    dispatch(getStacks());
-    dispatch(getTopStacks());
+    dispatch(getUserStacks(sessionUser.id));
   }, [dispatch]);
 
   return (

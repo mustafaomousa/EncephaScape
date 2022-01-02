@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.6",
     "@mui/styles": "^5.2.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -12,6 +13,7 @@
     "@testing-library/user-event": "^7.1.2",
     "formik": "^2.2.9",
     "js-cookie": "^2.2.1",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",

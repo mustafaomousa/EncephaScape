@@ -1,71 +1,70 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Divider,
+  IconButton,
+  Typography,
+  Stack as MuiStack,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import MoreIcon from "@mui/icons-material/MoreHoriz";
+import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
+import BookmarkAddOutlined from "@mui/icons-material/BookmarkAddOutlined";
 
-import './stack.css';
+const useStyles = makeStyles(() => ({
+  root: {
+    minWidth: 350,
+  },
+}));
 
-const Stack = ({ stack, cards }) => {
-    const [studyEnabled, setStudyEnabled] = useState(false);
-    const [isFlipped, setIsFlipped] = useState(false);
-    const [currentCard, setCurrentCard] = useState(0);
+const Stack = ({ stack }) => {
+  const classes = useStyles();
 
-    const nextCard = (e) => {
-        if (currentCard === (cards.length - 1)) return setCurrentCard(0);
-        return setCurrentCard(currentCard + 1);
-    };
-
-    const prevCard = (e) => {
-        if (currentCard === 0) return setCurrentCard(cards.length - 1);
-        return setCurrentCard(currentCard - 1);
-    };
-
-    if (cards) return (
-        <div className='single-stack-body'>
-            <div className='single-stack-control'>
-                <h2>Control Panel</h2>
-                <div className={studyEnabled ? 'how-to-disabled' : 'how-to-play'}>
-                    <h4>How to play:</h4>
-                    <p>To begin studying the stack select 'Play' below.</p>
-                    <button onClick={() => setStudyEnabled(true)}>Play</button>
-                </div>
-                <div className={studyEnabled ? 'study-panel-buttons' : 'how-to-disabled'}>
-                    <div className='study-how-to-play'>
-                        <h4>How to study:</h4>
-                        <p>Through repetition!!</p>
-                    </div>
-                    <div className='study-buttons'>
-                        <button onClick={prevCard} >Prev</button>
-                        <button onClick={() => setStudyEnabled(false)} > End</button>
-                        <button onClick={nextCard} >Next</button>
-                    </div>
-                </div>
-            </div>
-            <div className={!studyEnabled ? 'stack-container' : 'stack-study-container-disabled'}>
-                <div className={`single-stack stack-${stack.id}`} key={`stack-${stack.id}`}>
-                    <a href={`/stack/${stack.id}`}>{stack.name}</a>
-                    <p id='by-statement'>by {stack.User.username}</p>
-                    <p>created at {stack.createdAt}</p>
-                </div>
-            </div>
-            <div className='stack-study-container' className={studyEnabled ? 'stack-study-container-enabled' : 'stack-study-container-disabled'}>
-                <div>
-                    <button onClick={() => setIsFlipped(!isFlipped)}>Flip!</button>
-                </div>
-                <div className={`single-stack`} hidden='true'>
-                    {cards[currentCard] && (<>
-                        <div onClick={() => setIsFlipped(!isFlipped)} className={isFlipped ? 'card-disabled' : 'front-card'}>
-                            <h5>Front</h5>
-                            <p>{cards[currentCard].term}</p>
-                        </div>
-                        <div onClick={() => setIsFlipped(!isFlipped)} className={isFlipped ? 'front-card' : 'card-disabled'}>
-                            <h5>Back</h5>
-                            <p>{cards[currentCard].response}</p>
-                        </div>
-                    </>
-                    )}
-                </div>
-            </div>
-        </div>
-    )
+  return (
+    <Card className={classes.root} sx={{ backgroundColor: "#333333" }}>
+      <CardHeader
+        title={
+          <Typography color="white" variant="body1">
+            {stack.User.username}
+          </Typography>
+        }
+        action={
+          <IconButton sx={{ width: 40, height: 40 }}>
+            <MoreIcon sx={{ color: "white" }} />
+          </IconButton>
+        }
+      />
+      <Divider />
+      <CardContent sx={{ padding: 0 }}>
+        <MuiStack
+          minHeight={135}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ backgroundColor: "#ffffff" }}
+        >
+          <Typography variant="h6" gutterBottom={1} fontWeight="bold">
+            {stack.name}
+          </Typography>
+          <Typography variant="caption">{stack.Category.name}</Typography>
+          <Typography fontSize="10px">{stack.Cards.length} cards</Typography>
+        </MuiStack>
+      </CardContent>
+      <Divider />
+      <CardActions>
+        <MuiStack direction="row" justifyContent="space-between" width="100%">
+          <IconButton sx={{ width: 40, height: 40 }}>
+            <BookmarkAddOutlined sx={{ color: "white" }} />
+          </IconButton>
+          <IconButton sx={{ width: 40, height: 40 }}>
+            <PlayArrowOutlined sx={{ color: "white" }} />
+          </IconButton>
+        </MuiStack>
+      </CardActions>
+    </Card>
+  );
 };
 
 export default Stack;

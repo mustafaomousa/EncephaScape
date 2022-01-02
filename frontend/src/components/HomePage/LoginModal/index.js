@@ -24,16 +24,6 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
           }
         });
     },
-    onDemoSubmit: async (values) => {
-      await dispatch(login({ credential: "Demo-lition", password: "password" }))
-        .then(() => handleClose())
-        .catch((response) => {
-          for (let i = 0; i < response.data.errors.length; i++) {
-            let error = response.data.errors[i];
-            formik.setFieldError(error.param, error.msg);
-          }
-        });
-    },
   });
 
   return (
@@ -110,7 +100,6 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
             <Button
               fullWidth
               disableElevation
-              type="submit"
               size="large"
               onClick={switchToSignUp}
             >
