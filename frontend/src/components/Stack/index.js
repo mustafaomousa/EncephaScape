@@ -10,6 +10,7 @@ import {
   Stack as MuiStack,
   Menu,
   MenuItem,
+  TextField,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
@@ -78,7 +79,6 @@ const Stack = ({ stack }) => {
           </>
         }
       />
-      <Divider />
       <CardContent sx={{ padding: 0 }}>
         <MuiStack
           minHeight={135}
@@ -93,7 +93,6 @@ const Stack = ({ stack }) => {
           <Typography fontSize="10px">{stack.Cards.length} cards</Typography>
         </MuiStack>
       </CardContent>
-      <Divider />
       <CardActions>
         <MuiStack direction="row" justifyContent="space-between" width="100%">
           <IconButton sx={{ width: 40, height: 40 }}>

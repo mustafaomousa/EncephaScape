@@ -8,9 +8,6 @@ import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
 import HomePage from "./components/HomePage";
 import BrainfolioPage from "./components/BrainfolioPage";
-import BrowseByCategoryPage from "./components/BrowseByCategoryPage";
-import StudyStackPage from "./components/StudyStackPage";
-import EditStack from "./components/EditStack";
 import Footer from "./components/Footer";
 
 function App() {

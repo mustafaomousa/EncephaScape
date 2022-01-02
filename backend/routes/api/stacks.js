@@ -39,9 +39,19 @@ router.get(
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    const { name, categoryId, userId } = req.body;
+    const { name, categoryId, userId, cards } = req.body;
 
     const stack = await Stack.create({ name, categoryId, userId });
+
+    for (cardNumber in cards) {
+      const card = cards[cardNumber];
+      console.log(card);
+      await Card.create({
+        stackId: stack.id,
+        term: card.term,
+        response: card.response,
+      });
+    }
 
     const newStack = await Stack.findByPk(stack.id, {
       include: [User, Card, Category],

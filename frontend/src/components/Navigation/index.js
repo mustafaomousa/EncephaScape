@@ -114,7 +114,12 @@ function Navigation() {
                 </Link>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
                 <Link href="/profile" underline="none">
-                  <Button size="small" fullWidth variant="contained">
+                  <Button
+                    size="small"
+                    color="secondary"
+                    fullWidth
+                    variant="contained"
+                  >
                     {sessionUser.username}
                   </Button>
                 </Link>

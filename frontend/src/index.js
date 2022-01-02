@@ -11,7 +11,7 @@ import configureStore from "./store";
 import { restoreCSRF, fetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { createTheme } from "@mui/material";
-import { ThemeProvider } from "@mui/styles";
+import { ThemeProvider } from "@mui/system";
 
 const store = configureStore();
 
@@ -24,6 +24,14 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#201e20",
+    },
+    secondary: {
+      main: "#c66b3d",
+    },
+  },
   components: {
     MuiCard: {
       styleOverrides: {

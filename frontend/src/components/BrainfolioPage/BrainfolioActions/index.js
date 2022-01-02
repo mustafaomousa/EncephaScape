@@ -27,6 +27,7 @@ const BrainfolioActions = () => {
     <Grid container spacing={2}>
       <Grid item sm={12} md={2}>
         <Button
+          color="secondary"
           variant="contained"
           className={classes.brainfolioActionButton}
           onClick={() => history.push("/brainfolio/create")}

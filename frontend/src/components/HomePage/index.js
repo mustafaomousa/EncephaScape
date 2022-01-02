@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
-import { getUserStacks } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -18,7 +17,6 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getAllCategories());
-    dispatch(getUserStacks(sessionUser.id));
   }, [dispatch]);
 
   return (
@@ -39,15 +37,25 @@ const HomePage = () => {
           </Typography>
           <Grid container justifyContent="flex-end" spacing={2}>
             <Grid item>
-              <Link href="/stacks">
-                <Button fullWidth variant="contained" size="medium">
+              <Link href="/stacks" underline="none">
+                <Button
+                  color="secondary"
+                  fullWidth
+                  variant="outlined"
+                  size="medium"
+                >
                   Search stacks
                 </Button>
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/brainfolio">
-                <Button fullWidth variant="contained" size="medium">
+              <Link href="/brainfolio/create" underline="none">
+                <Button
+                  color="secondary"
+                  fullWidth
+                  variant="contained"
+                  size="medium"
+                >
                   Create a stack
                 </Button>
               </Link>

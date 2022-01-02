@@ -34,11 +34,11 @@ export const deleteUserStack = (stackId) => async (dispatch) => {
 };
 
 export const createUserStack =
-  ({ name, categoryId, userId }) =>
+  ({ name, categoryId, userId, cards }) =>
   async (dispatch) => {
     const response = await fetch("/api/stacks/", {
       method: "POST",
-      body: JSON.stringify({ name, categoryId, userId }),
+      body: JSON.stringify({ name, categoryId, userId, cards }),
     });
     dispatch(addStack(response.data.stack));
   };
