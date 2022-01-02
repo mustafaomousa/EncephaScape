@@ -17,6 +17,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../../store/category";
 import { createUserStack } from "../../../store/stacks";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import LockIcon from "@mui/icons-material/Lock";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -85,25 +88,31 @@ const CreateStackPage = () => {
   useEffect(() => console.log(cards), [cards]);
 
   return (
-    <Paper className={classes.root}>
+    <Box sx={{ backgroundColor: "rgba(0,0,0,0.2)", padding: 5 }}>
       <form onSubmit={formik.handleSubmit}>
         <Stack spacing={3} display={stackCreated ? "none" : ""}>
           <Box>
             <Box marginBottom={2}>
               <Typography
-                variant="button"
+                variant="h2"
                 align="start"
-                sx={{
-                  fontSize: 18,
-                }}
+                color="secondary"
+                fontStyle="italic"
               >
-                Name your stack
+                1. Name your stack
               </Typography>
             </Box>
             <TextField
               fullWidth
-              inputProps={{ sx: { fontSize: "25px" } }}
+              inputProps={{
+                sx: {
+                  fontSize: "25px",
+                  background: "#fff",
+                  borderRadius: "0.2em",
+                },
+              }}
               variant="outlined"
+              color="secondary"
               id="name"
               name="name"
               value={formik.values.name}
@@ -114,13 +123,8 @@ const CreateStackPage = () => {
           </Box>
           <Box>
             <Box marginBottom={2}>
-              <Typography
-                variant="button"
-                sx={{
-                  fontSize: 18,
-                }}
-              >
-                Select a category
+              <Typography variant="h2" color="secondary" fontStyle="italic">
+                2. Select a category
               </Typography>
             </Box>
             <Grid container spacing={1}>
@@ -136,6 +140,7 @@ const CreateStackPage = () => {
                           ? "contained"
                           : "outlined"
                       }
+                      color="secondary"
                       onClick={(e) => setSelectedCategory(e.target.value)}
                     >
                       {category.name}
@@ -149,13 +154,8 @@ const CreateStackPage = () => {
         <Divider sx={{ margin: 4 }} />
         <Box>
           <Box marginBottom={2}>
-            <Typography
-              variant="button"
-              sx={{
-                fontSize: 18,
-              }}
-            >
-              Create your cards
+            <Typography variant="h2" color="secondary" fontStyle={"italic"}>
+              3. Create your cards
             </Typography>
           </Box>
           {cards &&
@@ -166,30 +166,42 @@ const CreateStackPage = () => {
                 <>
                   <Grid container spacing={3}>
                     <Grid item xs={5.5}>
-                      <Typography align="center" gutterBottom={1}>
+                      <Typography
+                        align="start"
+                        color="secondary"
+                        variant="h5"
+                        gutterBottom={1}
+                      >
                         Question
                       </Typography>
-                      <Paper sx={{ minHeight: 250 }}>
+                      <Paper>
                         <TextField
                           value={card.term}
                           onChange={(e) => updateCardTerm(e, cardNumber)}
                           multiline
                           variant="outlined"
+                          color="secondary"
                           minRows={10}
                           fullWidth
                         />
                       </Paper>
                     </Grid>
                     <Grid item xs={5.5}>
-                      <Typography align="center" gutterBottom={1}>
+                      <Typography
+                        align="start"
+                        color="secondary"
+                        variant="h5"
+                        gutterBottom={1}
+                      >
                         Answer
                       </Typography>
-                      <Paper sx={{ minHeight: 250 }}>
+                      <Paper>
                         <TextField
                           value={card.response}
                           onChange={(e) => updateCardResponse(e, cardNumber)}
                           multiline
                           variant="outlined"
+                          color="secondary"
                           minRows={10}
                           fullWidth
                         />
@@ -200,11 +212,15 @@ const CreateStackPage = () => {
                         justifyContent="flex-end"
                         alignItems="flex-end"
                         height="100%"
+                        width="100%"
                         spacing={1}
+                        fullWidth
                       >
-                        <Button variant="outlined">Lock</Button>
-                        <Button variant="contained" color="error">
-                          Delete
+                        <Button variant="outlined" fullWidth color="primary">
+                          <LockOpenIcon />
+                        </Button>
+                        <Button variant="contained" fullWidth color="error">
+                          <DeleteIcon />
                         </Button>
                       </Stack>
                     </Grid>
@@ -214,12 +230,7 @@ const CreateStackPage = () => {
               );
             })}
           <Divider sx={{ margin: 4 }} />
-          <Stack direction="row" justifyContent="flex-end" spacing={2}>
-            <Box>
-              <Button fullWidth variant="outlined" onClick={addCard}>
-                Add card
-              </Button>
-            </Box>
+          <Stack direction="row" justifyContent="space-between" spacing={2}>
             <Box>
               <Button
                 color="error"
@@ -230,15 +241,24 @@ const CreateStackPage = () => {
                 Cancel
               </Button>
             </Box>
-            <Box>
-              <Button type="submit" fullWidth variant="contained">
+            <Stack
+              direction="row"
+              justifyContent="flex-end"
+              spacing={1}
+              alignItems="flex-end"
+              width="100%"
+            >
+              <Button variant="contained" onClick={addCard}>
+                Add card
+              </Button>
+              <Button type="submit" variant="contained" color="secondary">
                 Create stack
               </Button>
-            </Box>
+            </Stack>
           </Stack>
         </Box>
       </form>
-    </Paper>
+    </Box>
   );
 };
 

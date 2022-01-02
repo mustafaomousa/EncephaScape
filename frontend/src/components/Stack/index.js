@@ -45,7 +45,7 @@ const Stack = ({ stack }) => {
   };
 
   return (
-    <Card className={classes.root} sx={{ backgroundColor: "#333333" }}>
+    <Card className={classes.root} sx={{ backgroundColor: "#6E6658" }}>
       <CardHeader
         title={
           <Typography color="white" variant="body1">
