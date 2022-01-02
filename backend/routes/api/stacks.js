@@ -43,7 +43,11 @@ router.post(
 
     const stack = await Stack.create({ name, categoryId, userId });
 
-    return res.json({ stack });
+    const newStack = await Stack.findByPk(stack.id, {
+      include: [User, Card, Category],
+    });
+
+    return res.json({ stack: newStack });
   })
 );
 

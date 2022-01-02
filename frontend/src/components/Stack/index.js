@@ -12,10 +12,12 @@ import {
   MenuItem,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useDispatch } from "react-redux";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
 import BookmarkAddOutlined from "@mui/icons-material/BookmarkAddOutlined";
 import { useState } from "react";
+import { deleteUserStack } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,12 +27,19 @@ const useStyles = makeStyles(() => ({
 
 const Stack = ({ stack }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [stackEl, setStackEl] = useState(null);
 
   const open = Boolean(stackEl);
 
   const handleDropdownClick = (e) => setStackEl(e.currentTarget);
   const handleDropdownClose = () => setStackEl(null);
+
+  const deleteStack = (e) => {
+    e.preventDefault();
+    handleDropdownClose();
+    dispatch(deleteUserStack(stack.id));
+  };
 
   return (
     <Card className={classes.root} sx={{ backgroundColor: "#333333" }}>
@@ -64,7 +73,7 @@ const Stack = ({ stack }) => {
               <MenuItem>Play</MenuItem>
               <MenuItem>Bookmark</MenuItem>
               <MenuItem>Edit</MenuItem>
-              <MenuItem>Delete</MenuItem>
+              <MenuItem onClick={deleteStack}>Delete</MenuItem>
             </Menu>
           </>
         }
