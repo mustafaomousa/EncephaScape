@@ -51,6 +51,7 @@ const BrainfolioActions = () => {
       <Grid item sm={12} md={2}>
         <Button
           disabled
+          color="secondary"
           variant="outlined"
           className={classes.brainfolioActionButton}
         >
@@ -60,6 +61,7 @@ const BrainfolioActions = () => {
       <Grid item sm={12} md={2}>
         <Button
           disabled
+          color="secondary"
           variant="outlined"
           className={classes.brainfolioActionButton}
         >
@@ -69,6 +71,7 @@ const BrainfolioActions = () => {
       <Grid item sm={12} md={2}>
         <Button
           disabled
+          color="secondary"
           variant="outlined"
           className={classes.brainfolioActionButton}
         >

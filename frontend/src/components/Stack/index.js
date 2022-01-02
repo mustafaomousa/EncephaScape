@@ -19,6 +19,7 @@ import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
 import BookmarkAddOutlined from "@mui/icons-material/BookmarkAddOutlined";
 import { useState } from "react";
 import { deleteUserStack } from "../../store/stacks";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles(() => ({
 const Stack = ({ stack }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const [stackEl, setStackEl] = useState(null);
 
   const open = Boolean(stackEl);
@@ -98,7 +100,10 @@ const Stack = ({ stack }) => {
           <IconButton sx={{ width: 40, height: 40 }}>
             <BookmarkAddOutlined sx={{ color: "white" }} />
           </IconButton>
-          <IconButton sx={{ width: 40, height: 40 }}>
+          <IconButton
+            sx={{ width: 40, height: 40 }}
+            onClick={() => history.push(`/stacks/${stack.id}`)}
+          >
             <PlayArrowOutlined sx={{ color: "white" }} />
           </IconButton>
         </MuiStack>

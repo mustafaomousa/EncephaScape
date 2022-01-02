@@ -8,31 +8,14 @@ const { Stack, User, Card, Category } = require("../../db/models");
 const router = express.Router();
 
 router.get(
-  "/",
+  "/:stackId",
   asyncHandler(async (req, res) => {
-    const stacks = await Stack.findAll({ include: [User, Category] });
-
-    return res.json({ stacks });
-  })
-);
-
-router.get(
-  "/category/:categoryId",
-  asyncHandler(async (req, res) => {
-    const { id } = req.body;
-    const stacks = await Stack.findAll({ where: { categoryId: id } });
-    return res.json({ stacks });
-  })
-);
-
-router.get(
-  "/top",
-  asyncHandler(async (req, res) => {
-    const stacks = await Stack.findAll({
-      limit: 10,
-      order: [["updatedAt", "DESC"]],
+    const { stackId } = req.params;
+    const stack = await Stack.findByPk(stackId, {
+      include: [User, Card, Category],
     });
-    return res.json({ stacks });
+
+    return res.json({ stack });
   })
 );
 
