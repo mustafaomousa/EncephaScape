@@ -88,93 +88,96 @@ const CreateStackPage = () => {
   useEffect(() => console.log(cards), [cards]);
 
   return (
-    <Box sx={{ backgroundColor: "rgba(0,0,0,0.2)", padding: 5 }}>
-      <form onSubmit={formik.handleSubmit}>
-        <Stack spacing={3} display={stackCreated ? "none" : ""}>
-          <Box>
-            <Box marginBottom={2}>
-              <Typography
-                variant="h2"
-                align="start"
+    <>
+      <Typography color="secondary" variant="h3" gutterBottom={1}>
+        Create a stack
+      </Typography>
+      <Box sx={{ backgroundColor: "rgba(0,0,0,0.2)", padding: 5 }}>
+        <form onSubmit={formik.handleSubmit}>
+          <Stack spacing={3} display={stackCreated ? "none" : ""}>
+            <Box>
+              <Box marginBottom={2}>
+                <Typography
+                  variant="h4"
+                  align="start"
+                  color="secondary"
+                  fontStyle="italic"
+                >
+                  1. Name your stack
+                </Typography>
+              </Box>
+              <TextField
+                fullWidth
+                inputProps={{
+                  sx: {
+                    fontSize: "25px",
+                    color: "#fff",
+                    borderBottom: "#fff",
+                  },
+                }}
+                variant="filled"
                 color="secondary"
-                fontStyle="italic"
-              >
-                1. Name your stack
-              </Typography>
+                id="name"
+                name="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
+              />
             </Box>
-            <TextField
-              fullWidth
-              inputProps={{
-                sx: {
-                  fontSize: "25px",
-                  background: "#fff",
-                  borderRadius: "0.2em",
-                },
-              }}
-              variant="outlined"
-              color="secondary"
-              id="name"
-              name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              helperText={formik.touched.name && formik.errors.name}
-            />
-          </Box>
+            <Box>
+              <Box marginBottom={2}>
+                <Typography variant="h4" color="secondary" fontStyle="italic">
+                  2. Select a category
+                </Typography>
+              </Box>
+              <Grid container spacing={1}>
+                {categories &&
+                  categories.map((category) => (
+                    <Grid item>
+                      <Button
+                        value={category.id}
+                        sx={{ width: 130, height: 130, borderRadius: "50%" }}
+                        fullWidth
+                        variant={
+                          selectedCategory == category.id
+                            ? "contained"
+                            : "outlined"
+                        }
+                        color="secondary"
+                        onClick={(e) => setSelectedCategory(e.target.value)}
+                      >
+                        {category.name}
+                      </Button>
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          </Stack>
+
+          <Divider sx={{ margin: 4 }} />
           <Box>
             <Box marginBottom={2}>
-              <Typography variant="h2" color="secondary" fontStyle="italic">
-                2. Select a category
+              <Typography variant="h4" color="secondary" fontStyle={"italic"}>
+                3. Create your cards
               </Typography>
             </Box>
-            <Grid container spacing={1}>
-              {categories &&
-                categories.map((category) => (
-                  <Grid item>
-                    <Button
-                      value={category.id}
-                      sx={{ width: 130, height: 130, borderRadius: "50%" }}
-                      fullWidth
-                      variant={
-                        selectedCategory == category.id
-                          ? "contained"
-                          : "outlined"
-                      }
-                      color="secondary"
-                      onClick={(e) => setSelectedCategory(e.target.value)}
-                    >
-                      {category.name}
-                    </Button>
-                  </Grid>
-                ))}
-            </Grid>
-          </Box>
-        </Stack>
+            {cards &&
+              Object.keys(cards).map((cardNumber) => {
+                const card = cards[cardNumber];
 
-        <Divider sx={{ margin: 4 }} />
-        <Box>
-          <Box marginBottom={2}>
-            <Typography variant="h2" color="secondary" fontStyle={"italic"}>
-              3. Create your cards
-            </Typography>
-          </Box>
-          {cards &&
-            Object.keys(cards).map((cardNumber) => {
-              const card = cards[cardNumber];
-
-              return (
-                <>
-                  <Grid container spacing={3}>
-                    <Grid item xs={5.5}>
-                      <Typography
-                        align="start"
-                        color="secondary"
-                        variant="h5"
-                        gutterBottom={1}
-                      >
-                        Question
-                      </Typography>
-                      <Paper>
+                return (
+                  <>
+                    <Grid container spacing={3}>
+                      <Grid item xs={5.5}>
+                        <Typography
+                          align="start"
+                          color="secondary"
+                          variant="h5"
+                          gutterBottom={1}
+                        >
+                          Question
+                        </Typography>
                         <TextField
                           value={card.term}
                           onChange={(e) => updateCardTerm(e, cardNumber)}
@@ -183,19 +186,22 @@ const CreateStackPage = () => {
                           color="secondary"
                           minRows={10}
                           fullWidth
+                          InputProps={{ sx: { color: "#fff" } }}
+                          sx={{
+                            backgroundColor: "rgba(0,0,0,0.2)",
+                            borderRadius: "0.2em",
+                          }}
                         />
-                      </Paper>
-                    </Grid>
-                    <Grid item xs={5.5}>
-                      <Typography
-                        align="start"
-                        color="secondary"
-                        variant="h5"
-                        gutterBottom={1}
-                      >
-                        Answer
-                      </Typography>
-                      <Paper>
+                      </Grid>
+                      <Grid item xs={5.5}>
+                        <Typography
+                          align="start"
+                          color="secondary"
+                          variant="h5"
+                          gutterBottom={1}
+                        >
+                          Answer
+                        </Typography>
                         <TextField
                           value={card.response}
                           onChange={(e) => updateCardResponse(e, cardNumber)}
@@ -204,61 +210,66 @@ const CreateStackPage = () => {
                           color="secondary"
                           minRows={10}
                           fullWidth
+                          InputProps={{ sx: { color: "#fff" } }}
+                          sx={{
+                            backgroundColor: "rgba(0,0,0,0.2)",
+                            borderRadius: "0.2em",
+                          }}
                         />
-                      </Paper>
+                      </Grid>
+                      <Grid item xs={1}>
+                        <Stack
+                          justifyContent="flex-end"
+                          alignItems="flex-end"
+                          height="100%"
+                          width="100%"
+                          spacing={1}
+                          fullWidth
+                        >
+                          <Button variant="outlined" fullWidth color="primary">
+                            <LockOpenIcon />
+                          </Button>
+                          <Button variant="contained" fullWidth color="error">
+                            <DeleteIcon />
+                          </Button>
+                        </Stack>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={1}>
-                      <Stack
-                        justifyContent="flex-end"
-                        alignItems="flex-end"
-                        height="100%"
-                        width="100%"
-                        spacing={1}
-                        fullWidth
-                      >
-                        <Button variant="outlined" fullWidth color="primary">
-                          <LockOpenIcon />
-                        </Button>
-                        <Button variant="contained" fullWidth color="error">
-                          <DeleteIcon />
-                        </Button>
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                  <Box height={20} />
-                </>
-              );
-            })}
-          <Divider sx={{ margin: 4 }} />
-          <Stack direction="row" justifyContent="space-between" spacing={2}>
-            <Box>
-              <Button
-                color="error"
-                fullWidth
-                variant="contained"
-                onClick={() => history.push("/brainfolio")}
+                    <Box height={20} />
+                  </>
+                );
+              })}
+            <Divider sx={{ margin: 4 }} />
+            <Stack direction="row" justifyContent="space-between" spacing={2}>
+              <Box>
+                <Button
+                  color="error"
+                  fullWidth
+                  variant="contained"
+                  onClick={() => history.push("/brainfolio")}
+                >
+                  Cancel
+                </Button>
+              </Box>
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                spacing={1}
+                alignItems="flex-end"
+                width="100%"
               >
-                Cancel
-              </Button>
-            </Box>
-            <Stack
-              direction="row"
-              justifyContent="flex-end"
-              spacing={1}
-              alignItems="flex-end"
-              width="100%"
-            >
-              <Button variant="contained" onClick={addCard}>
-                Add card
-              </Button>
-              <Button type="submit" variant="contained" color="secondary">
-                Create stack
-              </Button>
+                <Button variant="contained" onClick={addCard}>
+                  Add card
+                </Button>
+                <Button type="submit" variant="contained" color="secondary">
+                  Create stack
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </Box>
-      </form>
-    </Box>
+          </Box>
+        </form>
+      </Box>
+    </>
   );
 };
 

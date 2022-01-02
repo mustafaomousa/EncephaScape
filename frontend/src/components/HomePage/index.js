@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
+import NewestStacks from "./NewestStacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,12 +21,15 @@ const HomePage = () => {
   }, [dispatch]);
 
   return (
-    <Stack className={classes.root}>
+    <Stack className={classes.root} alignItems="center">
       <Stack
         alignItems="center"
-        sx={{ backgroundColor: "#333333", padding: "100px 50px" }}
+        sx={{
+          padding: "100px 50px",
+          maxWidth: 1200,
+        }}
       >
-        <Stack maxWidth={1200} spacing={1} alignItems="flex-end">
+        <Stack width="100%" spacing={1} alignItems="flex-end">
           <Typography
             variant="h2"
             align="end"
@@ -62,6 +66,15 @@ const HomePage = () => {
             </Grid>
           </Grid>
         </Stack>
+      </Stack>
+      <Stack
+        alignItems="center"
+        sx={{
+          padding: "100px 50px",
+          maxWidth: 1200,
+        }}
+      >
+        <NewestStacks />
       </Stack>
     </Stack>
   );

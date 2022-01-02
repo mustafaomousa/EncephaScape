@@ -8,6 +8,19 @@ const { Stack, User, Card, Category } = require("../../db/models");
 const router = express.Router();
 
 router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const newestStacks = await Stack.findAll({
+      limit: 3,
+      order: [["createdAt", "DESC"]],
+      include: [User, Category, Card],
+    });
+
+    return res.json({ newestStacks });
+  })
+);
+
+router.get(
   "/:stackId",
   asyncHandler(async (req, res) => {
     const { stackId } = req.params;
