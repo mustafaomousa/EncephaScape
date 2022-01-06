@@ -24,6 +24,11 @@ const useStyles = makeStyles(() => ({
   logoImage: {
     height: 70,
   },
+  navlink: {
+    "&:hover": {
+      borderBottom: "1px solid #ffffff",
+    },
+  },
 }));
 
 function Navigation() {
@@ -62,11 +67,13 @@ function Navigation() {
       <Grid container className={classes.root}>
         <Grid item xs={6}>
           <Stack alignItems="flex-start" justifyContent="center" height="100%">
-            <img
-              src={brain}
-              className={classes.logoImage}
-              alt="EncephaScape"
-            ></img>
+            <Link href="/">
+              <img
+                src={brain}
+                className={classes.logoImage}
+                alt="EncephaScape"
+              />
+            </Link>
           </Stack>
         </Grid>
         <Grid item xs={6}>
@@ -78,12 +85,20 @@ function Navigation() {
             spacing={2}
           >
             <Link exact href="/" underline="none">
-              <Typography variant="button" color="white">
+              <Typography
+                className={classes.navlink}
+                variant="button"
+                color="white"
+              >
                 Home
               </Typography>
             </Link>
             <Link href="/stack" underline="none">
-              <Typography variant="button" color="white">
+              <Typography
+                className={classes.navlink}
+                variant="button"
+                color="white"
+              >
                 Stacks
               </Typography>
             </Link>
@@ -108,7 +123,11 @@ function Navigation() {
             ) : (
               <>
                 <Link href="/brainfolio" underline="none">
-                  <Typography variant="button" color="white">
+                  <Typography
+                    className={classes.navlink}
+                    variant="button"
+                    color="white"
+                  >
                     Brainfolio
                   </Typography>
                 </Link>
