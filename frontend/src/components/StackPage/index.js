@@ -84,7 +84,7 @@ const StackPage = () => {
     <Box className={classes.root}>
       <Box className={classes.stackPageSection}>
         {stack && (
-          <Typography variant="h2" color="primary" fontWeight="bold">
+          <Typography variant="h2" color="#fff" fontWeight="bold">
             {stack.name}
             <Typography variant="h5" color="secondary" fontWeight="bold">
               by {stack.User.username}
@@ -102,7 +102,7 @@ const StackPage = () => {
                 orientation="fullWidth"
                 variant="scrollable"
                 textColor="secondary"
-                indicatorColor="primary"
+                indicatorColor="secondary"
                 TabScrollButtonProps={{ sx: { color: "#ffffff" } }}
                 TabIndicatorProps={{ sx: { height: "100%" } }}
                 sx={{
