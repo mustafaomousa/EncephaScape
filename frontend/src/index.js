@@ -26,7 +26,7 @@ if (process.env.NODE_ENV !== "production") {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#6E6658",
+      main: "#333333",
     },
     secondary: {
       main: "#c66b3d",

@@ -2,7 +2,6 @@ import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useHistory } from "react-router-dom";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import QuizIcon from "@mui/icons-material/Quiz";
 
@@ -33,15 +32,23 @@ const BrainfolioActions = () => {
         </Button>
       </Grid>
       <Grid item xs={12} sm={6} md={2}>
-        <Button variant="contained" className={classes.brainfolioActionButton}>
+        <Button
+          variant="contained"
+          className={classes.brainfolioActionButton}
+          color="secondary"
+        >
           <QuizIcon fontSize="large" />
           Random stack
         </Button>
       </Grid>
       <Grid item xs={12} sm={6} md={2}>
-        <Button variant="contained" className={classes.brainfolioActionButton}>
-          <BookmarkAddIcon fontSize="large" />
-          Bookmark stack
+        <Button
+          disabled
+          color="secondary"
+          variant="outlined"
+          className={classes.brainfolioActionButton}
+        >
+          <CollectionsBookmarkIcon fontSize="large" />
         </Button>
       </Grid>
       <Grid item xs={12} sm={6} md={2}>

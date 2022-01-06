@@ -18,9 +18,12 @@ const useStyles = makeStyles(() => ({
     padding: "140px 40px",
   },
   createStackSection: {
-    paddingBottom: "40px",
     maxWidth: 1200,
     width: "100%",
+    padding: "30px",
+    backgroundColor: "rgba(0,0,0,0.1)",
+    borderRadius: "0.3em",
+    marginBottom: "40px",
   },
 }));
 
@@ -86,17 +89,21 @@ const CreateStackPage = () => {
   return (
     <Box className={classes.root}>
       <form onSubmit={formik.handleSubmit}>
-        <Box className={classes.createStackSection}>
-          <Typography variant="h2" color="secondary">
-            Create a stack
-          </Typography>
-        </Box>
+        <Typography
+          variant="h3"
+          color="secondary"
+          fontWeight="bold"
+          gutterBottom={1}
+        >
+          Create a stack
+        </Typography>
         <Box className={classes.createStackSection}>
           <Typography
             variant="h5"
             align="start"
-            color="secondary"
+            color="#fff"
             gutterBottom={1}
+            fontWeight="bold"
           >
             1. Name your stack
           </Typography>
@@ -104,12 +111,9 @@ const CreateStackPage = () => {
             fullWidth
             inputProps={{
               sx: {
-                fontSize: "25px",
                 color: "#fff",
-                borderBottom: "#fff",
               },
             }}
-            variant="filled"
             color="secondary"
             id="name"
             name="name"
@@ -120,7 +124,12 @@ const CreateStackPage = () => {
           />
         </Box>
         <Box className={classes.createStackSection}>
-          <Typography variant="h5" color="secondary" gutterBottom={1}>
+          <Typography
+            variant="h5"
+            color="#fff"
+            gutterBottom={1}
+            fontWeight="bold"
+          >
             2. Select a category
           </Typography>
           <Grid container spacing={1}>
@@ -134,7 +143,7 @@ const CreateStackPage = () => {
                     variant={
                       selectedCategory == category.id ? "contained" : "outlined"
                     }
-                    color="primary"
+                    color="secondary"
                     onClick={(e) => setSelectedCategory(e.target.value)}
                   >
                     {category.name}
@@ -144,7 +153,12 @@ const CreateStackPage = () => {
           </Grid>
         </Box>
         <Box className={classes.createStackSection}>
-          <Typography variant="h5" color="secondary" gutterBottom={1}>
+          <Typography
+            variant="h5"
+            color="#fff"
+            gutterBottom={1}
+            fontWeight="bold"
+          >
             3. Create your questions
           </Typography>
           {cards &&
@@ -154,8 +168,8 @@ const CreateStackPage = () => {
                 <Grid container spacing={5}>
                   <Grid item xs={5.5}>
                     <Typography
-                      align="center"
-                      color="primary"
+                      align="end"
+                      color="secondary"
                       variant="h6"
                       gutterBottom={1}
                     >
@@ -169,17 +183,21 @@ const CreateStackPage = () => {
                       color="secondary"
                       minRows={10}
                       fullWidth
-                      InputProps={{ sx: { color: "#fff" } }}
+                      inputProps={{
+                        sx: {
+                          color: "#fff",
+                        },
+                      }}
                       sx={{
-                        backgroundColor: "rgba(0,0,0,0.2)",
+                        backgroundColor: "rgba(0,0,0,0.1)",
                         borderRadius: "0.2em",
                       }}
                     />
                   </Grid>
                   <Grid item xs={5.5}>
                     <Typography
-                      align="center"
-                      color="primary"
+                      align="end"
+                      color="secondary"
                       variant="h6"
                       gutterBottom={1}
                     >
@@ -193,9 +211,13 @@ const CreateStackPage = () => {
                       color="secondary"
                       minRows={10}
                       fullWidth
-                      InputProps={{ sx: { color: "#fff" } }}
+                      inputProps={{
+                        sx: {
+                          color: "#fff",
+                        },
+                      }}
                       sx={{
-                        backgroundColor: "rgba(0,0,0,0.2)",
+                        backgroundColor: "rgba(0,0,0,0.1)",
                         borderRadius: "0.2em",
                       }}
                     />

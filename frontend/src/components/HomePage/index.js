@@ -34,9 +34,9 @@ const HomePage = () => {
           <Typography
             variant="h2"
             align="end"
-            color="white"
-            lineHeight={1.3}
-            letterSpacing={3}
+            color="#fff"
+            letterSpacing={2}
+            fontWeight="bold"
           >
             We believe in the wonders our brain can perform through studying
           </Typography>

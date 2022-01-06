@@ -39,10 +39,10 @@ const Stack = ({ stack }) => {
   };
 
   return (
-    <Card sx={{ backgroundColor: "#6E6658" }}>
+    <Card sx={{ backgroundColor: "#fff" }}>
       <CardHeader
         title={
-          <Typography color="white" variant="body1">
+          <Typography color="primary" variant="body1">
             {stack.User.username}
           </Typography>
         }
@@ -56,7 +56,7 @@ const Stack = ({ stack }) => {
               onClick={handleDropdownClick}
               sx={{ width: 40, height: 40 }}
             >
-              <MoreIcon sx={{ color: "white" }} />
+              <MoreIcon />
             </IconButton>
             <Menu
               id="stack-menu"
@@ -82,29 +82,33 @@ const Stack = ({ stack }) => {
         }
       />
       <CardContent sx={{ padding: 0 }}>
-        <MuiStack
-          minHeight={135}
-          alignItems="center"
-          justifyContent="center"
-          sx={{ backgroundColor: "#ffffff" }}
-        >
-          <Typography variant="h6" gutterBottom={1} fontWeight="bold">
+        <MuiStack minHeight={135} alignItems="center" justifyContent="center">
+          <Typography
+            variant="h6"
+            gutterBottom={1}
+            fontWeight="bold"
+            color="primary"
+          >
             {stack.name}
           </Typography>
-          <Typography variant="caption">{stack.Category.name}</Typography>
-          <Typography fontSize="10px">{stack.Cards.length} cards</Typography>
+          <Typography variant="caption" color="secondary">
+            {stack.Category.name}
+          </Typography>
+          <Typography fontSize="10px" color="secondary">
+            {stack.Cards.length} cards
+          </Typography>
         </MuiStack>
       </CardContent>
       <CardActions>
         <MuiStack direction="row" justifyContent="space-between" width="100%">
           <IconButton sx={{ width: 40, height: 40 }}>
-            <BookmarkAddOutlined sx={{ color: "white" }} />
+            <BookmarkAddOutlined />
           </IconButton>
           <IconButton
             sx={{ width: 40, height: 40 }}
             onClick={() => history.push(`/stacks/${stack.id}`)}
           >
-            <PlayArrowOutlined sx={{ color: "white" }} />
+            <PlayArrowOutlined />
           </IconButton>
         </MuiStack>
       </CardActions>

@@ -5,6 +5,7 @@ const useStyles = makeStyles(() => ({
   root: {
     padding: "30px",
     backgroundColor: "rgba(0,0,0,0.1)",
+    borderRadius: "0.3em",
   },
 }));
 

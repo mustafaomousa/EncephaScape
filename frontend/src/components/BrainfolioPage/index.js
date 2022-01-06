@@ -27,13 +27,23 @@ const BrainfolioPage = () => {
         <BrainfolioActions />
       </Box>
       <Box className={classes.brainfolioSection}>
-        <Typography variant="h2" color="secondary" gutterBottom={1}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          gutterBottom={1}
+          fontWeight="bold"
+        >
           Your stacks
         </Typography>
         <BrainfolioStacks />
       </Box>
       <Box className={classes.brainfolioSection}>
-        <Typography variant="h2" color="secondary" gutterBottom={1}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          gutterBottom={1}
+          fontWeight="bold"
+        >
           Bookmarked stacks
         </Typography>
         <BrainfolioBookmarkedStacks />

@@ -22,7 +22,12 @@ const NewestStacks = () => {
   return (
     <MuiStack>
       <MuiStack>
-        <Typography variant="h2" color="secondary" gutterBottom={1}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          gutterBottom={1}
+          fontWeight="bold"
+        >
           Newest stacks
         </Typography>
       </MuiStack>

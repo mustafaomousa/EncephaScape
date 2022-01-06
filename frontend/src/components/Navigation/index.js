@@ -105,18 +105,10 @@ function Navigation() {
             {!sessionUser ? (
               <>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
-                <Button
-                  onClick={handleLoginModalOpen}
-                  variant="contained"
-                  sx={{ padding: 0 }}
-                >
+                <Button onClick={handleLoginModalOpen} variant="contained">
                   Log in
                 </Button>
-                <Button
-                  onClick={handleSignUpModalOpen}
-                  variant="contained"
-                  sx={{ padding: 0, width: "10em" }}
-                >
+                <Button onClick={handleSignUpModalOpen} variant="contained">
                   Getting Started
                 </Button>
               </>
@@ -133,12 +125,7 @@ function Navigation() {
                 </Link>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
                 <Link href="/profile" underline="none">
-                  <Button
-                    size="small"
-                    color="secondary"
-                    fullWidth
-                    variant="contained"
-                  >
+                  <Button color="secondary" fullWidth variant="contained">
                     {sessionUser.username}
                   </Button>
                 </Link>

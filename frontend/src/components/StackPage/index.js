@@ -84,9 +84,9 @@ const StackPage = () => {
     <Box className={classes.root}>
       <Box className={classes.stackPageSection}>
         {stack && (
-          <Typography variant="h3" color="#ffffff">
+          <Typography variant="h2" color="primary" fontWeight="bold">
             {stack.name}
-            <Typography variant="h5" color="secondary">
+            <Typography variant="h5" color="secondary" fontWeight="bold">
               by {stack.User.username}
             </Typography>
           </Typography>
@@ -137,9 +137,10 @@ const StackPage = () => {
                     <Stack direction="column" spacing={5}>
                       <Stack>
                         <Typography
-                          variant="h3"
+                          variant="h4"
                           color="secondary"
                           gutterBottom={1}
+                          fontWeight="bold"
                         >
                           Question:
                         </Typography>
@@ -154,9 +155,10 @@ const StackPage = () => {
                       </Stack>
                       <Stack>
                         <Typography
-                          variant="h3"
+                          variant="h4"
                           color="secondary"
                           gutterBottom={1}
+                          fontWeight="bold"
                         >
                           Answer:
                         </Typography>
