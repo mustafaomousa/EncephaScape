@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Bookmark.associate = function (models) {
-    Card.belongsTo(models.User, { foreignKey: "userId" });
-    Card.belongsTo(models.Stack, { foreignKey: "stackId" });
+    Bookmark.belongsTo(models.User, { foreignKey: "userId" });
+    Bookmark.belongsTo(models.Stack, { foreignKey: "stackId" });
   };
   return Bookmark;
 };
