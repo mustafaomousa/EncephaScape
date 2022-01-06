@@ -12,18 +12,12 @@ import { createUserStack } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "140px 40px",
+    width: "min(90%, 1200px)",
+    marginInline: "auto",
+    paddingTop: "140px",
   },
   createStackSection: {
-    maxWidth: 1200,
-    width: "100%",
-    padding: "30px",
-    backgroundColor: "rgba(0,0,0,0.1)",
-    borderRadius: "0.3em",
-    marginBottom: "40px",
+    paddingBottom: "40px",
   },
 }));
 
@@ -112,6 +106,7 @@ const CreateStackPage = () => {
             inputProps={{
               sx: {
                 color: "#fff",
+                backgroundColor: "rgba(0,0,0,0.1)",
               },
             }}
             color="secondary"
@@ -138,7 +133,12 @@ const CreateStackPage = () => {
                 <Grid item>
                   <Button
                     value={category.id}
-                    sx={{ width: 130, height: 130, borderRadius: "50%" }}
+                    sx={{
+                      width: 130,
+                      height: 130,
+                      borderRadius: "50%",
+                      borderColor: "#333",
+                    }}
                     fullWidth
                     variant={
                       selectedCategory == category.id ? "contained" : "outlined"
@@ -165,23 +165,18 @@ const CreateStackPage = () => {
             Object.keys(cards).map((cardNumber) => {
               const card = cards[cardNumber];
               return (
-                <Grid container spacing={5}>
-                  <Grid item xs={5.5}>
-                    <Typography
-                      align="end"
-                      color="secondary"
-                      variant="h6"
-                      gutterBottom={1}
-                    >
-                      Question
-                    </Typography>
+                <Grid
+                  container
+                  spacing={5}
+                  className={classes.createStackSection}
+                >
+                  <Grid item xs={6}>
                     <TextField
                       value={card.term}
                       onChange={(e) => updateCardTerm(e, cardNumber)}
                       multiline
                       variant="outlined"
                       color="secondary"
-                      minRows={10}
                       fullWidth
                       inputProps={{
                         sx: {
@@ -192,52 +187,64 @@ const CreateStackPage = () => {
                         backgroundColor: "rgba(0,0,0,0.1)",
                         borderRadius: "0.2em",
                       }}
+                      InputProps={{
+                        startAdornment: (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              justifyContent: "flex-start",
+                            }}
+                          >
+                            <Typography
+                              variant="h6"
+                              color="secondary"
+                              marginRight="5px"
+                            >
+                              Q:
+                            </Typography>
+                          </Box>
+                        ),
+                      }}
                     />
                   </Grid>
-                  <Grid item xs={5.5}>
-                    <Typography
-                      align="end"
-                      color="secondary"
-                      variant="h6"
-                      gutterBottom={1}
-                    >
-                      Answer
-                    </Typography>
+                  <Grid item xs={6}>
                     <TextField
                       value={card.response}
                       onChange={(e) => updateCardResponse(e, cardNumber)}
                       multiline
                       variant="outlined"
                       color="secondary"
-                      minRows={10}
                       fullWidth
                       inputProps={{
                         sx: {
                           color: "#fff",
                         },
                       }}
+                      InputProps={{
+                        startAdornment: (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "flex-start",
+                              justifyContent: "flex-start",
+                            }}
+                          >
+                            <Typography
+                              variant="h6"
+                              color="secondary"
+                              marginRight="5px"
+                            >
+                              A:
+                            </Typography>
+                          </Box>
+                        ),
+                      }}
                       sx={{
                         backgroundColor: "rgba(0,0,0,0.1)",
                         borderRadius: "0.2em",
                       }}
                     />
-                  </Grid>
-                  <Grid item xs={1}>
-                    <Stack
-                      justifyContent="flex-end"
-                      alignItems="flex-end"
-                      height="100%"
-                      width="100%"
-                      spacing={1}
-                      fullWidth
-                    >
-                      <Button variant="outlined" fullWidth color="primary">
-                        <LockOpenIcon />
-                      </Button>
-                      <Button variant="contained" fullWidth color="error">
-                        <DeleteIcon />
-                      </Button>
-                    </Stack>
                   </Grid>
                 </Grid>
               );
@@ -245,16 +252,6 @@ const CreateStackPage = () => {
         </Box>
         <Box className={classes.createStackSection}>
           <Stack direction="row" justifyContent="space-between" spacing={2}>
-            <Box>
-              <Button
-                color="error"
-                fullWidth
-                variant="contained"
-                onClick={() => history.push("/brainfolio")}
-              >
-                Cancel
-              </Button>
-            </Box>
             <Stack
               direction="row"
               justifyContent="flex-end"
@@ -262,8 +259,8 @@ const CreateStackPage = () => {
               alignItems="flex-end"
               width="100%"
             >
-              <Button variant="contained" onClick={addCard}>
-                Add card
+              <Button variant="outlined" color="secondary" onClick={addCard}>
+                Add question
               </Button>
               <Button type="submit" variant="contained" color="secondary">
                 Create stack
