@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Stack from "../../Stack";
 
@@ -17,12 +17,17 @@ const BrainfolioBookmarkedStacks = ({ bookmarks }) => {
     <Box className={classes.root}>
       <Grid container direction="row" spacing={4}>
         {bookmarks &&
-          Object.keys(bookmarks).map((stackId) => {
+          Object.keys(bookmarks).map((stackId, i) => {
             let stack = bookmarks[stackId].Stack;
             return (
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <Stack stack={stack} />
-              </Grid>
+              <Zoom
+                in={true}
+                style={{ transitionDelay: `${i === 0 ? 25 : i * 50}ms` }}
+              >
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                  <Stack stack={stack} />
+                </Grid>
+              </Zoom>
             );
           })}
       </Grid>

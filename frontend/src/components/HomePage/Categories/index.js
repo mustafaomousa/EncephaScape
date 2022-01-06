@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Grow } from "@mui/material";
+import { Box, Button, Grid, Grow, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { fetch } from "../../../store/csrf";
@@ -24,9 +24,12 @@ const Categories = () => {
     <Box className={classes.root}>
       <Grid container spacing={1}>
         {categories &&
-          categories.map((category) => (
+          categories.map((category, i) => (
             <Grid item>
-              <Grow in={true} timeout={1300}>
+              <Zoom
+                in={true}
+                style={{ transitionDelay: `${i === 0 ? 25 : i * 50}ms` }}
+              >
                 <Button
                   sx={{
                     width: 130,
@@ -40,7 +43,7 @@ const Categories = () => {
                 >
                   {category.name}
                 </Button>
-              </Grow>
+              </Zoom>
             </Grid>
           ))}
       </Grid>

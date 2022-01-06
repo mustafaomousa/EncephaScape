@@ -35,14 +35,8 @@ const HomePage = () => {
     <Box className={classes.root}>
       <Box className={classes.homeSection}>
         <Stack width="100%" spacing={1} alignItems="flex-end">
-          <Typography
-            variant="h2"
-            align="end"
-            color="#fff"
-            letterSpacing={2}
-            fontWeight="bold"
-          >
-            We believe in the wonders our brain can perform through studying
+          <Typography variant="h1" align="end" color="#fff" fontWeight="bold">
+            Create. Study. Repeat.
           </Typography>
           <Grid container justifyContent="flex-end" spacing={2}>
             <Grid item>
