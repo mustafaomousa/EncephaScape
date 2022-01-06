@@ -2,7 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 
 const { requireAuth } = require("../../utils/auth");
-const { Bookmark } = require("../../db/models");
+const { Bookmark, Stack, User, Category, Card } = require("../../db/models");
 
 const router = express.Router();
 
@@ -12,7 +12,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const user = req.user;
-    const bookmarks = await Bookmark.findAll({ where: { userId: user.id } });
+    const bookmarks = await Bookmark.findAll({
+      where: { userId: user.id },
+      include: [{ model: Stack, include: [User, Category, Card] }, User],
+    });
 
     return res.json({ bookmarks });
   })
@@ -26,8 +29,13 @@ router.post(
     const user = req.user;
     const { stackId } = req.body;
 
-    const bookmark = await Bookmark.create({ userId: user.id, stackId });
-    await bookmark.save();
+    const createdBookmark = await Bookmark.create({ userId: user.id, stackId });
+
+    await createdBookmark.save();
+
+    const bookmark = await Bookmark.findByPk(createdBookmark.id, {
+      include: [{ model: Stack, include: [User, Category, Card] }, User],
+    });
 
     return res.json({ bookmark });
   })

@@ -111,10 +111,18 @@ function Navigation() {
             {!sessionUser ? (
               <>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
-                <Button onClick={handleLoginModalOpen} variant="contained">
+                <Button
+                  onClick={handleLoginModalOpen}
+                  variant="contained"
+                  color="secondary"
+                >
                   Log in
                 </Button>
-                <Button onClick={handleSignUpModalOpen} variant="contained">
+                <Button
+                  onClick={handleSignUpModalOpen}
+                  variant="contained"
+                  color="secondary"
+                >
                   Getting Started
                 </Button>
               </>

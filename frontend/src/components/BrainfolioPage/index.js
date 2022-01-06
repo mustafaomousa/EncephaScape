@@ -3,6 +3,10 @@ import { makeStyles } from "@mui/styles";
 import BrainfolioActions from "./BrainfolioActions";
 import BrainfolioStacks from "./BrainfolioStacks";
 import BrainfolioBookmarkedStacks from "./BrainfolioBookmarkedStacks";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserBookmarks } from "../../store/bookmarks";
+import { getUserStacks } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,7 +24,13 @@ const useStyles = makeStyles(() => ({
 
 const BrainfolioPage = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
+  const bookmarks = useSelector((state) => state.bookmarks);
+  const stacks = useSelector((state) => state.stacks);
 
+  useEffect(() => dispatch(getUserBookmarks()), [dispatch, sessionUser]);
+  useEffect(() => dispatch(getUserStacks(sessionUser.id)), []);
   return (
     <Box className={classes.root}>
       <Box className={classes.brainfolioSection}>
@@ -33,9 +43,9 @@ const BrainfolioPage = () => {
           gutterBottom={1}
           fontWeight="bold"
         >
-          Your stacks
+          Bookmarked stacks
         </Typography>
-        <BrainfolioStacks />
+        <BrainfolioBookmarkedStacks bookmarks={bookmarks} />
       </Box>
       <Box className={classes.brainfolioSection}>
         <Typography
@@ -44,9 +54,9 @@ const BrainfolioPage = () => {
           gutterBottom={1}
           fontWeight="bold"
         >
-          Bookmarked stacks
+          Your stacks
         </Typography>
-        <BrainfolioBookmarkedStacks />
+        <BrainfolioStacks stacks={stacks} />
       </Box>
     </Box>
   );

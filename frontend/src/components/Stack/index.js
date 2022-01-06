@@ -19,8 +19,7 @@ import { useState } from "react";
 import { deleteUserStack } from "../../store/stacks";
 import { useHistory } from "react-router-dom";
 import { createUserBookmark, deleteUserBookmark } from "../../store/bookmarks";
-
-const useStyles = makeStyles(() => ({}));
+import { Box } from "@mui/system";
 
 const Stack = ({ stack }) => {
   const dispatch = useDispatch();
@@ -113,18 +112,27 @@ const Stack = ({ stack }) => {
       </CardContent>
       <CardActions>
         <MuiStack direction="row" justifyContent="space-between" width="100%">
-          {bookmarks && stack.id in bookmarks ? (
-            <IconButton
-              sx={{ width: 40, height: 40 }}
-              onClick={unbookmarkStack}
-            >
-              <BookmarkAdded sx={{ color: "green" }} />
-            </IconButton>
-          ) : (
-            <IconButton sx={{ width: 40, height: 40 }} onClick={bookmarkStack}>
-              <BookmarkAdd />
-            </IconButton>
-          )}
+          <Box>
+            {sessionUser && (
+              <>
+                {bookmarks && stack.id in bookmarks ? (
+                  <IconButton
+                    sx={{ width: 40, height: 40 }}
+                    onClick={unbookmarkStack}
+                  >
+                    <BookmarkAdded sx={{ color: "green" }} />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    sx={{ width: 40, height: 40 }}
+                    onClick={bookmarkStack}
+                  >
+                    <BookmarkAdd />
+                  </IconButton>
+                )}
+              </>
+            )}
+          </Box>
           <IconButton
             sx={{ width: 40, height: 40 }}
             onClick={() => history.push(`/stacks/${stack.id}`)}

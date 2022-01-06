@@ -1,8 +1,9 @@
-import { Grid, Stack as MuiStack, Box, Skeleton } from "@mui/material";
+import { Grid, Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import Stack from "../../Stack";
 import { fetch } from "../../../store/csrf";
 import { makeStyles } from "@mui/styles";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
 
 const NewestStacks = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [newestStacks, setNewestStacks] = useState(null);
 
   useEffect(() => {

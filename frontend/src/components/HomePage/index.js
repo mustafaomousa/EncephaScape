@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { getAllCategories } from "../../store/category";
 import NewestStacks from "./NewestStacks";
+import { getUserBookmarks } from "../../store/bookmarks";
+import BrainfolioBookmarkedStacks from "../BrainfolioPage/BrainfolioBookmarkedStacks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,10 +23,11 @@ const useStyles = makeStyles(() => ({
 const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
+    dispatch(getUserBookmarks());
+  }, [dispatch, sessionUser]);
 
   return (
     <Box className={classes.root}>
