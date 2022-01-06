@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
     minHeight: 120,
-    backgroundColor: "#ffffff",
-    [theme.breakpoints.only("sm")]: {
-      minHeight: 60,
-    },
   },
 }));
 
@@ -30,7 +26,7 @@ const BrainfolioActions = () => {
           color="secondary"
           variant="contained"
           className={classes.brainfolioActionButton}
-          onClick={() => history.push("/brainfolio/create")}
+          onClick={() => history.push("/stacks/create")}
         >
           <AddBoxIcon fontSize="large" />
           New Stack
