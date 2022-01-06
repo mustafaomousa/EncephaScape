@@ -10,10 +10,10 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "100px 40px",
+    padding: "140px 40px",
   },
   homeSection: {
-    padding: "50px 0px",
+    paddingBottom: "40px",
     maxWidth: 1200,
     width: "100%",
   },
