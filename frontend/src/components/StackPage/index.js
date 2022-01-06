@@ -15,10 +15,15 @@ import { fetch } from "../../store/csrf";
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: "140px 40px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: "140px 40px",
+  },
+  stackPageSection: {
+    paddingBottom: "40px",
+    maxWidth: 1200,
+    width: "100%",
   },
   stackHeaderContainer: {
     display: "flex",
@@ -77,17 +82,17 @@ const StackPage = () => {
 
   return (
     <Box className={classes.root}>
-      <Container sx={{ borderRadius: "0.2em" }}>
-        <Box padding="30px 0px">
-          {stack && (
-            <Typography variant="h3" color="#ffffff">
-              {stack.name}
-              <Typography variant="h5" color="secondary">
-                by {stack.User.username}
-              </Typography>
+      <Box className={classes.stackPageSection}>
+        {stack && (
+          <Typography variant="h3" color="#ffffff">
+            {stack.name}
+            <Typography variant="h5" color="secondary">
+              by {stack.User.username}
             </Typography>
-          )}
-        </Box>
+          </Typography>
+        )}
+      </Box>
+      <Box className={classes.stackPageSection}>
         <Grid container>
           <Grid item container xs={12}>
             <Box width="100%">
@@ -170,21 +175,15 @@ const StackPage = () => {
               })}
           </Grid>
         </Grid>
-      </Container>
-      <Container>
+      </Box>
+      <Box className={classes.stackPageSection}>
         {stack && (
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            spacing={2}
-            marginTop={3}
-          >
+          <Stack direction="row" justifyContent="flex-end" spacing={2}>
             <Button
               color="secondary"
               variant="contained"
               disabled={index === 0}
               onClick={() => setIndex(index - 1)}
-              size="small"
             >
               Back
             </Button>
@@ -193,13 +192,12 @@ const StackPage = () => {
               variant="contained"
               disabled={stack.Cards.length - 1 === index}
               onClick={() => setIndex(index + 1)}
-              size="small"
             >
               Next
             </Button>
           </Stack>
         )}
-      </Container>
+      </Box>
     </Box>
   );
 };
