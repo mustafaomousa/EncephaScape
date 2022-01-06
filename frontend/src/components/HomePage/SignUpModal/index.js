@@ -22,12 +22,14 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             email: values.email,
             password: values.password,
           })
-        ).catch((response) => {
-          for (let i = 0; i < response.data.errors.length; i++) {
-            let error = response.data.errors[i];
-            formik.setFieldError(error.param, error.msg);
-          }
-        });
+        )
+          .then(() => handleClose())
+          .catch((response) => {
+            for (let i = 0; i < response.data.errors.length; i++) {
+              let error = response.data.errors[i];
+              formik.setFieldError(error.param, error.msg);
+            }
+          });
       } else {
         formik.setFieldError("password", "Passwords must match.");
         formik.setFieldError("confirmPassword", "Passwords must match.");

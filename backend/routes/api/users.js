@@ -4,7 +4,8 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Card, Stack, Category } = require("../../db/models");
+const { User, Card, Stack, Category, db } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -42,8 +43,31 @@ router.get(
 router.post(
   "/",
   validateSignup,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (req, res, next) => {
     const { email, password, phoneNumber, username } = req.body;
+    const possibleEmailUser = await User.findOne({
+      where: { email },
+    });
+    const possibleUsernameUser = await User.findOne({ where: { username } });
+
+    if (possibleEmailUser) {
+      const err = new Error("User already exists");
+      err.status = 401;
+      err.title = "User already exists";
+      err.errors = [
+        { param: "email", msg: "User with this email already exists" },
+      ];
+      return next(err);
+    } else if (possibleUsernameUser) {
+      const err = new Error("User already exists");
+      err.status = 401;
+      err.title = "User already exists";
+      err.errors = [
+        { param: "username", msg: "User with this username already exists" },
+      ];
+      return next(err);
+    }
+
     const user = await User.signup({ email, username, phoneNumber, password });
 
     await setTokenCookie(res, user);

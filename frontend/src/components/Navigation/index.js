@@ -115,6 +115,7 @@ function Navigation() {
                   onClick={handleLoginModalOpen}
                   variant="contained"
                   color="secondary"
+                  size="small"
                 >
                   Log in
                 </Button>
@@ -122,6 +123,7 @@ function Navigation() {
                   onClick={handleSignUpModalOpen}
                   variant="contained"
                   color="secondary"
+                  size="small"
                 >
                   Getting Started
                 </Button>
@@ -142,7 +144,12 @@ function Navigation() {
                 </Link>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
                 <Link href="/profile" underline="none">
-                  <Button color="secondary" fullWidth variant="contained">
+                  <Button
+                    color="secondary"
+                    fullWidth
+                    variant="contained"
+                    size="small"
+                  >
                     {sessionUser.username}
                   </Button>
                 </Link>

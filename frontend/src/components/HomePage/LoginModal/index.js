@@ -20,7 +20,13 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
         .catch((response) => {
           for (let i = 0; i < response.data.errors.length; i++) {
             let error = response.data.errors[i];
-            formik.setFieldError(error.param, error.msg);
+            if (error.param === "auth") {
+              console.log(error);
+              formik.setFieldError("credential", error.msg);
+              formik.setFieldError("password", error.msg);
+            } else {
+              formik.setFieldError(error.param, error.msg);
+            }
           }
         });
     },
