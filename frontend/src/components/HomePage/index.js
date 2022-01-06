@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 import NewestStacks from "./NewestStacks";
 import { getUserBookmarks } from "../../store/bookmarks";
 import BrainfolioBookmarkedStacks from "../BrainfolioPage/BrainfolioBookmarkedStacks";
+import Categories from "./Categories";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -84,7 +85,17 @@ const HomePage = () => {
           <BrainfolioBookmarkedStacks bookmarks={bookmarks} />
         </Box>
       )}
-      <Box className={classes.homeSection}></Box>
+      <Box className={classes.homeSection}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          gutterBottom={1}
+          fontWeight="bold"
+        >
+          Some of our categories
+        </Typography>
+        <Categories />
+      </Box>
       <Box className={classes.homeSection}></Box>
     </Box>
   );
