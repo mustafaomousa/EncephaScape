@@ -1,15 +1,19 @@
-import {
-  Grid,
-  Stack as MuiStack,
-  Typography,
-  Box,
-  Skeleton,
-} from "@mui/material";
+import { Grid, Stack as MuiStack, Box, Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import Stack from "../../Stack";
 import { fetch } from "../../../store/csrf";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    padding: "30px",
+    backgroundColor: "rgba(0,0,0,0.1)",
+    borderRadius: "0.3em",
+  },
+}));
 
 const NewestStacks = () => {
+  const classes = useStyles();
   const [newestStacks, setNewestStacks] = useState(null);
 
   useEffect(() => {
@@ -20,17 +24,7 @@ const NewestStacks = () => {
   }, []);
 
   return (
-    <MuiStack>
-      <MuiStack>
-        <Typography
-          variant="h3"
-          color="secondary"
-          gutterBottom={1}
-          fontWeight="bold"
-        >
-          Newest stacks
-        </Typography>
-      </MuiStack>
+    <Box className={classes.root}>
       <Grid container spacing={2}>
         {newestStacks ? (
           newestStacks.map((stack) => (
@@ -57,7 +51,7 @@ const NewestStacks = () => {
           </>
         )}
       </Grid>
-    </MuiStack>
+    </Box>
   );
 };
 

@@ -69,8 +69,17 @@ const HomePage = () => {
         </Stack>
       </Box>
       <Box className={classes.homeSection}>
+        <Typography
+          variant="h3"
+          color="secondary"
+          gutterBottom={1}
+          fontWeight="bold"
+        >
+          Newest stacks
+        </Typography>
         <NewestStacks />
       </Box>
+      <Box className={classes.homeSection}></Box>
     </Box>
   );
 };
