@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import QuizIcon from "@mui/icons-material/Quiz";
+import usePlayRandomStack from "../../../hooks/usePlayRandomStack";
 
 const useStyles = makeStyles((theme) => ({
   brainfolioActionButton: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const BrainfolioActions = () => {
   const classes = useStyles();
   const history = useHistory();
+  const randomStackId = usePlayRandomStack();
 
   return (
     <Grid container spacing={2}>
@@ -36,6 +38,7 @@ const BrainfolioActions = () => {
           variant="contained"
           className={classes.brainfolioActionButton}
           color="secondary"
+          onClick={() => history.push(`/stacks/${randomStackId}`)}
         >
           <QuizIcon fontSize="large" />
           Random stack

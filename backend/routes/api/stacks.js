@@ -5,6 +5,7 @@ const asyncHandler = require("express-async-handler");
 const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Stack, User, Card, Category } = require("../../db/models");
+const db = require("../../db/models");
 
 const router = express.Router();
 
@@ -84,4 +85,13 @@ router.delete(
   })
 );
 
+router.get(
+  "/features/random",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const stack = await Stack.findOne({ order: [db.sequelize.fn("RANDOM")] });
+
+    return res.json({ stackId: stack.id });
+  })
+);
 module.exports = router;
