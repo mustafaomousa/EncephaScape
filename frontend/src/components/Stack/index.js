@@ -1,19 +1,16 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
   CardHeader,
-  Divider,
   IconButton,
   Typography,
   Stack as MuiStack,
   Menu,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
 import BookmarkAddOutlined from "@mui/icons-material/BookmarkAddOutlined";
@@ -21,16 +18,13 @@ import { useState } from "react";
 import { deleteUserStack } from "../../store/stacks";
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles(() => ({
-  root: {
-    minWidth: 350,
-  },
-}));
+const useStyles = makeStyles(() => ({}));
 
 const Stack = ({ stack }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
   const [stackEl, setStackEl] = useState(null);
 
   const open = Boolean(stackEl);
@@ -45,7 +39,7 @@ const Stack = ({ stack }) => {
   };
 
   return (
-    <Card className={classes.root} sx={{ backgroundColor: "#6E6658" }}>
+    <Card sx={{ backgroundColor: "#6E6658" }}>
       <CardHeader
         title={
           <Typography color="white" variant="body1">
@@ -73,10 +67,16 @@ const Stack = ({ stack }) => {
               transformOrigin={{ vertical: "top", horizontal: "right" }}
               MenuListProps={{ sx: { minWidth: 200 } }}
             >
-              <MenuItem>Play</MenuItem>
+              <MenuItem onClick={() => history.push(`/stacks/${stack.id}`)}>
+                Play
+              </MenuItem>
               <MenuItem>Bookmark</MenuItem>
-              <MenuItem>Edit</MenuItem>
-              <MenuItem onClick={deleteStack}>Delete</MenuItem>
+              {sessionUser && sessionUser.id === stack.User.id && (
+                <>
+                  <MenuItem>Edit</MenuItem>
+                  <MenuItem onClick={deleteStack}>Delete</MenuItem>
+                </>
+              )}
             </Menu>
           </>
         }

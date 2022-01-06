@@ -2,16 +2,13 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Grid,
-  Paper,
   Stack,
   Tab,
   Tabs,
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { setIn } from "formik";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetch } from "../../store/csrf";
@@ -107,7 +104,6 @@ const StackPage = () => {
                   maxHeight: 700,
                   backgroundColor: "#333333",
                   width: "100%",
-                  //   borderTop: "#6E6658 3px solid",
                 }}
               >
                 {stack &&

@@ -1,4 +1,10 @@
-import { Box, Grid, Stack as MuiStack, Typography } from "@mui/material";
+import {
+  Grid,
+  Stack as MuiStack,
+  Typography,
+  Box,
+  Skeleton,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import Stack from "../../Stack";
 import { fetch } from "../../../store/csrf";
@@ -9,36 +15,42 @@ const NewestStacks = () => {
   useEffect(() => {
     (async () => {
       const response = await fetch("/api/stacks/");
-
       if (response.ok) return setNewestStacks(response.data.newestStacks);
     })();
   }, []);
 
   return (
-    <MuiStack direction="row" sx={{ maxWidth: 1200, height: "100%" }}>
-      <MuiStack
-        sx={{
-          minHeight: "100%",
-          backgroundColor: "rgba(0,0,0,0.2)",
-          marginRight: 2,
-        }}
-        justifyContent="center"
-      >
-        <Typography
-          variant="h5"
-          color="secondary"
-          sx={{ transform: "rotate(-90deg)" }}
-        >
-          Recent
+    <MuiStack>
+      <MuiStack>
+        <Typography variant="h2" color="secondary" gutterBottom={1}>
+          Newest stacks
         </Typography>
       </MuiStack>
       <Grid container spacing={2}>
-        {newestStacks &&
+        {newestStacks ? (
           newestStacks.map((stack) => (
-            <Grid item>
-              <Stack stack={stack} />
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Box>
+                <Stack stack={stack} />
+              </Box>
             </Grid>
-          ))}
+          ))
+        ) : (
+          <>
+            <Grid item xs={12}>
+              <Skeleton height={250} variant="rectangular" />
+            </Grid>
+            <Grid item xs={12}>
+              <Skeleton height={250} variant="rectangular" />
+            </Grid>
+            <Grid item xs={12}>
+              <Skeleton height={250} variant="rectangular" />
+            </Grid>
+            <Grid item xs={12}>
+              <Skeleton height={250} variant="rectangular" />
+            </Grid>
+          </>
+        )}
       </Grid>
     </MuiStack>
   );

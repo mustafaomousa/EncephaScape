@@ -11,7 +11,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const newestStacks = await Stack.findAll({
-      limit: 3,
+      limit: 4,
       order: [["createdAt", "DESC"]],
       include: [User, Category, Card],
     });

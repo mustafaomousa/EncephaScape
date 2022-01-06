@@ -1,34 +1,35 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid, Link, Stack, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { getAllCategories } from "../../store/category";
 import NewestStacks from "./NewestStacks";
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginTop: "100px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "100px 40px",
+  },
+  homeSection: {
+    padding: "50px 0px",
+    maxWidth: 1200,
+    width: "100%",
   },
 }));
 
 const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
   return (
-    <Stack className={classes.root} alignItems="center">
-      <Stack
-        alignItems="center"
-        sx={{
-          padding: "100px 50px",
-          maxWidth: 1200,
-        }}
-      >
+    <Box className={classes.root}>
+      <Box className={classes.homeSection}>
         <Stack width="100%" spacing={1} alignItems="flex-end">
           <Typography
             variant="h2"
@@ -66,17 +67,11 @@ const HomePage = () => {
             </Grid>
           </Grid>
         </Stack>
-      </Stack>
-      <Stack
-        alignItems="center"
-        sx={{
-          padding: "100px 50px",
-          maxWidth: 1200,
-        }}
-      >
+      </Box>
+      <Box className={classes.homeSection}>
         <NewestStacks />
-      </Stack>
-    </Stack>
+      </Box>
+    </Box>
   );
 };
 

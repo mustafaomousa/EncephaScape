@@ -25,7 +25,7 @@ const BrainfolioActions = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button
           color="secondary"
           variant="contained"
@@ -36,19 +36,19 @@ const BrainfolioActions = () => {
           New Stack
         </Button>
       </Grid>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button variant="contained" className={classes.brainfolioActionButton}>
           <QuizIcon fontSize="large" />
           Random stack
         </Button>
       </Grid>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button variant="contained" className={classes.brainfolioActionButton}>
           <BookmarkAddIcon fontSize="large" />
           Bookmark stack
         </Button>
       </Grid>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button
           disabled
           color="secondary"
@@ -58,7 +58,7 @@ const BrainfolioActions = () => {
           <CollectionsBookmarkIcon fontSize="large" />
         </Button>
       </Grid>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button
           disabled
           color="secondary"
@@ -68,7 +68,7 @@ const BrainfolioActions = () => {
           <CollectionsBookmarkIcon fontSize="large" />
         </Button>
       </Grid>
-      <Grid item sm={12} md={2}>
+      <Grid item xs={12} sm={6} md={2}>
         <Button
           disabled
           color="secondary"

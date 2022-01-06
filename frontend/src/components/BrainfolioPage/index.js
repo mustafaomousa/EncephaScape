@@ -1,10 +1,5 @@
-import { useState, useContext, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createStack } from "../../store/stacks";
-import { AppContext } from "../../context/AppContextProvider";
-import { getAllCategories } from "../../store/category";
-import { Route, Switch, useHistory } from "react-router-dom";
-import { Box, Button, Container, Divider, Grid } from "@mui/material";
+import { Route, Switch } from "react-router-dom";
+import { Box, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import CreateStackPage from "./CreateStackPage";
 import BrainfolioActions from "./BrainfolioActions";
@@ -12,40 +7,43 @@ import BrainfolioStacks from "./BrainfolioStacks";
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: "150px 100px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "100px 40px",
+  },
+  brainfolioSection: {
+    paddingTop: "50px",
+    maxWidth: 1200,
+    width: "100%",
   },
 }));
 
 const BrainfolioPage = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const sessionUser = useSelector((state) => state.session.user);
-
-  useEffect(() => {
-    if (sessionUser === undefined) {
-      alert("Please login or sign-up");
-      return history.push("/signup");
-    }
-
-    dispatch(getAllCategories());
-  }, [dispatch, history, sessionUser]);
 
   return (
-    <Container className={classes.root}>
-      <BrainfolioActions />
-      <Box>
+    <Box className={classes.root}>
+      <Box className={classes.brainfolioSection}>
+        <BrainfolioActions />
+      </Box>
+      <Box className={classes.brainfolioSection}>
         <Switch>
+          <Route exact path="/brainfolio">
+            <Typography variant="h2" color="secondary" gutterBottom={1}>
+              Your stacks
+            </Typography>
+            <BrainfolioStacks />
+          </Route>
           <Route path="/brainfolio/create">
-            <Divider style={{ margin: "40px 0" }} />
+            <Typography variant="h2" color="secondary" gutterBottom={1}>
+              Create a stack
+            </Typography>
             <CreateStackPage />
           </Route>
         </Switch>
       </Box>
-      <Divider style={{ margin: "40px 0" }} />
-      <BrainfolioStacks />
-    </Container>
+    </Box>
   );
 };
 
