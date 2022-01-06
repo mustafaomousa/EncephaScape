@@ -71,7 +71,7 @@ const HomePage = () => {
         </Stack>
       </Box>
       <Box className={classes.homeSection}>
-        <Typography
+        {/* <Typography
           variant="h3"
           color="secondary"
           gutterBottom={1}
@@ -79,7 +79,7 @@ const HomePage = () => {
         >
           Newest stacks
         </Typography>
-        <NewestStacks />
+        <NewestStacks /> */}
       </Box>
       <Box className={classes.homeSection}></Box>
     </Box>

@@ -2,21 +2,24 @@ const express = require("express");
 const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
+const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Stack, User, Card, Category } = require("../../db/models");
 
 const router = express.Router();
 
+// Get session user's stacks
 router.get(
   "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const newestStacks = await Stack.findAll({
-      limit: 4,
-      order: [["createdAt", "DESC"]],
+    const user = req.user;
+    const stacks = await Stack.findAll({
+      where: { userId: user.id },
       include: [User, Category, Card],
     });
 
-    return res.json({ newestStacks });
+    return res.json({ stacks });
   })
 );
 
@@ -34,50 +37,50 @@ router.get(
 
 router.post(
   "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { name, categoryId, userId, cards } = req.body;
+    const user = req.user;
+    const { name, categoryId, cards } = req.body;
 
-    const stack = await Stack.create({ name, categoryId, userId });
+    const newStack = await Stack.create({ name, categoryId, userId: user.id });
 
     for (cardNumber in cards) {
       const card = cards[cardNumber];
-      console.log(card);
+
       await Card.create({
-        stackId: stack.id,
+        stackId: newStack.id,
         term: card.term,
         response: card.response,
       });
     }
 
-    const newStack = await Stack.findByPk(stack.id, {
+    const stack = await Stack.findByPk(newStack.id, {
       include: [User, Card, Category],
     });
 
-    return res.json({ stack: newStack });
-  })
-);
-
-router.put(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    const { name } = req.body;
-    console.log(id);
-    const updatedStack = await Stack.findByPk(id);
-    await updatedStack.update({ name });
-    return res.json({ updatedStack });
+    return res.json({ stack });
   })
 );
 
 router.delete(
-  "/:id",
+  "/:stackId",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    await Card.destroy({ where: { stackId: id } });
-    const stack = await Stack.findByPk(id);
-    if (!stack) throw new Error("Cannot find stack");
-    await Stack.destroy({ where: { id: stack.id } });
-    return res.json({ stack });
+    const user = req.user;
+    const { stackId } = req.params;
+    const stack = await Stack.findByPk(stackId);
+
+    if (stack.userId !== user.id) {
+      const err = new Error("Unauthorized");
+      err.title = "Unauthorized";
+      err.errors = ["Unauthorized"];
+      err.status = 401;
+      return next(err);
+    } else {
+      await Card.destroy({ where: { stackId: stackId } });
+      await stack.destroy();
+      return res.json({ stack });
+    }
   })
 );
 

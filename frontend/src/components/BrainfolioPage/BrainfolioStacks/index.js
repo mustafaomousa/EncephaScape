@@ -17,13 +17,15 @@ const BrainfolioStacks = ({ stacks }) => {
   return (
     <Box className={classes.root}>
       <Grid container direction="row" spacing={4}>
-        {stacks.map((stack) => {
-          return (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-              <Stack stack={stack} />
-            </Grid>
-          );
-        })}
+        {stacks &&
+          Object.keys(stacks).map((stackId) => {
+            const stack = stacks[stackId];
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Stack stack={stack} />
+              </Grid>
+            );
+          })}
       </Grid>
     </Box>
   );

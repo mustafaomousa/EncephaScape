@@ -1,10 +1,9 @@
 import { fetch } from "./csrf.js";
+import _ from "lodash";
 
 const LOAD_STACKS = "stack/loadStacks";
 const ADD_STACK = "stack/addStack";
 const REMOVE_STACK = "stack/removeStack";
-
-const initialState = [];
 
 const loadStacks = (stacks) => ({
   type: LOAD_STACKS,
@@ -21,16 +20,22 @@ const removeStack = (stack) => ({
   payload: stack,
 });
 
-export const getUserStacks = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/users/${userId}/stacks`);
-  dispatch(loadStacks(res.data.stacks));
+export const getUserStacks = () => async (dispatch) => {
+  const response = await fetch(`/api/stacks/`);
+
+  if (response.ok) {
+    return dispatch(loadStacks(response.data.stacks));
+  }
 };
 
 export const deleteUserStack = (stackId) => async (dispatch) => {
-  const res = await fetch(`/api/stacks/${stackId}`, {
+  const response = await fetch(`/api/stacks/${stackId}`, {
     method: "DELETE",
   });
-  dispatch(removeStack(res.data.stack));
+
+  if (response.ok) {
+    return dispatch(removeStack(response.data.stack));
+  }
 };
 
 export const createUserStack =
@@ -40,25 +45,25 @@ export const createUserStack =
       method: "POST",
       body: JSON.stringify({ name, categoryId, userId, cards }),
     });
-    dispatch(addStack(response.data.stack));
+
+    if (response.ok) {
+      return dispatch(addStack(response.data.stack));
+    }
   };
 
-function reducer(state = initialState, action) {
+const initialState = null;
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_STACKS:
-      return [...state, ...action.payload];
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     case ADD_STACK:
-      return [...state, action.payload];
+      return { ...state, [action.payload.id]: action.payload };
     case REMOVE_STACK:
-      const deletedStack = action.payload;
-      return state.filter((stack) => {
-        if (stack.id !== deletedStack.id) {
-          return stack;
-        }
-      });
+      return _.omit(state, [action.payload.id]);
     default:
       return state;
   }
-}
+};
 
 export default reducer;
