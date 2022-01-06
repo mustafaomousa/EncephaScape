@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import brain from "./brain.png";
 import LoginModal from "../HomePage/LoginModal";
 import SignUpModal from "../HomePage/SignUpModal";
@@ -33,6 +34,7 @@ const useStyles = makeStyles(() => ({
 
 function Navigation() {
   const classes = useStyles();
+  const location = useLocation();
   const sessionUser = useSelector((state) => state.session.user);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
@@ -51,7 +53,7 @@ function Navigation() {
     handleSignUpModalClose();
     handleLoginModalOpen();
   };
-
+  console.log(location.pathname);
   return (
     <AppBar elevation={0}>
       <LoginModal
@@ -89,15 +91,19 @@ function Navigation() {
                 className={classes.navlink}
                 variant="button"
                 color="white"
+                borderBottom={location.pathname === "/" && "1px solid #ffffff"}
               >
                 Home
               </Typography>
             </Link>
-            <Link href="/stack" underline="none">
+            <Link href="/stacks" underline="none">
               <Typography
                 className={classes.navlink}
                 variant="button"
                 color="white"
+                borderBottom={
+                  location.pathname === "/stacks" && "1px solid #ffffff"
+                }
               >
                 Stacks
               </Typography>
@@ -119,6 +125,9 @@ function Navigation() {
                     className={classes.navlink}
                     variant="button"
                     color="white"
+                    borderBottom={
+                      location.pathname === "/brainfolio" && "1px solid #ffffff"
+                    }
                   >
                     Brainfolio
                   </Typography>
