@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Stacks', {
+    return queryInterface.createTable("Stacks", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING(20),
@@ -14,25 +14,27 @@ module.exports = {
       },
       categoryId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Categories' },
-        allowNull: false
+        references: { model: "Categories" },
+        allowNull: false,
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: { model: 'Users' },
-        allowNull: false
+        references: { model: "Users" },
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Stacks');
-  }
+    return queryInterface.dropTable("Stacks");
+  },
 };
