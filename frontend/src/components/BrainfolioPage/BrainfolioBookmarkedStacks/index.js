@@ -1,5 +1,8 @@
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUserBookmarks } from "../../../store/bookmarks";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -11,6 +14,9 @@ const useStyles = makeStyles(() => ({
 
 const BrainfolioBookmarkedStacks = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(getUserBookmarks()), []);
   return <Box className={classes.root}></Box>;
 };
 

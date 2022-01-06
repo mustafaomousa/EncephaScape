@@ -13,18 +13,20 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import MoreIcon from "@mui/icons-material/MoreHoriz";
 import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
-import BookmarkAddOutlined from "@mui/icons-material/BookmarkAddOutlined";
+import BookmarkAdd from "@mui/icons-material/BookmarkAdd";
+import BookmarkAdded from "@mui/icons-material/BookmarkAdded";
 import { useState } from "react";
 import { deleteUserStack } from "../../store/stacks";
 import { useHistory } from "react-router-dom";
+import { createUserBookmark, deleteUserBookmark } from "../../store/bookmarks";
 
 const useStyles = makeStyles(() => ({}));
 
 const Stack = ({ stack }) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  const bookmarks = useSelector((state) => state.bookmarks);
   const [stackEl, setStackEl] = useState(null);
 
   const open = Boolean(stackEl);
@@ -36,6 +38,16 @@ const Stack = ({ stack }) => {
     e.preventDefault();
     handleDropdownClose();
     dispatch(deleteUserStack(stack.id));
+  };
+
+  const bookmarkStack = (e) => {
+    e.preventDefault();
+    dispatch(createUserBookmark(stack.id));
+  };
+
+  const unbookmarkStack = (e) => {
+    e.preventDefault();
+    dispatch(deleteUserBookmark(bookmarks[stack.id].id));
   };
 
   return (
@@ -101,9 +113,18 @@ const Stack = ({ stack }) => {
       </CardContent>
       <CardActions>
         <MuiStack direction="row" justifyContent="space-between" width="100%">
-          <IconButton sx={{ width: 40, height: 40 }}>
-            <BookmarkAddOutlined />
-          </IconButton>
+          {bookmarks && stack.id in bookmarks ? (
+            <IconButton
+              sx={{ width: 40, height: 40 }}
+              onClick={unbookmarkStack}
+            >
+              <BookmarkAdded sx={{ color: "green" }} />
+            </IconButton>
+          ) : (
+            <IconButton sx={{ width: 40, height: 40 }} onClick={bookmarkStack}>
+              <BookmarkAdd />
+            </IconButton>
+          )}
           <IconButton
             sx={{ width: 40, height: 40 }}
             onClick={() => history.push(`/stacks/${stack.id}`)}

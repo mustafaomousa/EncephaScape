@@ -4,12 +4,14 @@ import session from "./session";
 import stacks from "./stacks";
 import category from "./category";
 import card from "./card";
+import bookmarks from "./bookmarks";
 
 const rootReducer = combineReducers({
   session,
   stacks,
   category,
   card,
+  bookmarks,
 });
 
 let enhancer;
