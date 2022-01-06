@@ -71,17 +71,20 @@ const HomePage = () => {
           </Grid>
         </Stack>
       </Box>
-      <Box className={classes.homeSection}>
-        <Typography
-          variant="h3"
-          color="secondary"
-          gutterBottom={1}
-          fontWeight="bold"
-        >
-          Your bookmarked stacks
-        </Typography>
-        <BrainfolioBookmarkedStacks bookmarks={bookmarks} />
-      </Box>
+      {sessionUser && (
+        <Box className={classes.homeSection}>
+          <Typography
+            variant="h3"
+            color="secondary"
+            gutterBottom={1}
+            fontWeight="bold"
+          >
+            Your bookmarked stacks
+          </Typography>
+          <BrainfolioBookmarkedStacks bookmarks={bookmarks} />
+        </Box>
+      )}
+      <Box className={classes.homeSection}></Box>
       <Box className={classes.homeSection}></Box>
     </Box>
   );
