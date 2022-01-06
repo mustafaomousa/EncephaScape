@@ -24,6 +24,7 @@ const HomePage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const bookmarks = useSelector((state) => state.bookmarks);
 
   useEffect(() => {
     dispatch(getUserBookmarks());
@@ -71,15 +72,15 @@ const HomePage = () => {
         </Stack>
       </Box>
       <Box className={classes.homeSection}>
-        {/* <Typography
+        <Typography
           variant="h3"
           color="secondary"
           gutterBottom={1}
           fontWeight="bold"
         >
-          Newest stacks
+          Your bookmarked stacks
         </Typography>
-        <NewestStacks /> */}
+        <BrainfolioBookmarkedStacks bookmarks={bookmarks} />
       </Box>
       <Box className={classes.homeSection}></Box>
     </Box>

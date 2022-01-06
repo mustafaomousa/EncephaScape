@@ -30,6 +30,7 @@ function App() {
             <Route path="/stacks/:stackId" component={StackPage} />
             <Footer />
           </Switch>
+          <Footer />
         </>
       )}
     </>
