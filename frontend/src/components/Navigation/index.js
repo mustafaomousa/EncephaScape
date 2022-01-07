@@ -15,6 +15,7 @@ import { useLocation } from "react-router-dom";
 import brain from "./brain.png";
 import LoginModal from "../HomePage/LoginModal";
 import SignUpModal from "../HomePage/SignUpModal";
+import UserButton from "./UserButton";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -143,16 +144,7 @@ function Navigation() {
                   </Typography>
                 </Link>
                 <Divider orientation="vertical" sx={{ height: "2em" }} />
-                <Link href="/profile" underline="none">
-                  <Button
-                    color="secondary"
-                    fullWidth
-                    variant="contained"
-                    size="small"
-                  >
-                    {sessionUser.username}
-                  </Button>
-                </Link>
+                <UserButton sessionUser={sessionUser} />
               </>
             )}
           </Stack>
