@@ -49,6 +49,7 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
         <Stack spacing={2} alignItems={"center"}>
           <img src={brain} alt="EncephaScape" style={{ height: 150 }} />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -63,6 +64,7 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
             helperText={formik.touched.credential && formik.errors.credential}
           />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -82,6 +84,7 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
             spacing={1}
           >
             <Button
+              color="secondary"
               variant="outlined"
               fullWidth
               disableElevation
@@ -95,6 +98,7 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
               Demo
             </Button>
             <Button
+              color="secondary"
               variant="contained"
               fullWidth
               disableElevation
@@ -106,7 +110,7 @@ const LoginModal = ({ switchToSignUp, open, handleClose }) => {
             <Button
               fullWidth
               disableElevation
-              size="large"
+              size="small"
               onClick={switchToSignUp}
             >
               Switch to sign up

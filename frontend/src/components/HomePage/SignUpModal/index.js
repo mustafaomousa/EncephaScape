@@ -54,6 +54,7 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
         <Stack spacing={2} alignItems={"center"}>
           <img src={brain} alt="EncephaScape" style={{ height: 150 }} />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -66,6 +67,7 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             helperText={formik.touched.username && formik.errors.username}
           />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -78,6 +80,7 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -91,6 +94,7 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <TextField
+            color="secondary"
             size="small"
             variant="filled"
             fullWidth
@@ -115,15 +119,7 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
             spacing={1}
           >
             <Button
-              variant="outlined"
-              fullWidth
-              disableElevation
-              size="large"
-              onClick={switchToLogin}
-            >
-              Switch to login
-            </Button>
-            <Button
+              color="secondary"
               variant="contained"
               fullWidth
               disableElevation
@@ -131,6 +127,14 @@ const SignUpModal = ({ switchToLogin, open, handleClose }) => {
               size="large"
             >
               Sign up
+            </Button>
+            <Button
+              fullWidth
+              disableElevation
+              size="small"
+              onClick={switchToLogin}
+            >
+              Switch to login
             </Button>
           </Stack>
         </Stack>
