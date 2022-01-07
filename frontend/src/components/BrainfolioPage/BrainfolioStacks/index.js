@@ -1,7 +1,6 @@
 import { Grid, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
-import { useEffect, useState } from "react";
 import Stack from "../../Stack";
 
 const useStyles = makeStyles(() => ({

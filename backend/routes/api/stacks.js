@@ -6,6 +6,7 @@ const { requireAuth } = require("../../utils/auth");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Stack, User, Card, Category } = require("../../db/models");
 const db = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -94,4 +95,26 @@ router.get(
     return res.json({ stackId: stack.id });
   })
 );
+
+router.get(
+  "/features/search",
+  asyncHandler(async (req, res) => {
+    let search = req.query.search;
+    let categories = !req.query.category
+      ? []
+      : typeof req.query.category === "string"
+      ? [req.query.category]
+      : req.query.category;
+
+    const results = await Stack.findAll({
+      where: {
+        name: { [Op.iLike]: `%${search}%` },
+        categoryId: { [Op.or]: categories },
+      },
+      include: [User, Card, Category],
+    });
+    return res.json({ results });
+  })
+);
+
 module.exports = router;

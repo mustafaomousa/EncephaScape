@@ -3,6 +3,7 @@ import {
   Button,
   Checkbox,
   Chip,
+  Grid,
   ListItemText,
   Menu,
   MenuItem,
@@ -18,6 +19,7 @@ import { useEffect, useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import { fetch } from "../../store/csrf";
+import Stack from "../Stack";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -37,6 +39,7 @@ const SearchStacksPage = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categories, setCategories] = useState(null);
   const [anchor, setAnchor] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
   const updateSearchTerm = (e) => setSearchTerm(e.target.value);
   const handleSelectedCategories = (event) => {
     setSelectedCategories(event.target.value);
@@ -56,9 +59,16 @@ const SearchStacksPage = () => {
     setAnchor(e.currentTarget);
   };
 
-  useEffect(() => {
-    console.log(selectedCategories);
-  }, [selectedCategories]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSearchResults(null);
+    let categoriesString = selectedCategories
+      .map((categoryId) => `&category=${categoryId}`)
+      .join("");
+    await fetch(
+      `/api/stacks/features/search/?search=${searchTerm}${categoriesString}`
+    ).then((response) => setSearchResults(response.data.results));
+  };
 
   return (
     <Box className={classes.root}>
@@ -75,7 +85,11 @@ const SearchStacksPage = () => {
             InputProps={{
               sx: { backgroundColor: "#fff" },
               endAdornment: (
-                <Button color="secondary" variant="contained">
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={handleSubmit}
+                >
                   <SearchIcon />
                 </Button>
               ),
@@ -179,23 +193,42 @@ const SearchStacksPage = () => {
       <Box
         className={classes.searchStacksSection}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          direction: "column",
+          // display: "flex",
+          // alignItems: "center",
+          // justifyContent: "center",
+          // direction: "column",
           backgroundColor: "rgba(0,0,0,0.1)",
           borderRadius: "0.2em",
-          minHeight: 500,
           border: "2px solid #c66b3d",
+          padding: "40px",
         }}
       >
-        <PageviewIcon
-          color="secondary"
-          sx={{ fontSize: "40px", marginRight: 2 }}
-        />
-        <Typography variant="button" color="secondary">
-          No search results
-        </Typography>
+        {searchResults ? (
+          <Grid container direction="row" spacing={4}>
+            {searchResults.map((stack, i) => {
+              return (
+                <Zoom
+                  in={true}
+                  style={{ transitionDelay: `${i === 0 ? 25 : i * 50}ms` }}
+                >
+                  <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Stack stack={stack} />
+                  </Grid>
+                </Zoom>
+              );
+            })}
+          </Grid>
+        ) : (
+          <MuiStack alignItems="center" justifyContent="center">
+            <PageviewIcon
+              color="secondary"
+              sx={{ fontSize: "40px", marginRight: 2 }}
+            />
+            <Typography variant="button" color="secondary">
+              No search results
+            </Typography>
+          </MuiStack>
+        )}
       </Box>
     </Box>
   );
