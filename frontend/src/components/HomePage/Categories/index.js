@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Grow, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { fetch } from "../../../store/csrf";
 
 const useStyles = makeStyles(() => ({
@@ -9,6 +10,7 @@ const useStyles = makeStyles(() => ({
 
 const Categories = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
@@ -40,6 +42,9 @@ const Categories = () => {
                   fullWidth
                   variant="outlined"
                   color="secondary"
+                  onClick={() =>
+                    history.push(`/stacks?category=${category.id}`)
+                  }
                 >
                   {category.name}
                 </Button>

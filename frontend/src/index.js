@@ -10,6 +10,7 @@ import App from "./App";
 import configureStore from "./store";
 import { restoreCSRF, fetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
+import ScrollToTop from "../src/components/ScrollToTop";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/system";
 
@@ -48,6 +49,7 @@ function Root() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <ScrollToTop />
           <App />
         </BrowserRouter>
       </ThemeProvider>

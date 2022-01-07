@@ -15,11 +15,12 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PageviewIcon from "@mui/icons-material/Pageview";
 import { fetch } from "../../store/csrf";
 import Stack from "../Stack";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,13 +35,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SearchStacksPage = () => {
+  const { search } = useLocation();
+  let query = React.useMemo(() => new URLSearchParams(search), [search]);
+  let categoryId = parseInt(query.get("category"));
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categories, setCategories] = useState(null);
   const [anchor, setAnchor] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
+
   const updateSearchTerm = (e) => setSearchTerm(e.target.value);
+
   const handleSelectedCategories = (event) => {
     setSelectedCategories(event.target.value);
   };
@@ -53,21 +59,38 @@ const SearchStacksPage = () => {
     })();
   }, []);
 
-  const selectCategoriesOpen = Boolean(anchor);
-
-  const handleSelectCategoriesOpen = (e) => {
-    setAnchor(e.currentTarget);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setSearchResults(null);
     let categoriesString = selectedCategories
       .map((categoryId) => `&category=${categoryId}`)
       .join("");
     await fetch(
       `/api/stacks/features/search/?search=${searchTerm}${categoriesString}`
-    ).then((response) => setSearchResults(response.data.results));
+    ).then((response) => {
+      if (response.data.results.length) {
+        setSearchResults(response.data.results);
+      }
+    });
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (categoryId) {
+        await setSelectedCategories([categoryId]);
+      }
+    })();
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (categoryId && selectedCategories.length === 1) {
+      handleSubmit();
+    }
+  }, [selectedCategories]);
+
+  const selectCategoriesOpen = Boolean(anchor);
+
+  const handleSelectCategoriesOpen = (e) => {
+    setAnchor(e.currentTarget);
   };
 
   return (
@@ -193,10 +216,6 @@ const SearchStacksPage = () => {
       <Box
         className={classes.searchStacksSection}
         sx={{
-          // display: "flex",
-          // alignItems: "center",
-          // justifyContent: "center",
-          // direction: "column",
           backgroundColor: "rgba(0,0,0,0.1)",
           borderRadius: "0.2em",
           border: "2px solid #c66b3d",
