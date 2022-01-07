@@ -10,15 +10,12 @@ import { getUserStacks } from "../../store/stacks";
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "140px 40px",
+    marginInline: "auto",
+    padding: "140px 0",
+    width: "min(90%, 1200px)",
   },
   brainfolioSection: {
     paddingBottom: "40px",
-    maxWidth: 1200,
-    width: "100%",
   },
 }));
 

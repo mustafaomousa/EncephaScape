@@ -22,6 +22,7 @@ const BrainfolioBookmarkedStacks = ({ bookmarks }) => {
             return (
               <Zoom
                 in={true}
+                appear={true}
                 style={{ transitionDelay: `${i === 0 ? 25 : i * 50}ms` }}
               >
                 <Grid item xs={12} sm={6} md={4} lg={3}>

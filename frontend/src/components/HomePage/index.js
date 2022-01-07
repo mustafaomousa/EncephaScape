@@ -2,22 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import NewestStacks from "./NewestStacks";
 import { getUserBookmarks } from "../../store/bookmarks";
 import BrainfolioBookmarkedStacks from "../BrainfolioPage/BrainfolioBookmarkedStacks";
 import Categories from "./Categories";
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "140px 40px",
+    marginInline: "auto",
+    padding: "140px 0",
+    width: "min(90%, 1200px)",
   },
   homeSection: {
     paddingBottom: "40px",
-    maxWidth: 1200,
-    width: "100%",
   },
 }));
 
@@ -52,7 +48,7 @@ const HomePage = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/brainfolio/create" underline="none">
+              <Link href="/stacks/create" underline="none">
                 <Button
                   color="secondary"
                   fullWidth

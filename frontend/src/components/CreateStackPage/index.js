@@ -103,12 +103,7 @@ const CreateStackPage = () => {
           </Typography>
           <TextField
             fullWidth
-            inputProps={{
-              sx: {
-                color: "#fff",
-                backgroundColor: "rgba(0,0,0,0.1)",
-              },
-            }}
+            InputProps={{ sx: { backgroundColor: "#fff" } }}
             color="secondary"
             id="name"
             name="name"
@@ -137,7 +132,6 @@ const CreateStackPage = () => {
                       width: 130,
                       height: 130,
                       borderRadius: "50%",
-                      borderColor: "#333",
                     }}
                     fullWidth
                     variant={
@@ -178,14 +172,9 @@ const CreateStackPage = () => {
                       variant="outlined"
                       color="secondary"
                       fullWidth
-                      inputProps={{
-                        sx: {
-                          color: "#fff",
-                        },
-                      }}
                       sx={{
-                        backgroundColor: "rgba(0,0,0,0.1)",
-                        borderRadius: "0.2em",
+                        backgroundColor: "#fff",
+                        borderRadius: "0.3em",
                       }}
                       InputProps={{
                         startAdornment: (
@@ -216,11 +205,6 @@ const CreateStackPage = () => {
                       variant="outlined"
                       color="secondary"
                       fullWidth
-                      inputProps={{
-                        sx: {
-                          color: "#fff",
-                        },
-                      }}
                       InputProps={{
                         startAdornment: (
                           <Box
@@ -241,8 +225,8 @@ const CreateStackPage = () => {
                         ),
                       }}
                       sx={{
-                        backgroundColor: "rgba(0,0,0,0.1)",
-                        borderRadius: "0.2em",
+                        backgroundColor: "#fff",
+                        borderRadius: "0.3em",
                       }}
                     />
                   </Grid>

@@ -35,7 +35,7 @@ const Footer = () => {
     <Box className={classes.root}>
       <Box className={classes.footerContainer}>
         <Grid container spacing={5}>
-          <Grid item sm={6} md={4}>
+          <Grid item sm={6} md={3}>
             <Stack alignItems={"flex-start"}>
               <Typography color="secondary" variant="h6" marginBottom={2}>
                 Client Technologies
@@ -54,7 +54,7 @@ const Footer = () => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid item sm={6} md={4}>
+          <Grid item sm={6} md={3}>
             <Stack alignItems={"flex-start"}>
               <Typography color="secondary" variant="h6" marginBottom={2}>
                 Server Technologies
@@ -71,7 +71,7 @@ const Footer = () => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid item sm={6} md={4}>
+          <Grid item sm={6} md={3}>
             <Stack alignItems={"flex-start"}>
               <Typography color="secondary" variant="h6" marginBottom={2}>
                 Links

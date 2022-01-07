@@ -91,7 +91,7 @@ function Navigation() {
                 className={classes.navlink}
                 variant="button"
                 color="white"
-                borderBottom={location.pathname === "/" && "1px solid #ffffff"}
+                borderBottom={location.pathname === "/" && "2px solid #c66b3d"}
               >
                 Home
               </Typography>
@@ -102,7 +102,7 @@ function Navigation() {
                 variant="button"
                 color="white"
                 borderBottom={
-                  location.pathname === "/stacks" && "1px solid #ffffff"
+                  location.pathname === "/stacks" && "2px solid #c66b3d"
                 }
               >
                 Stacks
@@ -136,7 +136,7 @@ function Navigation() {
                     variant="button"
                     color="white"
                     borderBottom={
-                      location.pathname === "/brainfolio" && "1px solid #ffffff"
+                      location.pathname === "/brainfolio" && "2px solid #c66b3d"
                     }
                   >
                     Brainfolio
