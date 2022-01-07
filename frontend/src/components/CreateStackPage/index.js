@@ -3,12 +3,10 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LockOpenIcon from "@mui/icons-material/LockOpen";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { getAllCategories } from "../../store/category";
 import { createUserStack } from "../../store/stacks";
+import useCategories from "../../hooks/useCategories";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,7 +23,7 @@ const CreateStackPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
-  const categories = useSelector((state) => state.category.categories);
+  const categories = useCategories();
   const sessionUser = useSelector((state) => state.session.user);
   const [selectedCategory, setSelectedCategory] = useState({});
   const [cards, setCards] = useState({ 1: { term: "", response: "" } });
@@ -75,10 +73,6 @@ const CreateStackPage = () => {
         });
     },
   });
-
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
 
   return (
     <Box className={classes.root}>

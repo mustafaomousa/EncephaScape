@@ -1,8 +1,7 @@
 import { Box, Button, Grid, Grow, Zoom } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { fetch } from "../../../store/csrf";
+import useCategories from "../../../hooks/useCategories";
 
 const useStyles = makeStyles(() => ({
   categoryButton: {},
@@ -11,17 +10,8 @@ const useStyles = makeStyles(() => ({
 const Categories = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [categories, setCategories] = useState(null);
+  const categories = useCategories();
 
-  useEffect(() => {
-    (async () => {
-      await fetch("/api/categories").then((response) => {
-        if (response.ok) {
-          return setCategories(response.data.categories);
-        }
-      });
-    })();
-  }, []);
   return (
     <Box className={classes.root}>
       <Grid container spacing={1}>
