@@ -6,6 +6,7 @@ const { Card, Stack } = require("../../db/models");
 
 const router = express.Router();
 
+// Create a new card in a stack
 router.post(
   "/",
   requireAuth,
@@ -17,6 +18,7 @@ router.post(
   })
 );
 
+// Delete a card from a stack
 router.delete(
   "/:cardId",
   requireAuth,
@@ -37,6 +39,7 @@ router.delete(
   })
 );
 
+// Update a card from a stack
 router.put(
   "/:cardId",
   requireAuth,

@@ -1,9 +1,9 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { Op } = require("sequelize");
 
 const { requireAuth } = require("../../utils/auth");
 const { Bookmark, Stack, User, Category, Card } = require("../../db/models");
-const { Op } = require("sequelize");
 
 const router = express.Router();
 
