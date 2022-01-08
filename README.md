@@ -13,9 +13,9 @@
 - [Usage](#usage)
 - [Technologies Used](#technologiesused)
 - [MVP Feature List](#mvpfeaturelist)
+- [API Routes](#apiroutes)
 - [Frontend Routes](#frontendroutes)
 - [Database Schema](#databaseschema)
-- [API Routes](#apiroutes)
 - [Tests](#tests)
 - [Contact](#contact)
 
