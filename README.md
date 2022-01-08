@@ -119,7 +119,7 @@
 
 <a name="frontendroutes"></a>
 
-# Client (backend) API Routes
+# Server (backend) API Routes
 
 <br/>
 
@@ -165,7 +165,7 @@
 
 <a name="apiroutes"></a>
 
-# Server (frontend) Routes
+# Client (frontend) Routes
 
 <br/>
 
