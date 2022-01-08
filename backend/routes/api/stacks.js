@@ -1,12 +1,10 @@
 const express = require("express");
-const { check } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+const { Op } = require("sequelize");
 
 const { requireAuth } = require("../../utils/auth");
-const { handleValidationErrors } = require("../../utils/validation");
 const { Stack, User, Card, Category } = require("../../db/models");
 const db = require("../../db/models");
-const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -25,6 +23,7 @@ router.get(
   })
 );
 
+// Get a stack
 router.get(
   "/:stackId",
   asyncHandler(async (req, res) => {
@@ -37,6 +36,7 @@ router.get(
   })
 );
 
+// Create a session user's stack
 router.post(
   "/",
   requireAuth,
@@ -64,6 +64,7 @@ router.post(
   })
 );
 
+// Delete a session user's stack
 router.delete(
   "/:stackId",
   requireAuth,
@@ -86,16 +87,18 @@ router.delete(
   })
 );
 
+// Get a random stack
 router.get(
   "/features/random",
   requireAuth,
-  asyncHandler(async (req, res) => {
+  asyncHandler(async (_req, res) => {
     const stack = await Stack.findOne({ order: [db.sequelize.fn("RANDOM")] });
 
     return res.json({ stackId: stack.id });
   })
 );
 
+// Search stacks by name and category
 router.get(
   "/features/search",
   asyncHandler(async (req, res) => {
@@ -113,6 +116,7 @@ router.get(
       },
       include: [User, Card, Category],
     });
+
     return res.json({ results });
   })
 );
