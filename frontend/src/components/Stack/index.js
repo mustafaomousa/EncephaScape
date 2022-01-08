@@ -81,7 +81,12 @@ const Stack = ({ stack }) => {
               <MenuItem onClick={() => history.push(`/stacks/${stack.id}`)}>
                 Play
               </MenuItem>
-              <MenuItem>Bookmark</MenuItem>
+              {sessionUser &&
+                (bookmarks && stack.id in bookmarks ? (
+                  <MenuItem onClick={unbookmarkStack}>Remove bookmark</MenuItem>
+                ) : (
+                  <MenuItem onClick={bookmarkStack}>Bookmark</MenuItem>
+                ))}
               {sessionUser && sessionUser.id === stack.User.id && (
                 <>
                   <MenuItem>Edit</MenuItem>

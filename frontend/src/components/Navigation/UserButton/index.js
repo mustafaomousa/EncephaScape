@@ -78,7 +78,7 @@ const UserButton = ({ sessionUser }) => {
           },
         }}
       >
-        <MenuItem disabled>
+        <MenuItem onClick={() => history.push("/profile")}>
           <ListItemIcon>
             <PersonIcon color="secondary" />
           </ListItemIcon>

@@ -1,83 +1,152 @@
-import { useContext, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-import * as sessionActions from "../../store/session";
-import { AppContext } from "../../context/AppContextProvider";
-import brain from "./brain-cartoon.jpg";
-import "./profile.css";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { useSelector } from "react-redux";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    marginInline: "auto",
+    padding: "140px 0",
+    width: "min(90%, 1200px)",
+  },
+  profileSection: {
+    backgroundColor: "rgba(0,0,0,0.1)",
+    padding: "40px",
+    marginBottom: "40px",
+  },
+}));
 
 const ProfilePage = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const [showDelete, setShowDelete] = useState(true);
-  const [showLogout, setShowLogout] = useState(true);
-
+  const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-    history.push("/");
-  };
-
-  const restore = (e) => {
-    setShowDelete(true);
-    setShowLogout(true);
-  };
-
-  const deleteTheAccount = (e) => {
-    logout(e);
-    dispatch(sessionActions.confirmedDeleteAccount(sessionUser.id));
-  };
-
-  if (sessionUser === undefined) {
-    alert("Please login or sign-up");
-    return <Redirect to="/signup"></Redirect>;
-  }
-
   return (
-    <div className="profile-page">
-      <div className="profile-body">
-        <h1>Profile</h1>
-        <div>
-          <ul className="profile-card">
-            <img src={brain} alt="brain" />
-            <h3>{sessionUser.username}</h3>
-            <h3>{sessionUser.email}</h3>
-            <h3>{sessionUser.phoneNumber}</h3>
-            <div className="stack-amount">
-              <h5 style={{ color: "white" }}>Amount of stacks</h5>
-            </div>
-          </ul>
-        </div>
-      </div>
-      <div className="profile-button-box">
-        <button onClick={() => setShowLogout(false)}>Log Out</button>
-        <button onClick={() => setShowDelete(false)}>Delete Account</button>
-
-        <button onClick={logout}>Edit Profile Information</button>
-        <button onClick={logout}>Change Password</button>
-      </div>
-      <div className="delete-account">
-        <div className={showDelete ? "hidden" : "delete-account-buttons"}>
-          <div>
-            <p>Are you sure you want to delete your account?</p>
-          </div>
-          <button onClick={(e) => deleteTheAccount(e)}>Yes</button>
-          <button onClick={restore}>No</button>
-        </div>
-      </div>
-      <div className="logout-account">
-        <div className={showLogout ? "hidden" : "delete-account-buttons"}>
-          <div>
-            <p>Are you sure you want to logout?</p>
-          </div>
-          <button onClick={logout}>Yes</button>
-          <button onClick={restore}>No</button>
-        </div>
-      </div>
-    </div>
+    <Box className={classes.root}>
+      <Typography
+        variant="h3"
+        fontWeight="bold"
+        color="secondary"
+        gutterBottom={1}
+      >
+        Profile
+      </Typography>
+      <Typography
+        variant="h5"
+        fontWeight="bold"
+        color="secondary"
+        gutterBottom={1}
+      >
+        Account information
+      </Typography>
+      <Box className={classes.profileSection}>
+        {sessionUser && (
+          <Stack spacing={1}>
+            <TextField
+              color="secondary"
+              size="small"
+              variant="filled"
+              fullWidth
+              label="Username"
+              id="username"
+              name="username"
+              value={sessionUser.username}
+              InputProps={{
+                sx: { backgroundColor: "rgba(99,99,99,.5)", color: "#fff" },
+              }}
+              InputLabelProps={{ sx: { color: "#c66b3d" } }}
+            />
+            <TextField
+              color="secondary"
+              size="small"
+              variant="filled"
+              fullWidth
+              label="Email"
+              id="email"
+              name="email"
+              value={sessionUser.email}
+              InputProps={{
+                sx: { backgroundColor: "rgba(99,99,99,.5)", color: "#fff" },
+              }}
+              InputLabelProps={{ sx: { color: "#c66b3d" } }}
+            />
+          </Stack>
+        )}
+        <Stack alignItems="flex-end" padding="10px 0">
+          <Button color="secondary" size="small" variant="outlined">
+            Update
+          </Button>
+        </Stack>
+      </Box>
+      <Typography
+        variant="h5"
+        fontWeight="bold"
+        color="secondary"
+        gutterBottom={1}
+      >
+        Password
+      </Typography>
+      <Box className={classes.profileSection}>
+        <Stack spacing={1}>
+          <TextField
+            type="password"
+            color="secondary"
+            size="small"
+            variant="filled"
+            fullWidth
+            label="Current Password"
+            id="password"
+            name="password"
+            InputProps={{
+              sx: { backgroundColor: "rgba(99,99,99,.5)", color: "#fff" },
+            }}
+            InputLabelProps={{ sx: { color: "#c66b3d" } }}
+          />
+          <TextField
+            type="password"
+            color="secondary"
+            size="small"
+            variant="filled"
+            fullWidth
+            label="New Password"
+            id="password"
+            name="password"
+            InputProps={{
+              sx: { backgroundColor: "rgba(99,99,99,.5)", color: "#fff" },
+            }}
+            InputLabelProps={{ sx: { color: "#c66b3d" } }}
+          />
+          <TextField
+            type="password"
+            color="secondary"
+            size="small"
+            variant="filled"
+            fullWidth
+            label="Confirm New Password"
+            id="confirmPassword"
+            name="confirmPassword"
+            InputProps={{
+              sx: { backgroundColor: "rgba(99,99,99,.5)", color: "#fff" },
+            }}
+            InputLabelProps={{ sx: { color: "#c66b3d" } }}
+          />
+        </Stack>
+        <Stack alignItems="flex-end" padding="10px 0">
+          <Button color="secondary" size="small" variant="outlined">
+            Update
+          </Button>
+        </Stack>
+      </Box>
+    </Box>
   );
 };
 
