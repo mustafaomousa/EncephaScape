@@ -159,6 +159,8 @@
 > - DELETE /api/cards/:cardId
 > - PUT /api/cards/:cardId
 
+<br />
+
 ---
 
 <a name="apiroutes"></a>
@@ -166,6 +168,32 @@
 # Server (frontend) Routes
 
 <br/>
+
+## /
+
+> - This page displays a navigation bar with login/sign up modals or a user button with the option to logout. Users are able to see a list of available categories and authenticated users will be able to see and additional list containing their bookmarked stacks.
+
+## /stacks
+
+> - This page displays a search bar to search for stacks along with the option to filter by category.
+
+## /stacks/:stackId
+
+> - This page displays a stacks name, user, and associated questions. Answers are blurred out until a user hovers over the blurred answer.
+
+## /stacks/create
+
+> - This page displays a form with a name field, category field, and question fields. Users can add additional questions before creating a stack.
+
+## /brainfolio
+
+> - This page displays a users stacks and bookmarked stacks. At the top of the page is the "BrainfolioActions" component that takes a user to either a random stack or to create a stack.
+
+## /profile
+
+> - This page displays a users account information and allows for the update of a users account information and/or password.
+
+<br />
 
 ---
 
