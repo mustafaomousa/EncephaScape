@@ -1,13 +1,13 @@
-# EncephaScape
-
-[Live Site](https://encephascape.herokuapp.com/)
-
-<p>Encephascape is a single page web application "BrainScape" clone where users can create, bookmark, and study stacks.</p>
+<p align="center">
+  <img width="460" height="auto" src="frontend/src/components/Navigation/brain.png">
+  <h3 align="center">Encephascape is a single page web application "BrainScape" clone where users can create, bookmark, and study stacks.</h3>
+</p>
 
 <br/>
 
 # Table of Contents
 
+- [Live Site](https://encephascape.herokuapp.com/)
 - [Usage](#usage)
 - [Technologies Used](#technologiesused)
 - [MVP Feature List](#mvpfeaturelist)
