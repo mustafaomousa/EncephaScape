@@ -203,6 +203,64 @@
 
 <br/>
 
+## Users
+
+> | column name    | data type     |               details |
+> | :------------- | :------------ | --------------------: |
+> | id             | integer       | not null, primary key |
+> | username       | string        |      not null, unique |
+> | email          | string        |      not null, unique |
+> | hashedPassword | binary string |              not null |
+> | createdAt      | datetime      |              not null |
+> | updatedAt      | datetime      |              not null |
+
+<br />
+
+## Categories
+
+> | column name | data type |               details |
+> | :---------- | :-------- | --------------------: |
+> | id          | integer   | not null, primary key |
+> | name        | string    |              not null |
+
+<br />
+
+## Stacks
+
+> | column name | data type |               details |
+> | :---------- | :-------- | --------------------: |
+> | id          | integer   | not null, primary key |
+> | name        | string    |              not null |
+> | categoryId  | integer   | not null, foreign key |
+> | userId      | integer   | not null, foreign key |
+> | createdAt   | datetime  |              not null |
+> | updatedAt   | datetime  |              not null |
+
+<br />
+
+## Cards
+
+> | column name | data type |               details |
+> | :---------- | :-------- | --------------------: |
+> | id          | integer   | not null, primary key |
+> | stackId     | integer   | not null, foreign key |
+> | term        | string    |              not null |
+> | response    | string    |              not null |
+> | createdAt   | datetime  |              not null |
+> | updatedAt   | datetime  |              not null |
+
+<br />
+
+## Bookmarks
+
+> | column name | data type |               details |
+> | :---------- | :-------- | --------------------: |
+> | id          | integer   | not null, primary key |
+> | userId      | integer   | not null, foreign key |
+> | stackId     | integer   | not null, foreign key |
+> | createdAt   | datetime  |              not null |
+> | updatedAt   | datetime  |              not null |
+
 ---
 
 <a name="tests"></a>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ProfilePage from "./components/ProfilePage";
@@ -10,7 +10,6 @@ import CreateStackPage from "./components/CreateStackPage";
 import Footer from "./components/Footer";
 import StackPage from "./components/StackPage";
 import SearchStacksPage from "./components/SearchStacksPage";
-import { LinearProgress } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
