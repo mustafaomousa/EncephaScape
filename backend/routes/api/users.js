@@ -4,8 +4,7 @@ const asyncHandler = require("express-async-handler");
 
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Card, Stack, Category, db } = require("../../db/models");
-const { Op } = require("sequelize");
+const { User } = require("../../db/models");
 
 const router = express.Router();
 
@@ -26,20 +25,7 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-router.get(
-  "/:userId/stacks/",
-  asyncHandler(async (req, res) => {
-    const { userId } = req.params;
-    const stacks = await Stack.findAll({
-      where: { userId },
-      include: [User, Category, Card],
-    });
-
-    return res.json({ stacks });
-  })
-);
-
-// Sign up
+// Sign up a session user
 router.post(
   "/",
   validateSignup,
@@ -78,16 +64,12 @@ router.post(
   })
 );
 
-// Delete
+// Delete a session user's account
 router.post(
   "/:userId",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { userId } = req.body;
-    const userStacks = await Stack.destroy({
-      where: { userId: userId },
-      truncate: false,
-    });
-    const user = await User.destroy({ where: { id: userId } });
+    const user = await User.destroy({ where: { id: req.user.id } });
 
     return res.json({ user });
   })
