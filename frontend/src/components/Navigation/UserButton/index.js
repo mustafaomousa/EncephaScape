@@ -63,6 +63,7 @@ const UserButton = ({ sessionUser }) => {
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             background: "#fff",
             mt: 1.5,
+            width: 200,
             "&:before": {
               content: '""',
               display: "block",
@@ -78,24 +79,24 @@ const UserButton = ({ sessionUser }) => {
           },
         }}
       >
-        <MenuItem onClick={() => history.push("/profile")}>
+        <MenuItem
+          onClick={() => history.push("/profile")}
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          Profile
           <ListItemIcon>
             <PersonIcon color="secondary" />
           </ListItemIcon>
-          Profile
         </MenuItem>
         <Divider />
-        <MenuItem disabled>
-          <ListItemIcon>
-            <SettingsIcon color="secondary" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleLogout}>
+        <MenuItem
+          onClick={handleLogout}
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          Log out
           <ListItemIcon>
             <LogoutIcon color="secondary" />
           </ListItemIcon>
-          Log out
         </MenuItem>
       </Menu>
     </Box>

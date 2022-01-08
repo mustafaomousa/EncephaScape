@@ -40,12 +40,7 @@ const ProfilePage = () => {
       >
         Profile
       </Typography>
-      <Typography
-        variant="h5"
-        fontWeight="bold"
-        color="secondary"
-        gutterBottom={1}
-      >
+      <Typography variant="h5" fontWeight="bold" color="#fff" gutterBottom={1}>
         Account information
       </Typography>
       <Box className={classes.profileSection}>
@@ -82,17 +77,12 @@ const ProfilePage = () => {
           </Stack>
         )}
         <Stack alignItems="flex-end" padding="10px 0">
-          <Button color="secondary" size="small" variant="outlined">
+          <Button color="secondary" size="small" variant="outlined" disabled>
             Update
           </Button>
         </Stack>
       </Box>
-      <Typography
-        variant="h5"
-        fontWeight="bold"
-        color="secondary"
-        gutterBottom={1}
-      >
+      <Typography variant="h5" fontWeight="bold" color="#fff" gutterBottom={1}>
         Password
       </Typography>
       <Box className={classes.profileSection}>
@@ -141,7 +131,7 @@ const ProfilePage = () => {
           />
         </Stack>
         <Stack alignItems="flex-end" padding="10px 0">
-          <Button color="secondary" size="small" variant="outlined">
+          <Button color="secondary" size="small" variant="outlined" disabled>
             Update
           </Button>
         </Stack>
