@@ -5,6 +5,7 @@ const { Category } = require("../../db/models");
 
 const router = express.Router();
 
+// Get all categories
 router.get(
   "/",
   asyncHandler(async (_req, res) => {
