@@ -83,27 +83,33 @@
 
 <br/>
 
-<!-- ## 1. Sign up, log in, log out, and demo-user login.
+## 1. Sign up, log in, log out, and demo-user login.
 
 > - Users can sign up, log in, and log out.
 > - Users can login as demo-user to interact with the application.
-> - Authenticated users can navigate to their Profile which displays their profile picture, bio, and posts.
-> - Authenticated users can navigate to Settings which allows them to update their profile picture, bio, username, email, and/or password.
+> - Authenticated users can navigate to their Brainfolio which displays their bookmarked stacks and created stacks.
+> - Authenticated users can navigate to Profile which allows them to update their username, email, and password.
 
 <br/>
 
-## 2. User posts.
+## 2. User stacks.
 
-> - Authenticated users can create posts with a image and message.
-> - Authenticated users can like, edit, and delete their own posts.
-> - Authenticated users can view the newest posts, and a random post on the Discover page.
+> - Users can play stacks to study their associated questions.
+> - Authenticated users can create stacks with an associated category and questions.
+> - Authenticated users can bookmark, edit, and delete their own stacks.
 
 <br/>
 
-## 3. User likes.
+## 3. User bookmarks.
 
-> - Authenticated users can like other users posts as well as their own.
-> - Authenticated users can remove their like from other users posts as well as their own. -->
+> - Authenticated users can bookmark other users stacks as well as their own.
+> - Authenticated users can remove their bookmark from other users stacks as well as their own.
+
+<br/>
+
+## 3. Search stacks.
+
+> - Users can search stacks by name and/or category on the Stacks page.
 
 <br/>
 
