@@ -27,8 +27,6 @@
 
 # Usage
 
-<br/>
-
 ## To launch EncephaScape in a development environment:
 
 1.  cd backend and create a .env based off .env.example. Fill in the newly created .env file with your PSQL user and database credentials.
@@ -57,8 +55,6 @@
 
 # Technologies and Libraries Used
 
-<br/>
-
 ### Server (Node.js)
 
 > - Sequelize ORM
@@ -82,8 +78,6 @@
 <a name="mvpfeaturelist" ></a>
 
 # MVP Feature List
-
-<br/>
 
 ## 1. Sign up, log in, log out, and demo-user login.
 
@@ -120,8 +114,6 @@
 <a name="frontendroutes"></a>
 
 # Server (backend) API Routes
-
-<br/>
 
 ## Session
 
@@ -167,8 +159,6 @@
 
 # Client (frontend) Routes
 
-<br/>
-
 ## /
 
 > - This page displays a navigation bar with login/sign up modals or a user button with the option to logout. Users are able to see a list of available categories and authenticated users will be able to see and additional list containing their bookmarked stacks.
@@ -200,8 +190,6 @@
 <a name="databaseschema"></a>
 
 # Database Schema
-
-<br/>
 
 ## Users
 
