@@ -153,7 +153,7 @@ const StackPage = () => {
                           {card.term}
                         </Typography>
                       </Stack>
-                      <Stack>
+                      <Stack alignItems="flex-start">
                         <Typography
                           variant="h4"
                           color="secondary"
@@ -165,7 +165,13 @@ const StackPage = () => {
                         <Typography
                           variant="h4"
                           color="primary"
-                          sx={{ wordBreak: "break-word" }}
+                          sx={{
+                            wordBreak: "break-word",
+                            filter: "blur(10px)",
+                            "&:hover": {
+                              filter: "blur(0)",
+                            },
+                          }}
                           paragraph={true}
                         >
                           {card.response}
