@@ -119,9 +119,45 @@
 
 <a name="frontendroutes"></a>
 
-# Client (backend) Routes
+# Client (backend) API Routes
 
 <br/>
+
+## Session
+
+> - POST /api/session
+> - GET /api/session
+> - DELETE /api/session
+
+## Users
+
+> - POST /api/users
+> - DELETE /api/users
+
+## Categories
+
+> - GET /api/categories
+
+## Stacks
+
+> - GET /api/stacks
+> - POST /api/stacks
+> - GET /api/stacks/:stackId
+> - DELETE /api/stacks/:stackId
+> - GET /api/stacks/features/random
+> - GET /api/stacks/features/search
+
+## Bookmarks
+
+> - GET /api/bookmarks
+> - POST /api/bookmarks
+> - DELETE /api/bookmarks/:bookmarkId
+
+## Cards
+
+> - POST /api/cards
+> - DELETE /api/cards/:cardId
+> - PUT /api/cards/:cardId
 
 ---
 

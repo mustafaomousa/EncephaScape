@@ -65,8 +65,8 @@ router.post(
 );
 
 // Delete a session user's account
-router.post(
-  "/:userId",
+router.delete(
+  "/",
   requireAuth,
   asyncHandler(async (req, res) => {
     const user = await User.destroy({ where: { id: req.user.id } });
