@@ -111,7 +111,7 @@
 
 ---
 
-<a name="frontendroutes"></a>
+<a name="apiroutes"></a>
 
 # Server (backend) API Routes
 
@@ -155,7 +155,7 @@
 
 ---
 
-<a name="apiroutes"></a>
+<a name="frontendroutes"></a>
 
 # Client (frontend) Routes
 
