@@ -1,46 +1,60 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 
-const { Card } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
+const { Card, Stack } = require("../../db/models");
 
 const router = express.Router();
 
-router.get(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    const stackCards = await Card.findAll({ where: { stackId: id } });
-    return res.json({ stackCards });
-  })
-);
-
 router.post(
-  "/:id",
+  "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { stackId, term, response } = req.body;
-    const newCard = await Card.create({ stackId, term, response });
-    await newCard.save();
-    return res.json({ newCard });
+    const card = await Card.create({ stackId, term, response });
+    await card.save();
+    return res.json({ card });
   })
 );
 
 router.delete(
-  "/:id",
+  "/:cardId",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { cardId } = req.body;
-    const deletedCard = await Card.findByPk(cardId);
-    await deletedCard.destroy();
-    return res.json({ deletedCard });
+    const { cardId } = req.params;
+    const card = await Card.findByPk(cardId, { include: [Stack] });
+
+    if (card.Stack.userId !== req.user.id) {
+      const err = new Error("Unauthorized");
+      err.title = "Unauthorized";
+      err.errors = ["Unauthorized"];
+      err.status = 401;
+      return next(err);
+    } else {
+      await card.destroy();
+      return res.json({ card });
+    }
   })
 );
 
 router.put(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const { cardId, term, response } = req.body;
-    const updatedCard = await Card.findByPk(cardId);
-    await updatedCard.update({ term, response });
-    return res.json({ updatedCard });
+  "/:cardId",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { cardId } = req.params;
+    const { term, response } = req.body;
+    const card = await Card.findByPk(cardId, { include: [Stack] });
+
+    if (card.Stack.userId !== req.user.id) {
+      const err = new Error("Unauthorized");
+      err.title = "Unauthorized";
+      err.errors = ["Unauthorized"];
+      err.status = 401;
+      return next(err);
+    } else {
+      await card.update({ term, response });
+      return res.json({ card });
+    }
   })
 );
 
